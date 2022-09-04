@@ -1,70 +1,78 @@
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
+  --color-p: #87428E;
+  --color-y: #FFD700;
 
-  color-scheme: light dark;
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
+* {
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
   margin: 0;
+}
+
+header {
+  width: 100vw;
+  height: 80px;
+  padding: 10px;
+  background-color: white;
+  color: var(--color-p);
+}
+
+.header_logo {
+  width: 151px;
+}
+
+.header_logo a {
+  text-decoration: none;
+  font-size: 40px;
+  text-align: right;
+  line-height: 80%;
+}
+
+.header_logo span {
+  color: var(--color-y);
+}
+
+.header_container {
+  max-width: 1230px;
+  margin: 0 auto;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  flex-wrap: inherit;
+  align-items: center;
+  justify-content: space-between;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.header_menu {
+  display: flex;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.header_menu_item {
+  border: transparent solid 1.5px;
+  border-radius: 30px;
+  padding: 1rem;
+  pointer-events: visible;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.header_menu_item:hover {
+  border-bottom: #87428E solid 1.5px;
+  border-radius: 30px;
 }
+
+.link_active {
+  pointer-events: auto;
+}
+
+.header_menu_link {
+  padding: 1rem ;
+  text-decoration: none;
+  color: var(--color-p);
+  font-weight: 400;
+}
+
+
