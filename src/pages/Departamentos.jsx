@@ -1,19 +1,16 @@
-import React from 'react'
-import { GetDepartamentos } from '../utils/ApiRequestDepartamento'
+import React from "react";
+import { GetDepartamentos } from "../utils/ApiRequestDepartamento";
+import { useState , useEffect } from "react";
 
-export const Departamentos = async () => {
-  const departamentos = await GetDepartamentos()
-  console.log(departamentos)
+export const Departamentos = () => {
+  const [arryDepartamentos, setarryDepartamentos] = useState([]);
 
-  return (
-    <ul>
-      {
-        departamentos
-          .map(depto =>
-            <li key={depto.id}>{depto.name}</li>
-          )
-      }
-    </ul>
-  )
-}
+  useEffect( async() => {
+    const departamentos = await GetDepartamentos();
+    setarryDepartamentos(departamentos);
+  }, []);
 
+  return(<ul>
+       
+  </ul>)
+};
