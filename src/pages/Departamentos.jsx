@@ -1,16 +1,22 @@
 import React from "react";
-import { GetDepartamentos } from "../utils/ApiRequestDepartamento";
+import { GetDepartamentos } from "../services/department/ApiRequestDepartment";
 import { useState , useEffect } from "react";
+import axios from "axios";
 
 export const Departamentos = () => {
-  const [arryDepartamentos, setarryDepartamentos] = useState([]);
+  const [departamentos, setDepartamentos] = useState([]);
 
-  useEffect( async() => {
-    const departamentos = await GetDepartamentos();
-    setarryDepartamentos(departamentos);
+  useEffect(() => {
+    GetDepartamentos()
+    .then(data => setDepartamentos(data))
   }, []);
 
   return(<ul>
-       
+       {
+        departamentos.map(depto => (
+          <li key={depto.id}>{depto.nombre}</li>
+          
+        ))
+       }
   </ul>)
 };
