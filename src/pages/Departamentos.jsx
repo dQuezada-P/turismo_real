@@ -1,12 +1,4 @@
 import React from 'react'
-<<<<<<< HEAD
-
-export const Departamentos = () => {
-  return (
-    <div></div>
-  )
-}
-=======
 import { GetDepartamentos } from '../utils/ApiRequestDepartamento'
 
 export const Departamentos = async () => {
@@ -25,4 +17,3 @@ export const Departamentos = async () => {
   )
 }
 
->>>>>>> 262624868e05fa57347e724b32200ed4f68f5519

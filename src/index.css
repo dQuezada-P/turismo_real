@@ -40,16 +40,10 @@ header {
 }
 
 .header_container {
-<<<<<<< HEAD
-  max-width: 90%;
-  margin: 0 auto;
-  display: flex;
-=======
   max-width: 1230px;
   margin: 0 auto;
   display: flex;
   flex-wrap: inherit;
->>>>>>> 262624868e05fa57347e724b32200ed4f68f5519
   align-items: center;
   justify-content: space-between;
 }
@@ -71,13 +65,6 @@ header {
 }
 
 .link_active {
-<<<<<<< HEAD
-  pointer-events: auto;
-}
-
-.header_menu_link {
- text-decoration: none;
-=======
   border-bottom: #87428E solid 1.5px;
   border-radius: 30px;
 }
@@ -87,7 +74,6 @@ header {
   text-decoration: none;
   color: var(--color-p);
   font-weight: 400;
->>>>>>> 262624868e05fa57347e724b32200ed4f68f5519
 }
 
 
