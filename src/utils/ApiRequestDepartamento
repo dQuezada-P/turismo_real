@@ -1,0 +1,7 @@
+import { HttpGet } from './ApiRequest'
+
+export const GetDepartamentos = async () => {
+    const result = await HttpGet('http://localhost:3000/api/departamento')
+    // console.log(result)
+    return result
+}

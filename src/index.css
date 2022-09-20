@@ -65,7 +65,8 @@ header {
 }
 
 .link_active {
-  pointer-events: auto;
+  border-bottom: #87428E solid 1.5px;
+  border-radius: 30px;
 }
 
 .header_menu_link {

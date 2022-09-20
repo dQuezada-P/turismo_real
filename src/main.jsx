@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { TurismoReal } from './TurismoReal'
+import { AppRouter } from './router/AppRouter'
 import './index.css'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <TurismoReal></TurismoReal>
+    <AppRouter></AppRouter>
   </React.StrictMode>            
 )
 
