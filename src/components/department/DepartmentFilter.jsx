@@ -1,7 +1,7 @@
 export const DepartmentFilter = () => {
   return (
     <div className="">
-      <h2 className="font-semibold text-2xl text-center  py-4  ">
+      <h2 className="font-semibold text-2xl text-center text-purple-600  py-4  ">
         Búsqueda Avanzada
       </h2>
       <div className="block text-center py-4 md:flex md:gap-8 items-center bg-white">
