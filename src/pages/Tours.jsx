@@ -5,3 +5,4 @@ export const Tours = () => {
     <div>Tours</div>
   )
 }
+

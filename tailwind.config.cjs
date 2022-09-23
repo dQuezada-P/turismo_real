@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'fondo_footer': "url('./public/Fondo.jpg')",
+      },
       colors:{
         purple: {
           '50':  '#fbfbfb',
