@@ -9,19 +9,19 @@ import {
   MdOutlineChair,
 } from "react-icons/all";
 
-export const DepartmentCardInfo = ({ department }) => {
+export const DepartmentCardInfo = ({department}) => {
+  
   const {
-    id,
-    nombre,
-    numero_banno,
-    numero_Habitacion,
-    fecha,
-    direccion,
-    valor_arriendo,
-    ubicacion,
-    descripcion,
+    ID,
+    NOMBRE,
+    NUMERO_BANNO,
+    NUMERO_HABITACION,
+    FECHA_INS,
+    DIRECCION,
+    VALOR_ARRIENDO,
+    UBICACION,
+    DESCRIPCION,
   } = department;
-
   return (
     <>
       {" "}
@@ -43,29 +43,29 @@ export const DepartmentCardInfo = ({ department }) => {
                 Departamento en Arriendo
               </h3>
               <h2 className="md:mx-20 w-full py-2 md:text-3xl text-center">
-                ${valor_arriendo}-CLP
+                ${VALOR_ARRIENDO}-CLP
               </h2>
               <dir className="flex w-full justify-center md:gap-8">
                 <div>
                   <h2 className="flex items-center gap-4 text-3xl ">
-                    {numero_Habitacion}
+                    {NUMERO_HABITACION}
                     <span className="text-purple-600">
                       <IoBedOutline />
                     </span>
                   </h2>
                   <span className="font-semibold">
-                    {numero_Habitacion > 1 ? "Habitaciónes" : "Habitación"}
+                    {NUMERO_HABITACION > 1 ? "Habitaciónes" : "Habitación"}
                   </span>
                 </div>
                 <div>
                   <h2 className="flex items-center gap-4 text-3xl ">
-                    {numero_banno}
+                    {NUMERO_BANNO}
                     <span className="text-purple-600">
                       <TbBath />
                     </span>
                   </h2>
                   <span className="font-semibold">
-                    {numero_banno > 1 ? "Baños" : "Baño"}
+                    {NUMERO_BANNO > 1 ? "Baños" : "Baño"}
                   </span>
                 </div>
               </dir>
@@ -81,7 +81,7 @@ export const DepartmentCardInfo = ({ department }) => {
             <h4 className="flex justify-center font-semibold">Publicado:#</h4>
           </div>
           <h4 className="flex justify-center font-semibold  items-center">
-            Código Departamento {id}
+            Código Departamento {ID}
           </h4>
           <h4 className="flex  font-semibold gap-4 items-center ">
             <span className="text-3xl text-purple-600">
