@@ -12,12 +12,13 @@ import { Contactanos } from "../pages/Contactanos";
 import { Nosotros } from "../pages/Nosotros";
 import { Departamento } from "../pages/DepartamentoInfo";
 import { FooterBase } from "../components/footer/FooterBase";
+import { Login } from "../pages/Login";
 
 export const AppRouter = () => {
   return (
     <>
       <Router>
-        <Header />
+        <Header/>
         <Routes>
           <Route
             path="departamentos"
@@ -36,9 +37,10 @@ export const AppRouter = () => {
             }
           />
           <Route path="tours" element={<Tours />} />
+          <Route path="login" element={<Login />} />
           <Route path="nosotros" element={<Nosotros />} />
           <Route path="contactanos" element={<Contactanos />} />
-          <Route path="/*" element={<Navigate to="/departamentos" />} />
+          <Route path="*" element={<Navigate to="/departamentos" />} />
         </Routes>
         <FooterBase/>
       </Router>
