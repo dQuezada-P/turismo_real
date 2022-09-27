@@ -1,10 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from '../context/hooks/useAuth';
 import { AuthUser } from '../services/auth/auth.js';
 
 export const Login = () => {
   const { user, setUser, isUser } = useAuth();
+
+  useEffect(() => { 
+    console.log(user) 
+
+    if (isUser()) {
+      console.log("Está logueado")
+      setTimeout(()=>{
+        navigate('/departamentos');
+      },5000)
+    }
+    else console.info('No se ha logueado');
+  }, [user])
+
   const navigate = useNavigate();
   const username = useFormInput('');
   const password = useFormInput('');
@@ -20,16 +33,6 @@ export const Login = () => {
     await AuthUser(data)
     .then(res => {
       setUser(res)
-      
-      console.log(user)
-
-      if (isUser()) {
-        console.log("Está logueado")
-        setTimeout(()=>{
-          navigate('/departamentos');
-        },5000)
-      }
-      else console.error('No se ha logueado');
     })
     
   }
