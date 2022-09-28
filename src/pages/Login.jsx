@@ -5,6 +5,7 @@ import { AuthUser } from '../services/auth/auth.js';
 
 export const Login = () => {
   const { user, setUser, isUser } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => { 
     console.log(user) 
@@ -13,12 +14,11 @@ export const Login = () => {
       console.log("Está logueado")
       setTimeout(()=>{
         navigate('/departamentos');
-      },5000)
+      },1000)
     }
     else console.info('No se ha logueado');
   }, [user])
 
-  const navigate = useNavigate();
   const username = useFormInput('');
   const password = useFormInput('');
 

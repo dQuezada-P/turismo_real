@@ -9,7 +9,7 @@ export const Login = () => {
       {" "}
       { isUser()
         ? (
-          <h1>Usuario Logueado xd</h1>
+          <h1>Usuario Logueado xd {user}</h1>
         )
         : (
           <button className=" md:flex md:justify-center md:items-center gap-1 text-sm text-purple-600">

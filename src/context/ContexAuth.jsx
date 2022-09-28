@@ -14,5 +14,6 @@ const ContextAuth = ({ children }) => {
         </Auth.Provider>
     );
 };
+
 export { ContextAuth };
 export default Auth;
