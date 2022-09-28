@@ -4,20 +4,18 @@ import { useAuth } from '../context/hooks/useAuth';
 import { AuthUser } from '../services/auth/auth.js';
 
 export const Login = () => {
-  const { user, setUser, isUser } = useAuth();
+  const { user, setUser, isLogged, setIsLogged } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => { 
-    console.log(user) 
-
-    if (isUser()) {
+    if (isLogged) {
       console.log("Está logueado")
       setTimeout(()=>{
         navigate('/departamentos');
       },1000)
     }
     else console.info('No se ha logueado');
-  }, [user])
+  }, [isLogged])
 
   const username = useFormInput('');
   const password = useFormInput('');
@@ -32,7 +30,9 @@ export const Login = () => {
 
     await AuthUser(data)
     .then(res => {
-      setUser(res)
+      setIsLogged(res.auth)
+      if (res.auth)
+        setUser(res.user)
     })
     
   }

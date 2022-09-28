@@ -3,13 +3,13 @@ import { useAuth } from '../../context/hooks/useAuth';
 
 
 export const Login = () => {
-  const { user, isUser } = useAuth();
+  const { user, isLogged } = useAuth();
   return (
     <div className=" block md:flex text-center">
       {" "}
-      { isUser()
+      { isLogged
         ? (
-          <h1>Usuario Logueado xd {user}</h1>
+          <h1>Usuario Logueado xd {user.CORREO}</h1>
         )
         : (
           <button className=" md:flex md:justify-center md:items-center gap-1 text-sm text-purple-600">
