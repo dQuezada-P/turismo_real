@@ -10,9 +10,7 @@ export const Login = () => {
   useEffect(() => { 
     if (isLogged) {
       console.log("Está logueado")
-      setTimeout(()=>{
-        navigate('/departamentos');
-      },1000)
+      navigate('/departamentos');
     }
     else console.info('No se ha logueado');
   }, [isLogged])
@@ -24,7 +22,7 @@ export const Login = () => {
     e.preventDefault();
 
     const data = {
-      correo: username.value,
+      username: username.value,
       password: password.value
     }
 
@@ -33,6 +31,7 @@ export const Login = () => {
       setIsLogged(res.auth)
       if (res.auth)
         setUser(res.user)
+        localStorage.setItem('token',res.token)
     })
     
   }

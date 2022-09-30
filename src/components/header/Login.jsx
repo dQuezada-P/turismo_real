@@ -1,4 +1,5 @@
 import { FaRegUserCircle } from "react-icons/all";
+import { Link } from "react-router-dom";
 import { useAuth } from '../../context/hooks/useAuth';
 
 
@@ -9,12 +10,12 @@ export const Login = () => {
       {" "}
       { isLogged
         ? (
-          <h1>Usuario Logueado xd {user.CORREO}</h1>
+          <h1>{user.NOMBRE} {user.APELLIDO}</h1>
         )
         : (
-          <button className=" md:flex md:justify-center md:items-center gap-1 text-sm text-purple-600">
-            <FaRegUserCircle className="  text-4xl text-purple-600" />
-          </button>
+          <Link to={'/login'} className=" md:flex md:justify-center md:items-center gap-1 text-sm text-purple-600">
+              <FaRegUserCircle className="  text-4xl text-purple-600" />
+          </Link>
         )}
       
     </div>
