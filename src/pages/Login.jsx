@@ -33,6 +33,7 @@ export const Login = () => {
         setUser(res.user)
         localStorage.setItem('token',res.token)
     })
+
     
   }
 
@@ -47,9 +48,9 @@ export const Login = () => {
           {...username} //Value and onChange
         />
         <input
-          type='text'
-          name='username'
-          placeholder='Username'
+          type='password'
+          name='password'
+          placeholder='Password'
           {...password} //Value and onChange
         />
         <button type="submit">Login</button>
