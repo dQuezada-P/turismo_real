@@ -1,16 +1,18 @@
 import { useState, useEffect, createContext } from "react";
 import { GetDepartamentos } from "../services/department/ApiRequestDepartment";
+import { useAuth } from "./hooks/useAuth";
 
 const Department = createContext();
 const ContextDepartment = ({ children }) => {
   const [departments, setDepartments] = useState([]);
   const [department, setDepartment] = useState({});
   const [charging, setCharging] = useState(true);
+  const { token } = useAuth();
 
   useEffect(() => {
     const get = async () => {
       try {
-        const getdeptos = await GetDepartamentos();
+        const getdeptos = await GetDepartamentos(token);
         setDepartments(getdeptos);
       } catch (error) {
         console.log(error)
@@ -24,7 +26,7 @@ const ContextDepartment = ({ children }) => {
    
 
     get();
-  }, []);
+  }, [token]);
 
   return (
     <Department.Provider

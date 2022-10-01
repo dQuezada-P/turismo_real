@@ -4,27 +4,27 @@ import { MdBathtub,IoBedSharp } from "react-icons/all";
 
 export const DepartmentCard = ({ depto }) => {
   const {
-    ID,
-    NOMBRE,
-    NUMERO_BANNO,
-    NUMERO_HABITACION,
-    FECHA_INS,
-    DIRECCION,
-    VALOR_ARRIENDO,
-    UBICACION,
-    DESCRIPCION,
+    id,
+    nombre,
+    numero_banno,
+    numero_habitacion,
+    fecha_ins,
+    direccion,
+    valor_arriendo,
+    ubicacion,
+    descripcion,
   } = depto;
   
 
   return (
     <>
-      <NavLink className='' to={`/departamento/${ID}`}><img src="" alt="imagen" /></NavLink>
-      <h3 className='font-semibold text-2xl ml-3 py-2'>${VALOR_ARRIENDO} CLP</h3>
-      <h4 className='font-semibold ml-3 py-2'>{UBICACION}</h4>
+      <NavLink className='' to={`/departamento/${{id}}`}><img src="" alt="imagen" /></NavLink>
+      <h3 className='font-semibold text-2xl ml-3 py-2'>${valor_arriendo} CLP</h3>
+      <h4 className='font-semibold ml-3 py-2'>{ubicacion}</h4>
       <div className='flex justify-around py-2 '>
         <div>
         <h4 className="flex gap-2 items-center text-2xl font-semibold ">
-          {NUMERO_HABITACION}
+          {numero_habitacion}
           <span>
             <IoBedSharp />
           </span>
@@ -32,7 +32,7 @@ export const DepartmentCard = ({ depto }) => {
         </div> 
         <div>
         <h4 className="flex gap-2 items-center text-2xl font-semibold">
-          {NUMERO_BANNO}
+          {numero_banno}
           <span>
             {" "}
             <MdBathtub />
@@ -41,7 +41,7 @@ export const DepartmentCard = ({ depto }) => {
         </div>
         <div>
         <h4 className="flex text-lg font-semibold">
-          {NOMBRE}
+          {nombre}
           <span></span>
         </h4>
         </div>

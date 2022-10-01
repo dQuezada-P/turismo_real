@@ -14,7 +14,7 @@ export const Departamentos = () => {
         <DepartmentFilter />
         <div className="grid md:grid-cols-3 grid-rows-6 gap-8">
           {departments.map((depto) => (
-            <div className="shadow-2xl rounded-3xl" key={depto.ID}>
+            <div className="shadow-2xl rounded-3xl" key={depto.id}>
               <DepartmentCard depto={depto} />
             </div>
           ))}

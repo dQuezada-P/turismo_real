@@ -1,7 +1,8 @@
 import { HttpGet } from '../ApiRequest'
 
-export const GetDepartamentos = () => {
-    return HttpGet('/departamento/all')
+
+export const GetDepartamentos = (token) => {
+    return HttpGet('/departamento/all', token)
 }
 
 export const GetDepartamento = id => {

@@ -3,17 +3,17 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from '../context/hooks/useAuth';
 import { AuthUser } from '../services/auth/auth.js';
 
-export const Login = () => {
-  const { user, setUser, isLogged, setIsLogged } = useAuth();
+export const Login = (next) => {
+  const { user, setUser, isLogged, setIsLogged, token, setToken } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => { 
-    if (isLogged) {
+    if (token) {
       console.log("Está logueado")
       navigate('/departamentos');
     }
     else console.info('No se ha logueado');
-  }, [isLogged])
+  }, [token])
 
   const username = useFormInput('');
   const password = useFormInput('');
@@ -28,10 +28,11 @@ export const Login = () => {
 
     await AuthUser(data)
     .then(res => {
-      setIsLogged(res.auth)
+      setToken(res.token)
       if (res.auth)
         setUser(res.user)
         localStorage.setItem('token',res.token)
+        setToken(res.token)
     })
 
     
