@@ -25,8 +25,7 @@ export const Departamento = () => {
   return (
     <div className="container m-auto my-8 grid gap-3 md:grid-rows-2  h-[90vh]
     ">
-      <DepartmentCardInfo department=
-      {department}/>
+      <DepartmentCardInfo />
     </div>
   );
 };

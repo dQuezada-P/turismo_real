@@ -17,7 +17,7 @@ const ContextAuth = ({ children }) => {
     }
 
     useEffect(()=>{
-        if (!isLogged())
+        if (token && !user)
         {
             verifyToken();
         }

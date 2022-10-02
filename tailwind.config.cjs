@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'fondo_footer': "url('./public/Fondo.jpg')",
+        'fondo-footer': "url(https://turismoreal2.s3.amazonaws.com/Fondo.jpg)",
       },
       colors:{
         purple: {

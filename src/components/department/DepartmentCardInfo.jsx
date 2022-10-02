@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   VscHeart,
   RiShareForwardLine,
@@ -8,7 +9,10 @@ import {
   BsBuilding,
   MdOutlineChair,
 } from "react-icons/all";
-export const DepartmentCardInfo = ({ department }) => {
+import { useDepartment } from "../../context/hooks/useDepartment";
+
+export const DepartmentCardInfo = () => {
+  const { department, setDepartment } = useDepartment();
   const {
     ID,
     NOMBRE,
@@ -21,6 +25,35 @@ export const DepartmentCardInfo = ({ department }) => {
     DESCRIPCION,
     IMAGENES,
   } = department;
+
+  let images = [
+    "https://turismoreal2.s3.amazonaws.com/interior.jpg",
+    "https://turismoreal2.s3.amazonaws.com/interior2.jpg",
+  ];
+
+  const [selectIndex, setSelectIndex] = useState(0);
+  const [selectImage, setSelectImage] = useState(images[0]);
+
+  const selectNewImage = (i, images, next = true) => {
+    const condition = next ? selectIndex < images.length - 1 : selectIndex > 0;
+    const nextIndex = next
+      ? condition
+        ? selectIndex + 1
+        : 0
+      : condition
+      ? selectIndex - 1
+      : images.length - 1;
+    setSelectImage(images[selectIndex]);
+    setSelectIndex(nextIndex);
+  };
+
+  const previos = () => {
+    selectNewImage(selectIndex, images, false);
+  };
+
+  const next = () => {
+    selectNewImage(selectIndex, images);
+  };
 
   return (
     <>
@@ -107,7 +140,17 @@ export const DepartmentCardInfo = ({ department }) => {
           </h4>
         </div>
       </div>
-      <div className="Cajacard_img bg-gradient-to-t from-blue-900 to-blue-500 w-full   md:w-4/6 md:mx-auto rounded-3xl ">
+      <div className="Cajacard_img w-full mr-4 md:w-4/6 md:mx-auto flex rounded-3xl relative ">
+        <div className="flex-auto absolute h-full">
+          <button className="items-center h-full ml-4 text-2xl " onClick={previos}>{"<"}</button>
+        </div>
+        <div className=" h-full w-full">
+          <img className=" h-full w-full rounded-3xl" src={selectImage} alt="" />
+        </div>
+        <div className="flex-auto absolute top-0 right-0 h-full">
+          {" "}
+          <button className="items-center h-full mr-4 text-2xl" onClick={next}>{">"}</button>
+        </div>
       </div>
     </>
   );
