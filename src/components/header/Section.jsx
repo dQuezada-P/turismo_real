@@ -8,7 +8,7 @@ export default function Section(props) {
   return (
     <>
       <NavLink
-        className={`my-2 m-auto w-10/12 text-center block rounded-lgtransition ease-in-out delay-30 text-lg font-bold
+        className={`my-2 m-auto w-10/12 text-center block rounded-lgtransition ease-in-out delay-30 text-lg font-bold rounded-lg
           ${urlLocation === props.url 
           ? 'border-r-2 shadow-lg px-2 text-centershadow-lg translate-y-1 scale-110 bg-gray-50 duration-200  text-purple-600' 
           : 'md:px-3 py-0 hover:shadow-lg hover:-translate-y-1 hover:scale-110 hover:bg-gray-50 duration-200  text-purple-500'} 

@@ -8,9 +8,7 @@ import {
   BsBuilding,
   MdOutlineChair,
 } from "react-icons/all";
-
-export const DepartmentCardInfo = ({department}) => {
-  
+export const DepartmentCardInfo = ({ department }) => {
   const {
     ID,
     NOMBRE,
@@ -21,7 +19,9 @@ export const DepartmentCardInfo = ({department}) => {
     VALOR_ARRIENDO,
     UBICACION,
     DESCRIPCION,
+    IMAGENES,
   } = department;
+
   return (
     <>
       {" "}
@@ -107,7 +107,8 @@ export const DepartmentCardInfo = ({department}) => {
           </h4>
         </div>
       </div>
-      <div className="Cajacard_img bg-gradient-to-t from-blue-900 to-blue-500 w-full   md:w-4/6 md:mx-auto rounded-3xl "></div>
+      <div className="Cajacard_img bg-gradient-to-t from-blue-900 to-blue-500 w-full   md:w-4/6 md:mx-auto rounded-3xl ">
+      </div>
     </>
   );
 };
