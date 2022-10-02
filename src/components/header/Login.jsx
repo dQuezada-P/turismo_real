@@ -1,15 +1,21 @@
+import { useEffect } from "react";
 import { FaRegUserCircle } from "react-icons/all";
 import { Link } from "react-router-dom";
 import { useAuth } from '../../context/hooks/useAuth';
+import { HttpGet } from "../../services/ApiRequest";
 
 
 export const Login = () => {
-  const { user, isLogged } = useAuth();
+  const { user, setUser, isLogged, token } = useAuth();
+
+  
+
   return (
     <div className=" flex justify-center md:flex text-center ">
       {" "}
-      { isLogged
+      { isLogged()
         ? (
+          // <h1></h1>
           <h1>{user.NOMBRE} {user.APELLIDO}</h1>
         )
         : (

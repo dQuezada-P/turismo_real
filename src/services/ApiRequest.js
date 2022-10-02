@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-export const HttpGet = (endpoint) => {
+export const HttpGet = (endpoint, token) => {
     try {
-        return axios.get('http://localhost:3000/api' + endpoint, { headers: {"x-access-token": localStorage.getItem('token')} })
+        return axios.get('http://localhost:3000/api' + endpoint, { headers: { Authorization: token } })
         .then(response =>{ return response.data})
     } catch (error) {
         console.log(error)
