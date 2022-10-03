@@ -4,8 +4,8 @@ import FooterNavegator from "../footer/FooterNavegator";
 
 export const FooterBase = () => {
   return (
-    <footer className="absolute bg-fondo-footer bg-left md:h-24 w-full">
-      <div className="md:flex relative md:justify-center grid grid-rows-2 gap-16  box-border md:h-20  ">
+    <footer className="bg-fondo_footer bg-left md:h-24 w-full absolute">
+      <div className="md:flex md:justify-center grid grid-rows-2 gap-16  box-border md:h-20 relative">
         <div className="row-start-2 ">
           <Link
             className={

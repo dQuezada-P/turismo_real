@@ -15,9 +15,9 @@ export const DepartmentCard = ({ depto }) => {
     IMAGENES,
   } = depto;
 
-  const firstImage = (
+  const firstImage = IMAGENES ? (
     "https://turismoreal2.s3.amazonaws.com/" + IMAGENES[0].name
-  ).trim();
+  ).trim() : "";
   return (
     <>
       <NavLink className="" to={`/departamento/${ID}`}>
