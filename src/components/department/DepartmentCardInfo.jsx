@@ -25,11 +25,16 @@ export const DepartmentCardInfo = () => {
     DESCRIPCION,
     IMAGENES,
   } = department;
+  const [imagess, setImages] = useState([IMAGENES]);
 
-  let images = [
-    "https://turismoreal2.s3.amazonaws.com/interior.jpg",
-    "https://turismoreal2.s3.amazonaws.com/interior2.jpg",
-  ];
+  const newValorArriendo = Intl.NumberFormat("es-CL", {
+    currency: "CLP",
+    style: "currency",
+  }).format(VALOR_ARRIENDO);
+
+  let images = imagess
+
+  console.log(imagess)
 
   const [selectIndex, setSelectIndex] = useState(0);
   const [selectImage, setSelectImage] = useState(images[0]);
@@ -73,12 +78,12 @@ export const DepartmentCardInfo = () => {
 
             <div className="Cajacard_info_dept bg-gray-100 w-11/12 mx-auto h-5/6 shadow-xl rounded-3xl flex flex-col justify-center items-center">
               <h3 className="md:mx-20 w-full py-2 md:text-3xl text-center">
-                Departamento en Arriendo
+                DEPARTAMENTO EN ARRIENDO
               </h3>
               <h2 className="md:mx-20 w-full py-2 md:text-3xl text-center">
-                ${VALOR_ARRIENDO}-CLP
+                {newValorArriendo}-CLP
               </h2>
-              <dir className="flex w-full justify-center md:gap-8">
+              <dir className="flex w-full justify-center gap-2 md:gap-8">
                 <div>
                   <h2 className="flex items-center gap-4 text-3xl ">
                     {NUMERO_HABITACION}
@@ -86,7 +91,7 @@ export const DepartmentCardInfo = () => {
                       <IoBedOutline />
                     </span>
                   </h2>
-                  <span className="font-semibold">
+                  <span className="font-semibold uppercase">
                     {NUMERO_HABITACION > 1 ? "Habitaciónes" : "Habitación"}
                   </span>
                 </div>
@@ -97,7 +102,7 @@ export const DepartmentCardInfo = () => {
                       <TbBath />
                     </span>
                   </h2>
-                  <span className="font-semibold">
+                  <span className="font-semibold uppercase">
                     {NUMERO_BANNO > 1 ? "Baños" : "Baño"}
                   </span>
                 </div>
@@ -113,8 +118,8 @@ export const DepartmentCardInfo = () => {
             </h4>
             <h4 className="flex justify-center font-semibold">Publicado:#</h4>
           </div>
-          <h4 className="flex justify-center font-semibold  items-center">
-            Código Departamento {ID}
+          <h4 className="flex justify-center font-semibold  items-center uppercase">
+            Código Departamento: {ID}
           </h4>
           <h4 className="flex  font-semibold gap-4 items-center ">
             <span className="text-3xl text-purple-600">
@@ -126,30 +131,45 @@ export const DepartmentCardInfo = () => {
             <span className="text-3xl text-purple-600">
               <MdOutlineChair />
             </span>
-            Amoblado #
+            <p className="uppercase">{DESCRIPCION}</p>
           </h4>
           <h4 className="flex font-semibold gap-4 items-center  ">
             <span className="text-3xl text-purple-600">
               <BsBuilding />
             </span>
-            Piso#
+            <p className="uppercase">{UBICACION}</p>
           </h4>
           <h4 className="flex justify-end gap-1 items-center font-semibold mb-5 mr-8 text-3xl text-purple-600">
-            <FaMapMarkedAlt />
-            <span className="text-sm text-black ">Ver Mapa</span>
+            <span className="text-sm text-black ">
+              <button className="bg-purple-600 p-2">RESERVAR</button>
+            </span>
           </h4>
         </div>
       </div>
       <div className="Cajacard_img w-full mr-4 md:w-4/6 md:mx-auto flex rounded-3xl relative ">
         <div className="flex-auto absolute h-full">
-          <button className="items-center h-full ml-4 text-2xl " onClick={previos}>{"<"}</button>
+          <button
+            className="items-center h-full ml-4 text-4xl hover:text-purple-600 hover:text-5xl"
+            onClick={previos}
+          >
+            {"<"}
+          </button>
         </div>
         <div className=" h-full w-full">
-          <img className=" h-full w-full rounded-3xl" src={selectImage} alt="" />
+          <img
+            className=" h-full w-full rounded-3xl"
+            src={selectImage}
+            alt=""
+          />
         </div>
         <div className="flex-auto absolute top-0 right-0 h-full">
           {" "}
-          <button className="items-center h-full mr-4 text-2xl" onClick={next}>{">"}</button>
+          <button
+            className="items-center h-full mr-4 text-4xl hover:text-purple-600 hover:text-5xl"
+            onClick={next}
+          >
+            {">"}
+          </button>
         </div>
       </div>
     </>
