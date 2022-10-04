@@ -2,9 +2,15 @@ import { useDepartment } from "../context/hooks/useDepartment";
 import { DepartmentCard } from "../components/department/DepartmentCard";
 import { DepartmentFilter } from "../components/department/DepartmentFilter";
 import { Spinner } from "../components/spinner/Spinner";
+import { useEffect } from "react";
 export const Departamentos = () => {
-  const { departments, setdepartments } = useDepartment();
+  const { departments, setDepartments } = useDepartment();
   const { charging, setCharging } = useDepartment();
+
+  useEffect(() => {
+ 
+  }, [])
+  
 
   return charging ? (
     <Spinner />

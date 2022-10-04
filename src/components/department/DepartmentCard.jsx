@@ -20,8 +20,8 @@ export const DepartmentCard = ({ depto }) => {
   ) : "";
   return (
     <>
-      <NavLink className="" to={`/departamento/${ID}`}>
-        <img className="w-full rounded-t-3xl" crossOrigin="Anonymous" src={firstImage} alt="imagen" />
+      <NavLink className="h-64 block" to={`/departamento/${ID}`}>
+        <img className=" object-cover object-center h-full rounded-t-3xl" crossOrigin="Anonymous" src={firstImage} alt="imagen" />
       </NavLink>
       <h3 className="font-semibold text-2xl ml-3 py-2">
         ${VALOR_ARRIENDO} CLP
