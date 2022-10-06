@@ -11,8 +11,9 @@ import {
 } from "react-icons/all";
 import { useDepartment } from "../../context/hooks/useDepartment";
 
-export const DepartmentCardInfo = () => {
+export const DepartmentCardInfo = ({ images }) => {
   const { department, setDepartment } = useDepartment();
+  const { imageCharge, setImageCharge } = useDepartment();
   const {
     ID,
     NOMBRE,
@@ -25,16 +26,17 @@ export const DepartmentCardInfo = () => {
     DESCRIPCION,
     IMAGENES,
   } = department;
-  const [imagess, setImages] = useState([IMAGENES]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setImageCharge(!imageCharge);
+    }, 1000);
+  }, []);
 
   const newValorArriendo = Intl.NumberFormat("es-CL", {
     currency: "CLP",
     style: "currency",
   }).format(VALOR_ARRIENDO);
-
-  let images = imagess
-
-  console.log(imagess)
 
   const [selectIndex, setSelectIndex] = useState(0);
   const [selectImage, setSelectImage] = useState(images[0]);
@@ -60,9 +62,8 @@ export const DepartmentCardInfo = () => {
     selectNewImage(selectIndex, images);
   };
 
-  return (
+  return imageCharge ? (
     <>
-      {" "}
       <div className="Cajacard md:grid md:grid-cols-3 mx-2 md:w-4/6 md:mx-auto shadow-2xl rounded-3xl ">
         <div className="Cajacard_corazon md:col-span-2 md:rounded-l-3xl md:h-full h-1/2 mx-8 rounded-t-3xl md:rounded-tr-none md:mx-0.5 flex justify-center items-center">
           <div className="w-11/12 h-5/6 bg-white md:border-r-2  border-gray-200 ">
@@ -155,9 +156,9 @@ export const DepartmentCardInfo = () => {
             {"<"}
           </button>
         </div>
-        <div className=" h-full w-full">
+        <div className=" h-full w-full block">
           <img
-            className=" h-full w-full rounded-3xl"
+            className=" h-full w-full rounded-3xl object-cover object-center"
             src={selectImage}
             alt=""
           />
@@ -173,5 +174,7 @@ export const DepartmentCardInfo = () => {
         </div>
       </div>
     </>
+  ) : (
+    ""
   );
 };

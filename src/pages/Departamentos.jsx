@@ -6,15 +6,11 @@ import { useEffect } from "react";
 export const Departamentos = () => {
   const { departments, setDepartments } = useDepartment();
   const { charging, setCharging } = useDepartment();
-
-  useEffect(() => {}, []);
-
-  const numeros = [1,2,3,4]
-  const newNumeros = numeros.map((num)=>{
-    return num + 1
-  })
-  console.log(newNumeros)
-  console.log(numeros)
+  const { imageCharge, setImageCharge } = useDepartment();
+  useEffect(() => {
+    setImageCharge(!imageCharge)
+  }, [])
+  
   return charging ? (
     <Spinner />
   ) : (
@@ -28,7 +24,11 @@ export const Departamentos = () => {
       >
         <DepartmentFilter />
         {departments == [] ? (
-          <div className="w-full h-full text-center md:flex md:items-start md:pt-20 md:justify-center "><p className="text-4xl font-semibold text-purple-700">No Hay Departamentos Disponibles</p></div>
+          <div className="w-full h-full text-center md:flex md:items-start md:pt-20 md:justify-center ">
+            <p className="text-4xl font-semibold text-purple-700">
+              No Hay Departamentos Disponibles
+            </p>
+          </div>
         ) : (
           <div className="grid md:grid-cols-4 mb-12 gap-4">
             {departments.map((depto) => (

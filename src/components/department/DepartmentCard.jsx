@@ -18,7 +18,7 @@ export const DepartmentCard = ({ depto }) => {
   const newValorArriendo = Intl.NumberFormat('es-CL', {currency: 'CLP', style: 'currency'}).format(VALOR_ARRIENDO)
 
   const firstImage = IMAGENES ? (
-    IMAGENES[0]
+    IMAGENES[0].url
   ) : "";
   return (
     <>

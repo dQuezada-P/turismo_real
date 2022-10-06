@@ -6,6 +6,8 @@ const Department = createContext();
 const ContextDepartment = ({ children }) => {
   const [departments, setDepartments] = useState([]);
   const [department, setDepartment] = useState({});
+  const [images, setImages] = useState([]);
+  const [imageCharge, setImageCharge] = useState(true);
   const [charging, setCharging] = useState(true);
   const { token } = useAuth();
 
@@ -15,22 +17,31 @@ const ContextDepartment = ({ children }) => {
         const getdeptos = await GetDepartamentos(token);
         setDepartments(getdeptos);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
 
       setTimeout(() => {
         setCharging(!charging);
       }, 1000);
-      
     };
-   
 
     get();
   }, [token]);
 
   return (
     <Department.Provider
-      value={{ departments, setDepartments, department, setDepartment,charging, setCharging }}
+      value={{
+        departments,
+        setDepartments,
+        department,
+        setDepartment,
+        charging,
+        setCharging,
+        images,
+        setImages,
+        imageCharge,
+        setImageCharge,
+      }}
     >
       {children}
     </Department.Provider>
