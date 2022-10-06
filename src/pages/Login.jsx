@@ -4,16 +4,16 @@ import { useAuth } from '../context/hooks/useAuth';
 import { AuthUser } from '../services/auth/auth.js';
 
 export const Login = (next) => {
-  const { user, setUser, isLogged, setIsLogged, token, setToken } = useAuth();
+  const { user, setUser, isLogged, token, setToken } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => { 
-    if (token) {
+    if (isLogged()) {
       console.log("Está logueado")
       navigate('/departamentos');
     }
     else console.info('No se ha logueado');
-  }, [token])
+  }, [token, user])
 
   const username = useFormInput('');
   const password = useFormInput('');

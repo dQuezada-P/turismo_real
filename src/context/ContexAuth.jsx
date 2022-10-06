@@ -1,5 +1,5 @@
 import { useState, createContext, useEffect } from "react";
-import { HttpGet } from "../services/ApiRequest";
+import { HttpPost } from "../services/ApiRequest";
 
 const Auth = createContext();
 const ContextAuth = ({ children }) => {
@@ -11,7 +11,9 @@ const ContextAuth = ({ children }) => {
     } 
 
     const verifyToken = async () => {
-        await HttpGet('/usuario', token).then((user) => {
+        console.log('token')
+        console.log(token)
+        await HttpPost('/auth/verify-login', { login: true } , token).then((user) => {
             setUser(user);
         });
     }
@@ -19,6 +21,7 @@ const ContextAuth = ({ children }) => {
     useEffect(()=>{
         if (token && !user)
         {
+            console.log('verificar token')
             verifyToken();
         }
         
