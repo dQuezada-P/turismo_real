@@ -20,13 +20,12 @@ const ContextDepartment = ({ children }) => {
         console.log(error);
       }
 
-      setTimeout(() => {
-        setCharging(!charging);
-      }, 1000);
+      setCharging(!charging);
+      
     };
 
     get();
-  }, [token]);
+  }, []);
 
   return (
     <Department.Provider
