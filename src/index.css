@@ -8,7 +8,7 @@
 @tailwind utilities;
 
 
-.bg-fondo_footer::before {
+.bg-fondo-footer::before {
   content:'\A';
   position: absolute;
   z-index: 0;
@@ -75,7 +75,7 @@
   } 
 }
 
-.bg-fondo-footer::before {
+.bg-overlap-black::before {
   content:'\A';
   position: absolute;
   z-index: 0;
@@ -84,4 +84,69 @@
   top:0; 
   left:0;
   background:rgba(0,0,0,0.4);
+}
+
+.container-body {
+  max-width: 1000px;
+  padding: 2rem;
+  margin: 0 auto;
+}
+
+.bg-bars-banner {
+  position: absolute;
+  left: 1000px;
+  top: -75px;
+  transform: rotate(30deg);
+  transform-origin: top left;
+}
+
+.bg-bars-banner > * {
+  height: 24rem;
+  width: 58.31px;
+  position: absolute;
+}
+
+.bg-bars-banner *:nth-child(2) {
+  left: 58.31px;
+}
+
+.bg-bars-body {
+  position: absolute;
+  left: 809px;
+}
+
+.bg-bars-body > * {
+  height: 5000px;
+  width: 68px;
+  position: absolute;
+}
+
+.bg-bars-body *:nth-child(2) {
+  left: 67px;
+}
+
+.card {
+  height: 320px;
+  max-width: 300px;
+  border-radius: 30px;
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.35);
+  overflow: hidden;
+  
+}
+
+.card-image {
+  height: 55%;
+  overflow: hidden;
+}
+
+.card-image img {
+  height:100%;
+  object-fit:cover;
+}
+
+.card-info {
+  background-color: white;
+  height: 45%;
+  padding: 1rem;
+  padding-top: .5rem;
 }

@@ -13,6 +13,7 @@ import { Nosotros } from "../pages/Nosotros";
 import { Departamento } from "../pages/DepartamentoInfo";
 import { FooterBase } from "../components/footer/FooterBase";
 import { Login } from "../pages/Login";
+import { TourInfo } from "../pages/TourInfo";
 
 export const AppRouter = () => {
   return (
@@ -37,6 +38,7 @@ export const AppRouter = () => {
             }
           />
           <Route path="tours" element={<Tours />} />
+          <Route path="tour/test" element={<TourInfo />} />
           <Route path="login" element={<Login />} />
           <Route path="nosotros" element={<Nosotros />} />
           <Route path="contactanos" element={<Contactanos />} />
