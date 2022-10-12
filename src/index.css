@@ -87,7 +87,7 @@
 }
 
 .container-body {
-  max-width: 1000px;
+  max-width: calc(100vw - 160px);
   padding: 2rem;
   margin: 0 auto;
 }
@@ -119,12 +119,12 @@
 
 .bg-bars-body {
   position: absolute;
-  right: calc(100vw - 42%);
+  right: calc(100vw - 31.099%);
 }
 
 @media (min-width: 768px) {
   .bg-bars-body  {
-    left: calc(100vw - 724px);
+    left: calc(100vw - 564px);
   }
 }
 .bg-bars-body > * {
