@@ -94,10 +94,17 @@
 
 .bg-bars-banner {
   position: absolute;
-  left: 1000px;
-  top: -75px;
-  transform: rotate(30deg);
+  right: calc(100vw - 33%);
+  transform: rotate();
   transform-origin: top left;
+}
+
+@media (min-width: 768px) {
+  .bg-bars-banner {
+    left: calc(100vw - 400px);
+    top: -75px;
+    transform: rotate(30deg);
+  }
 }
 
 .bg-bars-banner > * {
@@ -112,9 +119,14 @@
 
 .bg-bars-body {
   position: absolute;
-  left: 809px;
+  right: calc(100vw - 42%);
 }
 
+@media (min-width: 768px) {
+  .bg-bars-body  {
+    left: calc(100vw - 724px);
+  }
+}
 .bg-bars-body > * {
   height: 5000px;
   width: 68px;

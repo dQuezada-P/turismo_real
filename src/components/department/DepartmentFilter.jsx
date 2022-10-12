@@ -39,10 +39,9 @@ export const DepartmentFilter = () => {
   
 
   return (
-    <div className="">
-      <div>wea de mensaje</div>
+    <div className="relative z-30 md:z-0 md:static">
       <div className="md:flex md:flex-col ">
-        <h2 className="font-semibold text-center text-2x1 md:text-left md:text-3xl text-purple-600 md:py-4  ">
+        <h2 className="font-semibold text-center text-black text-2x1 md:text-left md:text-3xl md:text-purple-600 md:py-4  ">
           Búsqueda Avanzada
         </h2>
         <div className="block text-center py-4 md:flex md:gap-4 items-center bg-white">
