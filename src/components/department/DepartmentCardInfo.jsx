@@ -10,10 +10,12 @@ import {
   MdOutlineChair,
 } from "react-icons/all";
 import { useDepartment } from "../../context/hooks/useDepartment";
+import Carousel from "../carousel/Caraousel";
+import { Spinner } from "../spinner/Spinner";
 
 export const DepartmentCardInfo = ({ images }) => {
   const { department, setDepartment } = useDepartment();
-  const { imageCharge, setImageCharge } = useDepartment();
+  const [ loaded, setLoaded ] = useState(false);
   const {
     ID,
     NOMBRE,
@@ -26,43 +28,17 @@ export const DepartmentCardInfo = ({ images }) => {
     DESCRIPCION,
     IMAGENES,
   } = department;
-
-  useEffect(() => {
-    setTimeout(() => {
-      setImageCharge(!imageCharge);
-    }, 1000);
-  }, []);
-
   const newValorArriendo = Intl.NumberFormat("es-CL", {
     currency: "CLP",
     style: "currency",
   }).format(VALOR_ARRIENDO);
 
-  const [selectIndex, setSelectIndex] = useState(0);
-  const [selectImage, setSelectImage] = useState(images[0]);
+  useEffect(() => {
+    if (!loaded)
+    setTimeout(() => {setLoaded(true)}, 3000);
+  }, []);
 
-  const selectNewImage = (i, images, next = true) => {
-    const condition = next ? selectIndex < images.length - 1 : selectIndex > 0;
-    const nextIndex = next
-      ? condition
-        ? selectIndex + 1
-        : 0
-      : condition
-      ? selectIndex - 1
-      : images.length - 1;
-    setSelectImage(images[selectIndex]);
-    setSelectIndex(nextIndex);
-  };
-
-  const previos = () => {
-    selectNewImage(selectIndex, images, false);
-  };
-
-  const next = () => {
-    selectNewImage(selectIndex, images);
-  };
-
-  return imageCharge ? (
+  return (
     <>
       <div className="Cajacard md:grid md:grid-cols-3 mx-2 md:w-4/6 md:mx-auto shadow-2xl rounded-3xl ">
         <div className="Cajacard_corazon md:col-span-2 md:rounded-l-3xl md:h-full h-1/2 mx-8 rounded-t-3xl md:rounded-tr-none md:mx-0.5 flex justify-center items-center">
@@ -148,33 +124,8 @@ export const DepartmentCardInfo = ({ images }) => {
         </div>
       </div>
       <div className="Cajacard_img w-full mr-4 md:w-4/6 md:mx-auto flex rounded-3xl relative ">
-        <div className="flex-auto absolute h-full">
-          <button
-            className="items-center h-full ml-4 text-4xl hover:text-purple-600 hover:text-5xl"
-            onClick={previos}
-          >
-            {"<"}
-          </button>
-        </div>
-        <div className=" h-full w-full block">
-          <img
-            className=" h-full w-full rounded-3xl object-cover object-center"
-            src={selectImage}
-            alt=""
-          />
-        </div>
-        <div className="flex-auto absolute top-0 right-0 h-full">
-          {" "}
-          <button
-            className="items-center h-full mr-4 text-4xl hover:text-purple-600 hover:text-5xl"
-            onClick={next}
-          >
-            {">"}
-          </button>
-        </div>
+        {loaded ? (<Carousel images={images} />) : (<Spinner/>)}
       </div>
     </>
-  ) : (
-    ""
   );
 };

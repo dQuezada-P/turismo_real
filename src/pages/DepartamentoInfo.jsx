@@ -24,7 +24,7 @@ export const Departamento = () => {
         .then((dept) => dept.IMAGENES)
         .then((img) => img.map((ele) => ele.url));
       setImages(imagesCarousel);
-    };
+     };
     getImages();
   }, [department]);
 
@@ -33,7 +33,7 @@ export const Departamento = () => {
       className="container m-auto my-8 grid gap-3 md:grid-rows-2  h-[90vh]
     "
     >
-      <DepartmentCardInfo images={images} />
+      <DepartmentCardInfo />
     </div>
   );
 };

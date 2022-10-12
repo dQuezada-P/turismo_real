@@ -20,10 +20,11 @@ export const DepartmentCard = ({ depto }) => {
   const firstImage = IMAGENES ? (
     IMAGENES[0].url
   ) : "";
+
   return (
     <>
       <NavLink className="h-64 block overflow-hidden" to={`/departamento/${ID}`}>
-        <img className="object-cover w-full rounded-t-3xl" crossOrigin="Anonymous" src={firstImage} alt="imagen" />
+        <img className="object-cover w-full h-full rounded-t-3xl" crossOrigin="Anonymous" src={firstImage} alt="imagen" />
       </NavLink>
       <h3 className="font-semibold text-2xl ml-3 py-2">
         {newValorArriendo} CLP

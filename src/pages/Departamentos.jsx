@@ -7,12 +7,12 @@ export const Departamentos = () => {
   const { departments, setDepartments } = useDepartment();
   const { charging, setCharging } = useDepartment();
   const { imageCharge, setImageCharge } = useDepartment();
-  useEffect(() => {
-    setImageCharge(!imageCharge)
-  }, [])
-  
+
   return charging ? (
-    <Spinner />
+    <div className= "md:h-[calc(100vh-176px)]">
+      {" "}
+      <Spinner />
+    </div>
   ) : (
     <>
       <div
