@@ -20,6 +20,7 @@ export const DepartmentCard = ({ depto }) => {
   const firstImage = IMAGENES ? (
     IMAGENES[0].url
   ) : "";
+
   return (
     <>
       <NavLink className="h-64 block overflow-hidden" to={`/departamento/${ID}`}>
