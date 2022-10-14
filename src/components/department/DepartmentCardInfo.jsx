@@ -12,6 +12,7 @@ import {
 import { useDepartment } from "../../context/hooks/useDepartment";
 import Carousel from "../carousel/Caraousel";
 import { Spinner } from "../spinner/Spinner";
+import { Link } from "react-router-dom";
 
 export const DepartmentCardInfo = ({ images }) => {
   const { department, setDepartment } = useDepartment();
@@ -118,7 +119,7 @@ export const DepartmentCardInfo = ({ images }) => {
           </h4>
           <h4 className="flex justify-end gap-1 items-center font-semibold mb-5 mr-8 text-3xl text-purple-600">
             <span className="text-sm text-black ">
-              <button className="bg-purple-600 p-2">RESERVAR</button>
+              <Link className="bg-purple-600 p-2 rounded-xl" to={"/reserva"}>RESERVAR</Link>
             </span>
           </h4>
         </div>

@@ -44,7 +44,7 @@ export const AppRouter = () => {
           <Route path="login" element={<Login />} />
           <Route path="nosotros" element={<Nosotros />} />
           <Route path="contactanos" element={<Contactanos />} />
-          <Route path="Reserva" element={<Reserva/>} />
+          <Route path="reserva" element={<Reserva/>} />
           <Route path="*" element={<Navigate to="/departamentos" />} />
         </Routes>
         <FooterBase/>

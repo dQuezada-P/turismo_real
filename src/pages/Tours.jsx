@@ -22,17 +22,9 @@ export const Tours = () => {
         </div>
         <div className='container-body relative'>
           <div className='grid md:grid-cols-4 mb-12 gap-4'>
-          <div className='card'>
-              <div className='card-image'>
-                <img className='' src="https://ollaguatravel.com/wp-content/uploads/2015/12/Stgo1.jpg" alt="" />
-              </div>
-              <div className='card-info'>
-                <p className='font-bold text-2xl'>$95.000</p>
-                <p className='font-semibold text-xl'>Tour Isla Damas</p>
-                <p className='text-xl text-gray-500'>La Serena</p>
-              </div>
-            </div>
 
+
+            
             <div className='card'>
               <div className='card-image'>
                 <img className='' src="https://ollaguatravel.com/wp-content/uploads/2015/12/Stgo1.jpg" alt="" />
