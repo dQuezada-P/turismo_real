@@ -125,7 +125,8 @@ export const DepartmentCardInfo = ({ images }) => {
         </div>
       </div>
       <div className="Cajacard_img w-full mr-4 md:w-4/6 md:mx-auto flex rounded-3xl relative ">
-        {loaded ? (<Carousel images={images} />) : (<Spinner/>)}
+        {/* {loaded ? (<Carousel images={images} />) : (<Spinner/>)} */}
+        <Carousel images={images} />
       </div>
     </>
   );

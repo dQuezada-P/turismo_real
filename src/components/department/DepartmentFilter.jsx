@@ -39,7 +39,7 @@ export const DepartmentFilter = () => {
   
 
   return (
-    <div className="relative z-30 md:z-0 md:static">
+    <div className="">
       <div className="md:flex md:flex-col ">
         <h2 className="font-semibold text-center text-black text-2x1 md:text-left md:text-3xl md:text-purple-600 md:py-4  ">
           Búsqueda Avanzada

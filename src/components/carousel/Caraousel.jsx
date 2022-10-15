@@ -4,15 +4,12 @@ import { useDepartment } from "../../context/hooks/useDepartment";
 export default function Carousel() {
   const { images, setImages } = useDepartment();
   const [selectIndex, setSelectIndex] = useState(0);
-  const [selectImage, setSelectImage] = useState(images[0]);
+  const [selectImage, setSelectImage] = useState();
   useEffect(() => {
-    const interval = setInterval(() => {
-      selectNewImage(selectIndex, images);
-    }, 2000);
-    return () => {
-      clearInterval(interval);
-    };
-  });
+    if(!selectImage){
+      setSelectImage(images[0])
+    }
+  },[images,selectImage]);
 
   const selectNewImage = (i, images, next = true) => {
     const condition = next ? selectIndex < images.length - 1 : selectIndex > 0;
