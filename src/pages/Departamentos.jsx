@@ -4,6 +4,7 @@ import { DepartmentFilter } from "../components/department/DepartmentFilter";
 import { Spinner } from "../components/spinner/Spinner";
 import { useEffect } from "react";
 import Body from "../components/body/Design";
+import Modal from "../components/modal/Modal";
 export const Departamentos = () => {
   const { departments, setDepartments } = useDepartment();
   const { charging, setCharging } = useDepartment();
@@ -16,7 +17,7 @@ export const Departamentos = () => {
       <Spinner />
     </div>
   ) : (
-    <>
+    <><Modal/>
       <Body
         title={"Arriendo de departamentos"}
         name={"Turismo Real"}

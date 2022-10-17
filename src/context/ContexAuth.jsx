@@ -5,6 +5,7 @@ const Auth = createContext();
 const ContextAuth = ({ children }) => {
     const [token, setToken] = useState(localStorage.getItem('token'));
     const [user, setUser] = useState(null);
+    const [showModal, setShowModal] =useState(true) 
 
     const isLogged = () => {
         return token && user
@@ -28,7 +29,7 @@ const ContextAuth = ({ children }) => {
     },[user, token])
 
     return (
-        <Auth.Provider value={{ user, setUser, token, setToken, isLogged }} >
+        <Auth.Provider value={{ user, setUser, token, setToken, isLogged ,showModal, setShowModal}} >
             {children}
         </Auth.Provider>
     );

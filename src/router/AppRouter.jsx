@@ -15,41 +15,30 @@ import { FooterBase } from "../components/footer/FooterBase";
 import { Login } from "../pages/Login";
 import { TourInfo } from "../pages/TourInfo";
 import { Reserva } from "../pages/Reserva";
-
+import ProtectedRoutes from "./ProtectedRoutes";
 
 export const AppRouter = () => {
   return (
     <>
       <Router>
-        <Header/>
-        <Routes>
-          <Route
-            path="departamentos"
-            element={
-              <ContextDepartment>
-                <Departamentos />
-              </ContextDepartment>
-            }
-          />
-          <Route
-            path="departamento/:id"
-            element={
-              <ContextDepartment>
-                <Departamento />
-              </ContextDepartment>
-            }
-          />
-          <Route path="tours" element={<Tours />} />
-          <Route path="tour/test" element={<TourInfo />} />
-          <Route path="login" element={<Login />} />
-          <Route path="nosotros" element={<Nosotros />} />
-          <Route path="contactanos" element={<Contactanos />} />
-          <Route path="reserva" element={<Reserva/>} />
-          <Route path="*" element={<Navigate to="/departamentos" />} />
-        </Routes>
-        <FooterBase/>
+        <Header />
+        <ContextDepartment>
+          <Routes>
+            <Route path="departamentos" element={<Departamentos />} />
+            <Route path="departamento/:id" element={<Departamento />} />
+            <Route path="tours" element={<Tours />} />
+            <Route path="tour/test" element={<TourInfo />} />
+            <Route path="login" element={<Login />} />
+            <Route path="nosotros" element={<Nosotros />} />
+            <Route path="contactanos" element={<Contactanos />} />
+            <Route element={<ProtectedRoutes />}>
+              <Route path="reserva" element={<Reserva />} />
+            </Route>
+            <Route path="*" element={<Navigate to="/departamentos" />} />
+          </Routes>
+        </ContextDepartment>
+        <FooterBase />
       </Router>
-
     </>
   );
 };
