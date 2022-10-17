@@ -5,7 +5,7 @@ import {
   TbBath,
   IoBedOutline,
   FaMapMarkedAlt,
-  IoCarOutline,
+  BiMap,
   BsBuilding,
   MdOutlineChair,
 } from "react-icons/all";
@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 
 export const DepartmentCardInfo = ({ images }) => {
   const { department, setDepartment } = useDepartment();
-  const [ loaded, setLoaded ] = useState(false);
+  const [loaded, setLoaded] = useState(false);
   const {
     ID,
     NOMBRE,
@@ -36,12 +36,14 @@ export const DepartmentCardInfo = ({ images }) => {
 
   useEffect(() => {
     if (!loaded)
-    setTimeout(() => {setLoaded(true)}, 3000);
+      setTimeout(() => {
+        setLoaded(true);
+      }, 3000);
   }, []);
 
   return (
     <>
-      <div className="Cajacard md:grid md:grid-cols-3 mx-2 md:w-4/6 md:mx-auto shadow-2xl rounded-3xl ">
+      <div className="Cajacard md:grid md:grid-cols-3 mx-2 md:w-3/5 md:mx-auto  rounded-3xl bg-white z-30 shadow-[0px_15px_15px_rgba(0,0,0,0.5)] ">
         <div className="Cajacard_corazon md:col-span-2 md:rounded-l-3xl md:h-full h-1/2 mx-8 rounded-t-3xl md:rounded-tr-none md:mx-0.5 flex justify-center items-center">
           <div className="w-11/12 h-5/6 bg-white md:border-r-2  border-gray-200 ">
             <div className="text-3xl h-1/6 flex gap-2 items-center text-purple-600">
@@ -96,36 +98,37 @@ export const DepartmentCardInfo = ({ images }) => {
             </h4>
             <h4 className="flex justify-center font-semibold">Publicado:#</h4>
           </div>
-          <h4 className="flex justify-center font-semibold  items-center uppercase">
+          <h4 className="flex justify-center md:justify-start font-semibold  items-center uppercase">
             Código Departamento: {ID}
           </h4>
-          <h4 className="flex  font-semibold gap-4 items-center ">
+          <h4 className="flex font-semibold justify-center md:justify-start gap-4 items-center uppercase ">
             <span className="text-3xl text-purple-600">
-              <IoCarOutline />
+              <BiMap />
             </span>
-            Estacionamientos#
+            {DIRECCION}, {UBICACION}
           </h4>
-          <h4 className="flex  font-semibold gap-4 items-center  ">
+          <h4 className="flex  font-semibold justify-center md:justify-start gap-4 items-center  ">
             <span className="text-3xl text-purple-600">
               <MdOutlineChair />
             </span>
             <p className="uppercase">{DESCRIPCION}</p>
           </h4>
-          <h4 className="flex font-semibold gap-4 items-center  ">
+          <h4 className="flex font-semibold justify-center md:justify-start gap-4 items-center  ">
             <span className="text-3xl text-purple-600">
               <BsBuilding />
             </span>
-            <p className="uppercase">{UBICACION}</p>
+            <p className="uppercase">{NOMBRE}</p>
           </h4>
-          <h4 className="flex justify-end gap-1 items-center font-semibold mb-5 mr-8 text-3xl text-purple-600">
-            <span className="text-sm text-black ">
-              <Link className="bg-purple-600 p-2 rounded-xl" to={"/reserva"}>RESERVAR</Link>
-            </span>
-          </h4>
+          <Link
+            className="bg-purple-600 p-2 rounded-xl md:flex justify-center md:mx-auto my-2 md:w-1/2 hover:bg-purple-700  text-center hover:text-white "
+            to={"/reserva"}
+          >
+            RESERVAR
+          </Link>
         </div>
       </div>
-      <div className="Cajacard_img w-full mr-4 md:w-4/6 md:mx-auto flex rounded-3xl relative ">
-        {loaded ? (<Carousel images={images} />) : (<Spinner/>)}
+      <div className="Cajacard_img w-full mr-4 md:w-3/5 md:mx-auto flex rounded-3xl relative shadow-[0px_15px_15px_rgba(0,0,0,0.5)] bg-white">
+        <Carousel images={images} /> 
       </div>
     </>
   );

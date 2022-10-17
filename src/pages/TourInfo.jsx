@@ -4,7 +4,7 @@ export const TourInfo = () => {
   return (
     <>
     <div>
-        
+        dsdfsd
     </div>
     </>
   )

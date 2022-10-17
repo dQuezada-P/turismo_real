@@ -1,7 +1,12 @@
 import React from 'react'
+import DesignSecondary from '../components/body/DesignSecondary'
 
 export const Nosotros = () => {
   return (
-    <div>Nosotros</div>
+    <>
+    <DesignSecondary>
+      <div className='w-full h-[calc(100vh-176px)] text-black'>HOLA</div>
+    </DesignSecondary>
+    </>
   )
 }

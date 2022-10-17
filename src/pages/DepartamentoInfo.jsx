@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDepartment } from "../context/hooks/useDepartment";
 import { GetDepartamento } from "../services/department/ApiRequestDepartment";
 import { DepartmentCardInfo } from "../components/department/DepartmentCardInfo";
+import DesignSecondary from "../components/body/DesignSecondary";
 
 export const Departamento = () => {
   const { department, setDepartment } = useDepartment();
@@ -24,16 +25,19 @@ export const Departamento = () => {
         .then((dept) => dept.IMAGENES)
         .then((img) => img.map((ele) => ele.url));
       setImages(imagesCarousel);
-     };
+    };
     getImages();
   }, [department]);
 
   return (
-    <div
-      className="container m-auto my-8 grid gap-3 md:grid-rows-2  h-[90vh]
-    "
-    >
-      <DepartmentCardInfo />
-    </div>
+    <DesignSecondary>
+      {" "}
+      <div
+        className="container m-auto my-8 grid gap-3 md:grid-rows-2 h-[100vh] md:h-[85vh]
+  "
+      >
+        <DepartmentCardInfo />
+      </div>
+    </DesignSecondary>
   );
 };

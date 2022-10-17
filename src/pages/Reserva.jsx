@@ -1,59 +1,22 @@
+import DesignSecondary from "../components/body/DesignSecondary";
+import { TourInfo } from "./TourInfo";
 
 export const Reserva = () => {
+  
   return (
     <>
-      
-      <div className="w-full h-screen overflow-hidden">
-        <div className='h-full w-full bg-white relative z-20 overflow-hidden'>
-          <div className='bg-bars-body absolute'>
-            <div className=' bg-yellow-400'></div>
-            <div className=' bg-purple-600'></div>
-
-
-            <div className="relative container-body w-[900px]">
-              <div className="bg-white w-full px-20 py-10 rounded-[30px] shadow-[0px_15px_15px_rgba(0,0,0,0.5)]">
-                <div className="mx-auto w-[100%]"> 
-                  <p className="text-[30px] font-semibold mb-6">Por favor, complete los datos</p>
-                  <form className="flex justify-center flex-col">
-
-                      <div className="flex flex-col mb-6">
-                        <label htmlFor="">Rut</label>
-                        <input className="border-b border-black h-8" type="text" />
-                      </div>
-
-                      <div className="flex flex-col mb-6">
-                        <label htmlFor="">Nombre </label>
-                        <input className="border-b border-black h-8" type="text" />
-                      </div>
-
-                      <div className="flex flex-col mb-6">
-                      <label htmlFor="">Apellido</label>
-                      <input className="border-b border-black h-8" type="text" />
-                      </div>
-
-                      <div className="flex flex-col mb-6">
-                        <label htmlFor="">Correo Electronico</label>
-                        <input className="border-b border-black h-8" type="text" />
-                      </div>
-
-                      <div className="flex flex-col mb-6">
-                        <label htmlFor="">Telefono</label>
-                        <input className="border-b border-black h-8" type="text" />
-                      </div>
-
-                      <div className="flex flex-col mb-6">
-                        <label className="mb-3" htmlFor="">Mensaje</label>
-                        <textarea className="border border-black h-16"  />
-                      </div>
-
-                      <button className="rounded-full bg-purple-600 px-10 py-2 w-fit text-white mb-8">Proceder a pagar</button>    
-                  </form>
-                </div>
-              </div>
+      <DesignSecondary>
+        {" "}
+        <div className="BoxContent h-[81.5vh]">
+          <div className="BoxCardReservation bg-white h-[80%] w-[50%] absolute top-10 left-1/2 transform -translate-x-1/2 -translate-y-2 shadow-[0px_15px_15px_rgba(0,0,0,0.5)] rounded-3xl">
+            <div className="BoxFlex flex flex-col md:flex-row w-full h-[90%] pt-4 px-4">
+              <div className="BoxUser basis-[60%] h-full"></div>
+              <div className="BoxResumary basis-[40%] h-full border-t-[1px] md:border-l-[1px] md:border-t-[0px]  border-slate-300"></div>
             </div>
-            </div>
+            <button className="Butto bg-purple-600 flex h-auto w-11/12 md:w-1/4 mx-auto mt-4 px-4 py-2 justify-center  hover:bg-purple-700 font-semibold hover:text-white uppercase rounded-2xl" onClick={()=>{console.log('saddasd')}}>Proceder a Pagar</button>
           </div>
         </div>
+      </DesignSecondary>
     </>
-  )
-}
+  );
+};

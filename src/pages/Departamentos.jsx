@@ -3,11 +3,12 @@ import { DepartmentCard } from "../components/department/DepartmentCard";
 import { DepartmentFilter } from "../components/department/DepartmentFilter";
 import { Spinner } from "../components/spinner/Spinner";
 import { useEffect } from "react";
-import Body from "../components/body/Disenno";
+import Body from "../components/body/Design";
 export const Departamentos = () => {
   const { departments, setDepartments } = useDepartment();
   const { charging, setCharging } = useDepartment();
   const { imageCharge, setImageCharge } = useDepartment();
+
 
   return charging ? (
     <div className="md:h-[calc(100vh-176px)]">
@@ -42,7 +43,7 @@ export const Departamentos = () => {
           ) : (
             <div className="grid md:grid-cols-4 mb-12 gap-4 relative z-30 ">
               {departments.map((depto) => (
-                <div className="shadow-2xl rounded-3xl bg-white" key={depto.ID}>
+                <div className="rounded-3xl bg-white shadow-[0px_15px_15px_rgba(0,0,0,0.5)]" key={depto.ID}>
                   <DepartmentCard depto={depto} />
                 </div>
               ))}

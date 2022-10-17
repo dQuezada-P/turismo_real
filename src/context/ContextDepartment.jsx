@@ -20,8 +20,9 @@ const ContextDepartment = ({ children }) => {
         console.log(error);
       }
 
-      setCharging(!charging);
-      
+      setTimeout(() => {
+        setCharging(!charging);
+      }, [1000]);
     };
 
     get();

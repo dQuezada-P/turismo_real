@@ -4,15 +4,14 @@ import { useDepartment } from "../../context/hooks/useDepartment";
 export default function Carousel() {
   const { images, setImages } = useDepartment();
   const [selectIndex, setSelectIndex] = useState(0);
-  const [selectImage, setSelectImage] = useState(images[0]);
+  const [selectImage, setSelectImage] = useState();
   useEffect(() => {
-    const interval = setInterval(() => {
-      selectNewImage(selectIndex, images);
-    }, 2000);
-    return () => {
-      clearInterval(interval);
-    };
-  });
+    if(!selectImage)
+    {
+      setSelectImage(images[0])
+    }
+
+  },[images,selectImage]);
 
   const selectNewImage = (i, images, next = true) => {
     const condition = next ? selectIndex < images.length - 1 : selectIndex > 0;
@@ -38,7 +37,7 @@ export default function Carousel() {
     <>
       <div className="flex-auto absolute h-full">
         <button
-          className="items-center h-full ml-4 text-4xl hover:text-purple-600 hover:text-5xl hidden "
+          className="items-center h-full ml-4 text-4xl text-slate-400 hover:text-purple-600 hover:text-5xl"
           onClick={previos}
         >
           {"<"}
@@ -54,7 +53,7 @@ export default function Carousel() {
       <div className="flex-auto absolute top-0 right-0 h-full ">
         {" "}
         <button
-          className="items-center h-full mr-4 text-4xl hover:text-purple-600 hover:text-5xl hidden"
+          className="items-center h-full mr-4 text-4xl text-slate-400 hover:text-purple-600 hover:text-5xl "
           onClick={next}
         >
           {">"}

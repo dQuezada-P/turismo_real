@@ -3,7 +3,7 @@ import React from "react";
 export const Contactanos = () => {
   return (
     <>
-      <div className="w-full h-auto overflow-hidden" >
+      <div className="w-full h-[calc(100vh-176px)] overflow-hidden" >
           <img className="absolute w-full -top-72" src="https://turismoreal2.s3.amazonaws.com/Fondo.jpg" alt="" />
           <div className="relative container-body w-[900px]">
             <div className="bg-white w-full px-20 py-10 rounded-[30px] shadow-[0px_15px_15px_rgba(0,0,0,0.5)]  ">

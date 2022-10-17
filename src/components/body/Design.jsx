@@ -1,4 +1,4 @@
-export default function Disenno({
+export default function Design({
   children,
   title,
   desc1,
@@ -14,8 +14,8 @@ export default function Disenno({
           <div className=" bg-yellow-400 bg-overlap-black"></div>
           <div className=" bg-white bg-overlap-black"></div>
         </div>
-        <div className="p-8  mx-6 md:mx-40 box-content container z-20 relative text-white md:mb-28 ">
-          <h1 className="text-3xl font-bold mx-8 md:mx-0 py-8 md:py-0 mb-4 capitalize ">
+        <div className="mx-6 md:mx-40 container z-20 relative  text-white md:mb-28 ">
+          <h1 className="text-3xl font-bold mx-8 md:mx-0 py-8 md:py-0 mb-4 capitalize text-center md:text-start">
             {title}
           </h1>
           <p className="text-justify mb-4 invisible md:visible">
