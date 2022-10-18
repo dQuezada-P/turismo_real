@@ -5,11 +5,20 @@ import { Spinner } from "../components/spinner/Spinner";
 import { useEffect } from "react";
 import Body from "../components/body/Design";
 import Modal from "../components/modal/Modal";
-export const Departamentos = () => {
+import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/hooks/useAuth";
+export const Departamentos = (a) => {
   const { departments, setDepartments } = useDepartment();
   const { charging, setCharging } = useDepartment();
-  const { imageCharge, setImageCharge } = useDepartment();
-
+  const { showModal, setShowModal } = useAuth();
+  let { state } = useLocation();
+  const nav = useNavigate();
+  useEffect(() => {
+    if (state) {
+      setShowModal(true);
+      nav('',{state:false})
+    }
+  }, [state]);
 
   return charging ? (
     <div className="md:h-[calc(100vh-176px)]">
@@ -17,7 +26,8 @@ export const Departamentos = () => {
       <Spinner />
     </div>
   ) : (
-    <><Modal/>
+    <>
+      <Modal />
       <Body
         title={"Arriendo de departamentos"}
         name={"Turismo Real"}
@@ -25,7 +35,9 @@ export const Departamentos = () => {
         desc2={
           "es el lugar correcto. Como empresa ofrecemos los mejores servicios de arriendo de departamentos, servicio de transporte y también tours a las mejores zonas turísticas cercanas a los departamentos."
         }
-        desc3={'Para la comodidad de nuestros clientes ofrecemos la facilidad de interactuar con nosotros de manera online, fácil y secilla, si presentas cualquier consulta no dudes en hablarnos, toda la información se encuentra en la sección'}
+        desc3={
+          "Para la comodidad de nuestros clientes ofrecemos la facilidad de interactuar con nosotros de manera online, fácil y secilla, si presentas cualquier consulta no dudes en hablarnos, toda la información se encuentra en la sección"
+        }
       >
         <div
           className={`${
@@ -44,7 +56,10 @@ export const Departamentos = () => {
           ) : (
             <div className="grid md:grid-cols-4 mb-12 gap-4 relative z-30 ">
               {departments.map((depto) => (
-                <div className="rounded-3xl bg-white shadow-[0px_15px_15px_rgba(0,0,0,0.5)]" key={depto.ID}>
+                <div
+                  className="rounded-3xl bg-white shadow-[0px_15px_15px_rgba(0,0,0,0.5)]"
+                  key={depto.ID}
+                >
                   <DepartmentCard depto={depto} />
                 </div>
               ))}

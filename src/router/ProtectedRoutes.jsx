@@ -3,7 +3,7 @@ import { useAuth } from "../context/hooks/useAuth";
 
 const ProtectedRoutes = () => {
   const { isLogged } = useAuth();
-  return isLogged() ? <Outlet/> : <Navigate  to={'/departamentos'}/>
+  return isLogged() ? <Outlet/> : <Navigate  to={'/departamentos'} state={true}/>
 };
 
 export default ProtectedRoutes

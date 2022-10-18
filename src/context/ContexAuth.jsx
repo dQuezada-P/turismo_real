@@ -5,7 +5,7 @@ const Auth = createContext();
 const ContextAuth = ({ children }) => {
     const [token, setToken] = useState(localStorage.getItem('token'));
     const [user, setUser] = useState(null);
-    const [showModal, setShowModal] =useState(true) 
+    const [showModal, setShowModal] = useState(false) 
 
     const isLogged = () => {
         return token && user
