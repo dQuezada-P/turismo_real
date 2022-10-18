@@ -3,7 +3,7 @@ import { useState } from "react";
 import { getLocations } from "../../services/locations/locations.js";
 import { useDepartment } from "../../context/hooks/useDepartment";
 
-export const DepartmentFilter = () => {
+export const Filter = () => {
   const [locations, setLocations] = useState([]);
   const { departments, setDepartments } = useDepartment();
   const [filterLocation, setFilterLocation] = useState(departments);

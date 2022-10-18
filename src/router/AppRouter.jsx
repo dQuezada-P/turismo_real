@@ -16,6 +16,7 @@ import { Login } from "../pages/Login";
 import { TourInfo } from "../pages/TourInfo";
 import { Reserva } from "../pages/Reserva";
 import ProtectedRoutes from "./ProtectedRoutes";
+import { ContextTour } from "../context/ContextTour";
 
 export const AppRouter = () => {
   return (
@@ -23,19 +24,21 @@ export const AppRouter = () => {
       <Router>
         <Header />
         <ContextDepartment>
-          <Routes>
-            <Route path="departamentos" element={<Departamentos />} />
-            <Route path="departamento/:id" element={<Departamento />} />
-            <Route path="tours" element={<Tours />} />
-            <Route path="tour/test" element={<TourInfo />} />
-            <Route path="login" element={<Login />} />
-            <Route path="nosotros" element={<Nosotros />} />
-            <Route path="contactanos" element={<Contactanos />} />
-            <Route element={<ProtectedRoutes />}>
-              <Route path="reserva" element={<Reserva />} />
-            </Route>
-            <Route path="*" element={<Navigate to="/departamentos" />} />
-          </Routes>
+          <ContextTour>
+            <Routes>
+              <Route path="departamentos" element={<Departamentos />} />
+              <Route path="departamento/:id" element={<Departamento />} />
+              <Route path="tours" element={<Tours />} />
+              <Route path="tour/test" element={<TourInfo />} />
+              <Route path="login" element={<Login />} />
+              <Route path="nosotros" element={<Nosotros />} />
+              <Route path="contactanos" element={<Contactanos />} />
+              <Route element={<ProtectedRoutes />}>
+                <Route path="reserva" element={<Reserva />} />
+              </Route>
+              <Route path="*" element={<Navigate to="/departamentos" />} />
+            </Routes>
+          </ContextTour>
         </ContextDepartment>
         <FooterBase />
       </Router>

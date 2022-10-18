@@ -1,6 +1,6 @@
 import { useDepartment } from "../context/hooks/useDepartment";
 import { DepartmentCard } from "../components/department/DepartmentCard";
-import { DepartmentFilter } from "../components/department/DepartmentFilter";
+import { Filter } from "../components/department/Filter";
 import { Spinner } from "../components/spinner/Spinner";
 import { useEffect } from "react";
 import Body from "../components/body/Design";
@@ -16,7 +16,7 @@ export const Departamentos = (a) => {
   useEffect(() => {
     if (state) {
       setShowModal(true);
-      nav('',{state:false})
+      nav("", { state: false });
     }
   }, [state]);
 
@@ -46,7 +46,7 @@ export const Departamentos = (a) => {
               : " mx-6 md:mx-40 "
           }`}
         >
-          <DepartmentFilter />
+          <Filter />
           {departments == [] ? (
             <div className="w-full h-full text-center md:flex md:items-start md:pt-20 md:justify-center relative z-30 ">
               <p className="text-4xl font-semibold text-purple-700">

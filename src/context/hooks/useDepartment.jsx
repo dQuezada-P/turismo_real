@@ -1,9 +1,6 @@
-import {useContext} from 'react'
-import Department from '../ContextDepartment'
+import { useContext } from "react";
+import Department from "../ContextDepartment";
 
 export const useDepartment = () => {
-  return (
-    useContext(Department)
-  )
-}
-
+  return useContext(Department);
+};
