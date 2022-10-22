@@ -11,7 +11,6 @@ import {
 } from "react-icons/all";
 import { useDepartment } from "../../context/hooks/useDepartment";
 import Carousel from "../carousel/Caraousel";
-import { Spinner } from "../spinner/Spinner";
 import { Link } from "react-router-dom";
 
 export const DepartmentCardInfo = ({ images }) => {
@@ -121,14 +120,14 @@ export const DepartmentCardInfo = ({ images }) => {
           </h4>
           <Link
             className="bg-purple-600 p-2 rounded-xl md:flex justify-center md:mx-auto my-2 md:w-1/2 hover:bg-purple-700  text-center hover:text-white "
-            to={"/reserva"}
+            to={`/reserva/${ID}`}
           >
             RESERVAR
           </Link>
         </div>
       </div>
       <div className="Cajacard_img w-full mr-4 md:w-3/5 md:mx-auto flex rounded-3xl relative shadow-[0px_15px_15px_rgba(0,0,0,0.5)] bg-white">
-        <Carousel images={images} /> 
+        <Carousel images={images} />
       </div>
     </>
   );

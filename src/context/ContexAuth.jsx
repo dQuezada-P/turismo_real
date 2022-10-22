@@ -15,11 +15,15 @@ const ContextAuth = ({ children }) => {
   const verifyToken = async () => {
     console.log("token");
     console.log(token);
-    await HttpPost("/auth/verify-login", { login: true }, token).then(
-      (user) => {
-        setUser(user);
-      }
-    );
+    try {
+      await HttpPost("/auth/verify-login", { login: true }, token).then(
+        (user) => {
+          setUser(user);
+        }
+      );
+    } catch (error) {
+      console.error(error);
+    }
     setCharging(false);
   };
 
@@ -28,8 +32,8 @@ const ContextAuth = ({ children }) => {
       if (token && !user) {
         console.log("verificar token");
         verifyToken();
-      }else{
-        setCharging(false)
+      } else {
+        setCharging(false);
       }
     } catch (error) {}
   });
@@ -55,3 +59,6 @@ const ContextAuth = ({ children }) => {
 
 export { ContextAuth };
 export default Auth;
+
+
+
