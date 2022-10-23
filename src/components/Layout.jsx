@@ -27,7 +27,13 @@ export const Layout = () => {
   ) : (
     <>
       <Header />
-      <Outlet />
+      <div className={`${
+          "min-h-[calc(100vh - 176px)]"
+      }`}>
+        <Outlet/>
+
+      </div>
+      
       <FooterBase />
     </>
   );

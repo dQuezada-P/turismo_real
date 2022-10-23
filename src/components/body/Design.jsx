@@ -26,7 +26,7 @@ export default function Design({
       </div>
       <div className="h-full w-full bg-white relative z-20 overflow-hidden">
         <div className="bg-bars-body absolute">
-          <div className=" bg-yellow-400 "></div>
+          <div className=" bg-yellow-400"></div>
           <div className=" bg-purple-600"></div>
         </div>
         {children}

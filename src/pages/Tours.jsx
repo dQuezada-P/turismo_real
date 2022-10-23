@@ -28,7 +28,7 @@ export const Tours = () => {
           <div
             className={`${
               tours.length < 5
-                ? " mx-6 md:mx-40 md:h-[calc(100vh-176px)]"
+                ? " mx-6 md:mx-40  min-h-[calc(100vh-176px-13rem)]"
                 : " mx-6 md:mx-40 "
             }`}
           >

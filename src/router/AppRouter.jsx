@@ -21,7 +21,7 @@ import { Notificacion } from "../pages/Notificacion";
 import { Layout } from "../components/Layout";
 import { ContextReservation } from "../context/ContextReservation";
 
-export const AppRouter = () => {
+export const AppRouter = () => { 
   return (
     <>
       <Router>
