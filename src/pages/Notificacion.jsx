@@ -10,7 +10,7 @@ export const Notificacion = () => {
   const [payment, setPayment] = useState({});
   const [flag, setFlag] = useState(true);
   const { token } = useAuth();
-  const { reservation, setReservation} = useReservation();
+  const { reservation, setReservation } = useReservation();
   const navigate = useNavigate();
   useEffect(() => {
     try {
@@ -22,6 +22,7 @@ export const Notificacion = () => {
               id: payid,
             }
           );
+
           setPayment(data);
           setFlag(false);
         };
@@ -34,12 +35,12 @@ export const Notificacion = () => {
       token,
       payment,
     };
-   
-   
+    console.log(payment)
+
     if (!flag)
       try {
-        // axios.post("http://localhost:3000/api/reserva", binds);
-        setReservation(payment)
+        axios.post("http://localhost:3000/api/reserva", binds);
+        setReservation(payment);
         navigate("/departamentos");
       } catch (error) {
         console.error(error);

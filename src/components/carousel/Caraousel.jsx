@@ -35,7 +35,7 @@ export default function Carousel() {
   };
   return (
     <>
-      <div className="flex-auto absolute h-full">
+      <div className="flex-auto absolute h-max">
         <button
           className="items-center h-full ml-4 text-4xl text-slate-400 hover:text-purple-600 hover:text-5xl"
           onClick={previos}

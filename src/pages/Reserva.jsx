@@ -12,6 +12,7 @@ import { useParams } from "react-router-dom";
 import { GetDepartamento } from "../services/department/ApiRequestDepartment";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Spinner } from "../components/spinner/Spinner";
 
 export const Reserva = () => {
   const { id } = useParams();
@@ -20,6 +21,7 @@ export const Reserva = () => {
   const [date, setDate] = useState(new Date());
   const [flag, setFlag] = useState(true);
   const { user } = useAuth();
+  const [charge, setCharge] = useState();
   const [cliente, setCliente] = useState({
     rut: user.RUT,
     nombre: `${user.NOMBRE} ${user.APELLIDO}`,
@@ -97,37 +99,43 @@ export const Reserva = () => {
   };
 
   const handleOnclick = async () => {
+    charge == null ? setCharge(true) : null;
+
     arriendo.abono = abono;
     const data = {
       cliente: cliente,
       arriendo: arriendo,
     };
-    try {
-      if (flag) {
-        const result = await axios.post(
-          "http://localhost:3000/api/mercadopago",
-          data
-        );
-        const mp = new MercadoPago(
-          "TEST-09d711eb-afb7-405b-bed2-7f54177a7dc2",
-          {
-            locale: "es-CL",
-          }
-        );
-        mp.checkout({
-          preference: {
-            id: result.data,
-          },
-          render: {
-            container: ".cho-container",
-            label: "Pagar",
-          },
-        });
-        setFlag(false);
+
+    setTimeout(async () => {
+      try {
+        if (flag) {
+          const result = await axios.post(
+            "http://localhost:3000/api/mercadopago",
+            data
+          );
+          const mp = new MercadoPago(
+            "TEST-09d711eb-afb7-405b-bed2-7f54177a7dc2",
+            {
+              locale: "es-CL",
+            }
+          );
+          mp.checkout({
+            preference: {
+              id: result.data,
+            },
+            render: {
+              container: ".cho-container",
+              label: "Pagar",
+            },
+          });
+          setFlag(false);
+          setCharge(false);
+        }
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
-    }
+    }, 2000);
   };
   return (
     <>
@@ -190,7 +198,7 @@ export const Reserva = () => {
                     <label className="" htmlFor="">
                       Fecha:{" "}
                     </label>
-                    <DatePicker
+                    <DatePicker dateFormat={'dd/mm/yyyy'} 
                       className="border-b border-black"
                       selected={date}
                       onSelect={(e) => {
@@ -274,7 +282,7 @@ export const Reserva = () => {
                   Valor Arriendo: {newValorArriendo}
                 </h3>
 
-                <h6 className="flex-col capitalize gap-4 items-center mx-auto w-11/12 p-2">
+                <h6 className="flex-col capitalize border border-red-500 gap-4 items-center mx-auto w-11/12 p-2">
                   Abono del 20%:{" "}
                   <span className="text-2xl font-semibold">{abono}</span>
                 </h6>
@@ -289,8 +297,11 @@ export const Reserva = () => {
                   Solicitar Reserva
                 </button>
               </div>
-
-              <div className="cho-container w-1/2 basis-2/5 flex justify-center"></div>
+              {charge ? (
+                <Spinner />
+              ) : (
+                <div className="cho-container w-1/2 basis-2/5 flex justify-center"></div>
+              )}
             </div>
           </div>
         </div>

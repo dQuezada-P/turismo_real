@@ -40,14 +40,14 @@ export const Filter = () => {
 
   return (
     <div className="relative md:static">
-      <div className="md:flex md:flex-col ">
-        <h2 className="font-semibold text-center text-black text-2x1 md:text-left md:text-3xl md:text-purple-600 md:py-4  ">
+      <div className="md:flex md:flex-col  ">
+        <h2 className="font-semibold text-center md:w-max rounded-md bg-white text-black text-2x1 md:text-left md:text-3xl md:text-purple-600 md:py-4 relative  ">
           Búsqueda Avanzada
         </h2>
         <div className="block text-center py-4 md:flex md:gap-4 items-center bg-white ">
-          <h5 className="font-semibold">Localidad:</h5>
-          <div className="shadow-lg rounded-lg p-2 flex justify-center">
-            <div className="w-full text-center ">
+          <h5 className="font-semibold relative">Localidad:</h5>
+          <div className="shadow-lg rounded-lg p-2 flex justify-center bg-white relative">
+            <div className="w-full text-center  ">
               <select
                 className="form-select blockw-full px-3 py-1.5 text-base font-normaltext-black bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-purple-700 focus:bg-white focus:border-black focus:outline-none" 
                 aria-label="Seleccionar"
@@ -68,7 +68,7 @@ export const Filter = () => {
               </select>
             </div>
           </div>
-          <h5 className="font-semibold">N Dormitorios:</h5>
+          {/* <h5 className="font-semibold">N Dormitorios:</h5>
           <div className="shadow-lg rounded-lg  p-2">
             {" "}
             <select
@@ -77,7 +77,7 @@ export const Filter = () => {
             >
               <option value={""}>--- Seleccionar ---</option>
             </select>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

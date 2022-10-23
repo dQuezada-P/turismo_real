@@ -42,7 +42,7 @@ export const DepartmentCardInfo = ({ images }) => {
 
   return (
     <>
-      <div className="Cajacard md:grid md:grid-cols-3 mx-2 md:w-3/5 md:mx-auto  rounded-3xl bg-white z-30 shadow-[0px_15px_15px_rgba(0,0,0,0.5)] ">
+      <div className="Cajacard md:grid md:grid-cols-3 mx-2 md:w-3/5 md:mx-auto  rounded-3xl bg-white z-30 shadow-[0px_15px_15px_rgba(0,0,0,0.5)] h-auto ">
         <div className="Cajacard_corazon md:col-span-2 md:rounded-l-3xl md:h-full h-1/2 mx-8 rounded-t-3xl md:rounded-tr-none md:mx-0.5 flex justify-center items-center">
           <div className="w-11/12 h-5/6 bg-white md:border-r-2  border-gray-200 ">
             <div className="text-3xl h-1/6 flex gap-2 items-center text-purple-600">
