@@ -21,7 +21,7 @@ import { Notificacion } from "../pages/Notificacion";
 import { Layout } from "../components/Layout";
 import { ContextReservation } from "../context/ContextReservation";
 
-export const AppRouter = () => { 
+export const AppRouter = () => {
   return (
     <>
       <Router>
@@ -31,6 +31,7 @@ export const AppRouter = () => {
             <ContextTour>
               <Routes>
                 <Route path="/" element={<Layout />}>
+                  <Route index element={<Departamentos />} />
                   <Route path="departamentos" element={<Departamentos />} />
                   <Route path="departamento/:id" element={<Departamento />} />
                   <Route element={<ProtectedRoutes />}>

@@ -31,7 +31,7 @@ export const Reserva = () => {
   const [arriendo, setArriendo] = useState({
     id: "",
     nombre: "",
-    fecha: new Date(),
+    fecha: "",
     dias: "",
     cantPersonas: "",
     abono: "",
@@ -81,7 +81,7 @@ export const Reserva = () => {
 
   const handleOnChangeDate = (e) => {
     setDate(e);
-    setArriendo({ ...arriendo, fecha: date });
+    setArriendo({ ...arriendo, fecha: e });
   };
   const handleOnChangeTel = (e) => {
     setCliente({ ...cliente, tel: e.target.value });
@@ -100,13 +100,15 @@ export const Reserva = () => {
 
   const handleOnclick = async () => {
     charge == null ? setCharge(true) : null;
+    console.log(date);
 
     arriendo.abono = abono;
+
     const data = {
       cliente: cliente,
       arriendo: arriendo,
     };
-
+    console.log(data.arriendo.fecha);
     setTimeout(async () => {
       try {
         if (flag) {
@@ -198,7 +200,8 @@ export const Reserva = () => {
                     <label className="" htmlFor="">
                       Fecha:{" "}
                     </label>
-                    <DatePicker dateFormat={'dd/mm/yyyy'} 
+                    <DatePicker
+                      dateFormat={"dd/MM/yyyy"}
                       className="border-b border-black"
                       selected={date}
                       onSelect={(e) => {
