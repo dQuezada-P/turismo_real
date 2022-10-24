@@ -20,6 +20,7 @@ import { ContextTour } from "../context/ContextTour";
 import { Notificacion } from "../pages/Notificacion";
 import { Layout } from "../components/Layout";
 import { ContextReservation } from "../context/ContextReservation";
+import { LayoutBase } from "../layouts/LayoutBase";
 
 export const AppRouter = () => {
   return (
@@ -46,6 +47,7 @@ export const AppRouter = () => {
                 </Route>
                 <Route path="/notificacion" element={<Notificacion />} />
               </Routes>
+              <Route path="/home" element={<LayoutBase/>}/>
             </ContextTour>
           </ContextDepartment>
         </ContextReservation>
