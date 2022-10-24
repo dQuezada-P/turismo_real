@@ -46,8 +46,8 @@ export const AppRouter = () => {
                   <Route path="*" element={<Navigate to="/departamentos" />} />
                 </Route>
                 <Route path="/notificacion" element={<Notificacion />} />
+                <Route path="/home" element={<LayoutBase/>}/>
               </Routes>
-              <Route path="/home" element={<LayoutBase/>}/>
             </ContextTour>
           </ContextDepartment>
         </ContextReservation>

@@ -32,6 +32,7 @@ export const Login = (next) => {
     .then(res => {
       setToken(res.token)
       if (res.auth)
+        console.log(res.user)
         setUser(res.user)
         localStorage.setItem('token',res.token)
         setToken(res.token)

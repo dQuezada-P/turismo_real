@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { useReservation } from "../context/hooks/useReservation";
 import { FooterBase } from "./footer/FooterBase";
-import { Header } from "./header/Header";
+import { Header } from "../layouts/components/Header";
 import { Alert } from "./modal/Alert";
 
 export const Layout = () => {
