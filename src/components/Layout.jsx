@@ -22,7 +22,7 @@ export const Layout = () => {
     <>
       <Header></Header>
       {reservation.status ? <Alert alert={pay} /> : null}
-      <FooterBase />
+      {/* <FooterBase /> */}
     </>
   ) : (
     <>

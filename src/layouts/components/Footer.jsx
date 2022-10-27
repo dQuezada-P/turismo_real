@@ -2,10 +2,10 @@ import { Footer } from "flowbite-react";
 import { BsFacebook, BsInstagram, BsTwitter } from "react-icons/bs";
 export const FooterContent = () => {
   return (
-    <footer className="dark:bg-gray-800">
+    <footer className="dark:bg-gray-800 w-full  ">
       <Footer
         container={true}
-        className="flex flex-col sm:flex-row container mx-auto"
+        className="flex flex-col sm:flex-row mx-auto container relative z-40 "
       >
         <div className="flex flex-row justify-center sm:items-center">
           <img

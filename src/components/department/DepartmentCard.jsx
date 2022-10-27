@@ -40,7 +40,7 @@ export const DepartmentCard = ({ depto }) => {
         {newValorArriendo} CLP
       </h3>
       <div className="flex flex-row">
-        <h4 className=" basis-2/5 font-semibold mx-4 gap-40 ">
+      <h4 className=" basis-2/5 font-semibold mx-4 gap-40 ">
           {UBICACION}{" "}
         </h4>
         <h3 className="basis-3/5 font-bold text-center text-purple-600">

@@ -160,7 +160,7 @@ export const Header = () => {
   const currentLocation = useLocation().pathname;
 
   return (
-    <header className="z-50 sticky top-0 w-full">
+    <header className="fixed z-30 top-0 w-full">
       <Navbar fluid={false} rounded={false}>
         <NavLink to={"/"}>
           <Navbar.Brand>

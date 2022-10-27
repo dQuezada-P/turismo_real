@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDepartment } from "../context/hooks/useDepartment";
 import { GetDepartamento } from "../services/department/ApiRequestDepartment";
 import { DepartmentCardInfo } from "../components/department/DepartmentCardInfo";
-import DesignSecondary from "../components/body/DesignSecondary";
+import DesignSecondary from "../components/banners/DesignSecondary";
 
 export const Departamento = () => {
   const { department, setDepartment } = useDepartment();

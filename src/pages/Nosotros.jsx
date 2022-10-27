@@ -1,5 +1,5 @@
 import React from 'react'
-import DesignSecondary from '../components/body/DesignSecondary'
+import DesignSecondary from '../components/banners/DesignSecondary'
 
 export const Nosotros = () => {
   return (

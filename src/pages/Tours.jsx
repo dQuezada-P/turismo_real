@@ -1,7 +1,7 @@
 import { useTour } from "../context/hooks/useTour";
 import { Spinner } from "../components/spinner/Spinner";
 import { Filter } from "../components/department/Filter";
-import Body from "../components/body/Design";
+import Body from "../components/banners/Banner";
 export const Tours = () => {
   const { tours, setTours } = useTour();
   const { charging, setCharging } = useTour();

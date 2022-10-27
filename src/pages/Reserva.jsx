@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import DesignSecondary from "../components/body/DesignSecondary";
+import DesignSecondary from "../components/banners/DesignSecondary";
 import { useDepartment } from "../context/hooks/useDepartment";
 import { IoBedOutline } from "react-icons/io5";
 import { TbBath } from "react-icons/tb";

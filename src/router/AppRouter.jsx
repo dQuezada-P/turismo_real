@@ -31,7 +31,7 @@ export const AppRouter = () => {
           <ContextDepartment>
             <ContextTour>
               <Routes>
-                <Route path="/" element={<Layout />}>
+                {/* <Route path="/" element={<Layout />}>
                   <Route index element={<Departamentos />} />
                   <Route path="departamentos" element={<Departamentos />} />
                   <Route path="departamento/:id" element={<Departamento />} />
@@ -45,8 +45,10 @@ export const AppRouter = () => {
                   <Route path="contactanos" element={<Contactanos />} />
                   <Route path="*" element={<Navigate to="/departamentos" />} />
                 </Route>
-                <Route path="/notificacion" element={<Notificacion />} />
-                <Route path="/home" element={<LayoutBase/>}/>
+                <Route path="/notificacion" element={<Notificacion />} /> */}
+                <Route path="/home" element={<LayoutBase />}>
+                  <Route index element={<Departamentos />} />
+                </Route>
               </Routes>
             </ContextTour>
           </ContextDepartment>
