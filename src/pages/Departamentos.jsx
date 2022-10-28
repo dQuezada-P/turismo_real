@@ -69,11 +69,11 @@ export const Departamentos = () => {
       <div className="min-h-screen container ml-4 sm:mx-auto flex flex-col sm:grid sm:grid-cols-3 2xl:grid-cols-4 gap-4 mb-4 ">
         {departments.map((depto) => (
           <div
-            className="w-11/12 h-60 2xl:h-64 shadow-lg rounded-b-2xl"
+            className="w-11/12 h-60 2xl:h-64 shadow-lg rounded-b-2xl transform transition duration-200 sm:hover:scale-110"
             key={depto.ID}
           >
             <div className="h-full w-full rounded-t-2xl">
-              <NavLink to={""}>
+              <NavLink to={`/departamento/${depto.ID}`}>
                 <img
                   src={depto.IMAGENES[0].url}
                   alt="Imagen"

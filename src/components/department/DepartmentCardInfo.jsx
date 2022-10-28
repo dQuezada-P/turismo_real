@@ -127,7 +127,7 @@ export const DepartmentCardInfo = ({ images }) => {
         </div>
       </div>
       <div className="Cajacard_img w-full mr-4 md:w-3/5 md:mx-auto flex rounded-3xl relative shadow-[0px_15px_15px_rgba(0,0,0,0.5)] bg-white">
-        <Carousel images={images} />
+        
       </div>
     </>
   );

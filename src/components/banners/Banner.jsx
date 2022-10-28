@@ -3,13 +3,13 @@ export default function Banner({ title, desc1, name, desc2, desc3 }) {
     <>
       {" "}
       <div
-        className="Banner w-full h-40 2xl:h-52   relative z-30 bg-fondo-footer overflow-hidden"
+        className="Banner w-full h-40 2xl:h-52 relative z-30 bg-fondo-footer overflow-hidden"
         style={{
           backgroundImage: `url(https://turismoreal2.s3.amazonaws.com/Fondo.jpg)`,
         }}
       >
-        <div className="Bars bg-bars-banner right-1/2 sm:right-[148px] 2xl:right-[237px]  ">
-          <div className=" bg-yellow-400 bg-overlap-black w-16 sm:w-14 right-1/2   "></div>
+        <div className="Bars bg-bars-banner right-1/2 sm:right-[206px] 2xl:right-[317px]  ">
+          <div className=" bg-yellow-400 bg-overlap-black w-16 sm:w-14 right-1/4   "></div>
           <div className=" bg-white bg-overlap-black w-16 sm:w-14 "></div>
         </div>
         <div className="Text mx-auto container z-20 relative text-white   ">
