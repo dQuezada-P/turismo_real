@@ -47,12 +47,13 @@ export const AppRouter = () => {
                 </Route>
                 <Route path="/notificacion" element={<Notificacion />} /> */}
                 <Route path="/" element={<LayoutBase />}>
-                  <Route path="/departamentos" element={<Departamentos />} />
+                  <Route path="login" element={<Login />} />
+                  <Route path="departamentos" element={<Departamentos />} />
                   <Route path="departamento/:id" element={<Departamento />} />
-                  <Route path="/tours" element={<Tours/>} />
-                  <Route path="/nosotros" element={<Nosotros />} />
-                  <Route path="/contactanos" element={<Contactanos />} />
-                  <Route path="*" element={<Navigate to="/departamentos" />} />
+                  <Route path="tours" element={<Tours/>} />
+                  <Route path="nosotros" element={<Nosotros />} />
+                  <Route path="contactanos" element={<Contactanos />} />
+                  <Route path="*" element={<Navigate to="departamentos"/>} />
                 </Route>
               </Routes>
             </ContextTour>

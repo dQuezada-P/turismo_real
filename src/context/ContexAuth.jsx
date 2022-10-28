@@ -17,8 +17,9 @@ const ContextAuth = ({ children }) => {
     console.log(token);
     try {
       await HttpPost("/auth/verify-login", { login: true }, token).then(
-        (user) => {
-          setUser(user);
+        (res) => {
+          if (res.auth)
+            setUser(res.user);
         }
       );
     } catch (error) {

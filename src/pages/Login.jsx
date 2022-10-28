@@ -19,13 +19,15 @@ export const Login = (next) => {
 
   const username = useFormInput('');
   const password = useFormInput('');
-
+  const remember = useFormCheckbox('');
+  
   const handleLogin = async (e) => {
     e.preventDefault();
 
     const data = {
       username: username.value,
-      password: password.value
+      password: password.value,
+      remember: remember.checked
     }
 
     await AuthUser(data)
@@ -94,12 +96,13 @@ export const Login = (next) => {
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <input
-                id="remember-me"
-                name="remember-me"
+                id="remember"
+                name="remember"
                 type="checkbox"
+                {...remember}
                 className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
               />
-              <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+              <label htmlFor="remember" className="ml-2 block text-sm text-gray-900">
                 Recuérdame
               </label>
             </div>
@@ -140,6 +143,18 @@ const useFormInput = initialValue => {
   }
   return {
     value,
+    onChange: handleChange
+  }
+}
+
+const useFormCheckbox = initialValue => {
+  const [checked, setChecked] = useState(initialValue);
+
+  const handleChange = ({target}) => {
+    setChecked(target.checked);
+  }
+  return {
+    checked,
     onChange: handleChange
   }
 }
