@@ -19,7 +19,7 @@ export const Login = (next) => {
 
   const username = useFormInput('');
   const password = useFormInput('');
-  const remember = useFormCheckbox('');
+  const remember = useFormCheckbox(false);
   
   const handleLogin = async (e) => {
     e.preventDefault();
