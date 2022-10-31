@@ -20,8 +20,8 @@ export default function Modal() {
                   className="bg-purple-300 border-4 border-purple-500 text-purple-600 relative p-10 flex-auto rounded-lg"
                   role="alert"
                 >
-                  <h2 className="capitalize font-bold flex flex-col text-xl">
-                    Debes Iniciar Sesión,
+                  <h2 className="capitalize font-bold flex flex-col text-xl text-center">
+                    Debes Iniciar Sesión
                     <span className="text-slate-100">
                       Para Reservar un Departamento
                     </span>

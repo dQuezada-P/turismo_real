@@ -78,7 +78,7 @@ export const DepartmentCardInfo = ({ images }) => {
                   <h2 className="flex items-center gap-4 text-3xl ">
                     {NUMERO_BANNO}
                     <span className="text-purple-600">
-                      <TbBath />
+                      <FaBath />
                     </span>
                   </h2>
                   <span className="font-semibold uppercase">

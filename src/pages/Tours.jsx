@@ -57,7 +57,7 @@ export const Tours = () => {
 
         <div className="min-h-screen container ml-4 sm:mx-auto flex flex-col sm:grid sm:grid-cols-3 2xl:grid-cols-4 mb-4 ">
           {tours.map((tour) => (
-            <div className="card rounded-3xl bg-white shadow-lg transform transition duration-200 sm:hover:scale-110" key={tour.ID}>
+            <div className="card rounded-3xl bg-white shadow-lg transform transition duration-200 sm:hover:scale-105" key={tour.ID}>
               <div className="card-image">
                 <img
                   className=""
