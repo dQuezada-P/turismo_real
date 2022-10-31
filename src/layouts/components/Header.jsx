@@ -58,7 +58,7 @@ export const Header = () => {
     themeToggleDarkIcon.classList.toggle("hidden");
     themeToggleLightIcon.classList.toggle("hidden");
   };
-  console.log('usuarioooo')
+  console.log('usuariooooa')
   console.log(user)
   const navbarUser = isLogged() ? (
     <>
