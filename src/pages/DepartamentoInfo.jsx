@@ -27,7 +27,7 @@ export const Departamento = () => {
   if (flag) return <div>cargandoo...</div>;
 
   return (
-    <div className="container mx-auto sm:flex sm:flex-col relative z-30 my-2 gap-4 top-[20rem] sm:top-0 min-h-screen sm:w-full sm:items-center 2xl:justify-center">
+    <div className="container mx-auto sm:flex sm:flex-col relative z-30 my-2 gap-4 top-[20rem] sm:top-0 min-h-screen sm:w-full sm:items-center 2xl:justify-center sm:mt-6">
       <div className="BoxContainer h-96 sm:h-70 2xl:h-[30rem] mx-4 sm:w-2/4 2xl:w-4/6 bg-gray-50 dark:bg-white sm:mx-0 rounded-t-lg sm:rounded-lg dark:text-white">
         <div className="BoxMain w-full h-full sm:flex sm:flex-row">
           <div className="InfoLeft w-full h-full basis-3/5 flex sm:items-center">

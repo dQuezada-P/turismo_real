@@ -157,3 +157,27 @@
   padding: 1rem;
   padding-top: .5rem;
 }
+
+/* .progressBar::before{
+  content: "";
+  position: absolute;
+  background-color: #87428e;
+  border-radius: 10px;
+  height: 8px;
+  z-index: -1;
+  transition:0.4s ease;
+} */
+
+.progressBar{
+  position: absolute;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  height: 8px;
+  width: 100%;
+  z-index: -1;
+  transition:0.4s ease;
+}
+
+.atransition{
+  transition:0.4s ease;
+}

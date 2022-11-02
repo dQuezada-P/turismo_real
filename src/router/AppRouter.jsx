@@ -14,7 +14,7 @@ import { Departamento } from "../pages/DepartamentoInfo";
 import { FooterBase } from "../components/footer/FooterBase";
 import { Login } from "../pages/Login";
 import { TourInfo } from "../pages/TourInfo";
-import { Reserva } from "../pages/Reserva";
+import { Reserva } from "../pages/reservation/Reserva";
 import ProtectedRoutes from "./ProtectedRoutes";
 import { ContextTour } from "../context/ContextTour";
 import { Notificacion } from "../pages/Notificacion";

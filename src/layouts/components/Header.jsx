@@ -163,7 +163,7 @@ export const Header = () => {
   return (
     <header className="fixed z-30 top-0 w-full">
       <Navbar fluid={false} rounded={false}>
-        <NavLink to={"/"}>
+        <NavLink to={"/"} className={'transform transition duration-300 sm:hover:scale-110 '}>
           <Navbar.Brand>
             <img
               src="/public/logo.png"

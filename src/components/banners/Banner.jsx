@@ -19,7 +19,7 @@ export default function Banner({ title, desc1, name, desc2, desc3 }) {
           <p className="text-justify sm:text-xs 2xl:text-base mb-4 invisible md:visible">
             {desc1} <span className="text-yellow-400">{name}</span> {desc2}
           </p>
-          <p className="text-justify sm:text-xs 2xl:text-base invisible md:visible">{desc3}</p>
+          <p className="text-justify sm:text-xs 2xl:text-base invisible md:visible ">{desc3}</p>
         </div>
       </div>
     </>

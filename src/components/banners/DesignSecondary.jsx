@@ -4,7 +4,7 @@ export default function DesignSecondary({ children }) {
       <div className="BoxBars h-full bg-white relative z-20 overflow-hidden">
         <div className="Bars bg-bars-body ">
           <div className=" bg-yellow-400 shadow-2xl"></div>
-          <div className=" bg-purple-600 shadow-2xl"></div>
+          <div className=" bg-purple-600 shadow-2xl transition duration-300 ease-linear "></div>
         </div>
         {children}
       </div>

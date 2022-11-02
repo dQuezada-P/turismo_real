@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from '../context/hooks/useAuth';
 import { AuthUser } from '../services/auth/auth.js';
-
 import { BsFileLock } from "react-icons/bs";
 
 export const Login = (next) => {
