@@ -5,14 +5,19 @@ import {
   HiCash,
   HiPencilAlt,
 } from "react-icons/hi";
+import { useForm, useFormContext, FormProvider } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+
+
 import { useDepartment } from "../../context/hooks/useDepartment";
 import { useAuth } from "../../context/hooks/useAuth";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { GetDepartamento } from "../../services/department/ApiRequestDepartment";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { PersonalInfo } from "../reservation/components/PersonalInfo";
+import { SummaryData } from "./components/SummaryData";
 import { Transport } from "../reservation/components/Transport";
 import { Tour } from "../reservation/components/Tour";
 import { Circle } from "../reservation/components/Circle";
@@ -22,14 +27,25 @@ import { MdOutlineDirectionsBus, MdOutlineTour } from "react-icons/md";
 export const Reserva = () => {
   const [page, setPage] = useState(0);
   const TitlePages = [
-    "Informacion Personal",
+    "Información del Arriendo",
     "Servicios Transporte",
     "Servicios Tour",
-    "s",
+    "Pagar",
   ];
+
+  const methods = useForm();
+  const onSubmit = (data) => console.log(data);
+
   const PageDisplay = () => {
     if (page === 0) {
-      return <PersonalInfo></PersonalInfo>;
+      return (
+        <FormProvider {...methods}>
+          <form onSubmit={methods.handleSubmit(onSubmit)}>
+            {" "}
+            <SummaryData department={department} user={user}></SummaryData>
+          </form>
+        </FormProvider>
+      );
     } else if (page === 1) {
       return <Transport></Transport>;
     } else return <Tour></Tour>;
@@ -69,7 +85,7 @@ export const Reserva = () => {
   }, [circle, btnActive]);
 
   const { id } = useParams();
-  const { department, images, setDepartment, imageCharge, setImageCharge } =
+  const { department, setDepartment, imageCharge, setImageCharge } =
     useDepartment();
   const [date, setDate] = useState(new Date());
   const [flag, setFlag] = useState(true);
@@ -157,17 +173,6 @@ export const Reserva = () => {
     setCliente({ ...cliente, tel: e.target.value });
   };
 
-  const handleOnChangeCorreo = (e) => {
-    setCliente({ ...cliente, correo: e.target.value });
-  };
-  const handleOnChangeDias = (e) => {
-    setArriendo({ ...arriendo, dias: e.target.value });
-  };
-
-  const handleOnChangeCantP = (e) => {
-    setArriendo({ ...arriendo, cantPersonas: e.target.value });
-  };
-
   const handleOnclick = async () => {
     charge == null ? setCharge(true) : null;
     console.log(date);
@@ -178,7 +183,6 @@ export const Reserva = () => {
       cliente: cliente,
       arriendo: arriendo,
     };
-    console.log(data.arriendo.fecha);
     setTimeout(async () => {
       try {
         if (flag) {
@@ -213,9 +217,9 @@ export const Reserva = () => {
   return (
     <>
       <div className="BoxContent relative z-30 min-h-screen flex justify-center items-center  ">
-        <div className="BoxMain w-[80%] h-[80%] container mx-auto sm:flex sm:flex-row shadow-xl rounded-2xl sm:mt-8 sm:mb-6 2xl:mt-12 ">
-          <div className="InfoShopping bg-white basis-[70%] h-[25rem] sm:h-[35rem] 2xl:h-[50rem] rounded-t-2xl sm:rounded-tr-none sm:rounded-tl-2xl sm:rounded-bl-2xl flex flex-col font-semibold">
-            <div className="basis-[15%] flex flex-col ">
+        <div className="BoxMain w-[80%] h-full sm:h-[80%] container mx-auto sm:flex sm:flex-row shadow-xl rounded-2xl sm:mt-8 sm:mb-6 2xl:mt-12 ">
+          <div className="InfoShopping bg-white basis-[70%] h-[45rem] sm:h-[35rem] 2xl:h-[50rem] rounded-t-2xl sm:rounded-tr-none sm:rounded-tl-2xl sm:rounded-bl-2xl flex flex-col font-semibold">
+            <div className="basis-[15%] flex flex-col border-b-2 border-purple-600 ">
               <h2 className="flex w-full basis-[50%] justify-center items-center ">
                 {TitlePages[page]}
               </h2>
@@ -266,8 +270,8 @@ export const Reserva = () => {
                 Resumen de la orden
               </h2>
             </div>
-            <div className="bg-red-600 basis-[60%]">Products</div>
-            <div className="bg-red-800 basis-[15%]">Total</div>
+            <div className=" basis-[60%]">Products</div>
+            <div className=" basis-[15%]">Total</div>
           </div>
         </div>
       </div>
