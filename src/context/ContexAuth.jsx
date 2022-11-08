@@ -13,13 +13,10 @@ const ContextAuth = ({ children }) => {
   };
 
   const verifyToken = async () => {
-    console.log("token");
-    console.log(token);
     try {
       await HttpPost("/auth/verify-login", { login: true }, token).then(
         (res) => {
-          if (res.auth)
-            setUser(res.user);
+          if (res.auth) setUser(res.user);
         }
       );
     } catch (error) {
@@ -31,7 +28,6 @@ const ContextAuth = ({ children }) => {
   useEffect(() => {
     try {
       if (token && !user) {
-        console.log("verificar token");
         verifyToken();
       } else {
         setCharging(false);
@@ -60,6 +56,3 @@ const ContextAuth = ({ children }) => {
 
 export { ContextAuth };
 export default Auth;
-
-
-

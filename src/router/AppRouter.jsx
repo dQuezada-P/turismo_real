@@ -21,6 +21,7 @@ import { Notificacion } from "../pages/Notificacion";
 import { Layout } from "../components/Layout";
 import { ContextReservation } from "../context/ContextReservation";
 import { LayoutBase } from "../layouts/LayoutBase";
+import { ContextTransport } from "../context/ContextTransport";
 
 export const AppRouter = () => {
   return (
@@ -29,9 +30,10 @@ export const AppRouter = () => {
         {/* <Header /> */}
         <ContextReservation>
           <ContextDepartment>
-            <ContextTour>
-              <Routes>
-                {/* <Route path="/" element={<Layout />}>
+            <ContextTransport>
+              <ContextTour>
+                <Routes>
+                  {/* <Route path="/" element={<Layout />}>
                   <Route index element={<Departamentos />} />
                   <Route path="departamentos" element={<Departamentos />} />
                   <Route path="departamento/:id" element={<Departamento />} />
@@ -46,20 +48,21 @@ export const AppRouter = () => {
                   <Route path="*" element={<Navigate to="/departamentos" />} />
                 </Route>
                 <Route path="/notificacion" element={<Notificacion />} /> */}
-                <Route path="/" element={<LayoutBase />}>
-                  <Route path="login" element={<Login />} />
-                  <Route path="departamentos" element={<Departamentos />} />
-                  <Route path="departamento/:id" element={<Departamento />} />
-                  <Route path="tours" element={<Tours />} />
-                  <Route path="nosotros" element={<Nosotros />} />
-                  <Route path="contactanos" element={<Contactanos />} />
-                  <Route path="*" element={<Navigate to="departamentos" />} />
-                  <Route element={<ProtectedRoutes />}>
-                    <Route path="reserva/:id" element={<Reserva />} />
+                  <Route path="/" element={<LayoutBase />}>
+                    <Route path="login" element={<Login />} />
+                    <Route path="departamentos" element={<Departamentos />} />
+                    <Route path="departamento/:id" element={<Departamento />} />
+                    <Route path="tours" element={<Tours />} />
+                    <Route path="nosotros" element={<Nosotros />} />
+                    <Route path="contactanos" element={<Contactanos />} />
+                    <Route path="*" element={<Navigate to="departamentos" />} />
+                    <Route element={<ProtectedRoutes />}>
+                      <Route path="reserva/:id" element={<Reserva />} />
+                    </Route>
                   </Route>
-                </Route>
-              </Routes>
-            </ContextTour>
+                </Routes>
+              </ContextTour>
+            </ContextTransport>
           </ContextDepartment>
         </ContextReservation>
         {/* <FooterBase /> */}

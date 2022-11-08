@@ -1,57 +1,94 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
 import {
   HiArrowSmLeft,
   HiArrowSmRight,
   HiCash,
+  HiOutlineStar,
   HiPencilAlt,
 } from "react-icons/hi";
-import { useForm, useFormContext, FormProvider } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-
-
-import { useDepartment } from "../../context/hooks/useDepartment";
-import { useAuth } from "../../context/hooks/useAuth";
 import axios from "axios";
-import { useParams } from "react-router-dom";
-import { GetDepartamento } from "../../services/department/ApiRequestDepartment";
-import "react-datepicker/dist/react-datepicker.css";
-import { SummaryData } from "./components/SummaryData";
-import { Transport } from "../reservation/components/Transport";
-import { Tour } from "../reservation/components/Tour";
-import { Circle } from "../reservation/components/Circle";
 import { Progress } from "flowbite-react";
-import { MdOutlineDirectionsBus, MdOutlineTour } from "react-icons/md";
+import "react-datepicker/dist/react-datepicker.css";
+import { useParams } from "react-router-dom";
+import { useAuth } from "../../context/hooks/useAuth";
+import { useDepartment } from "../../context/hooks/useDepartment";
+import { GetDepartamento } from "../../services/department/ApiRequestDepartment";
+import { Circle } from "../reservation/components/Circle";
+import { Tour } from "../reservation/components/Tour";
+import { Service } from "./components/Services";
+import { SummaryData } from "./components/SummaryData";
+import { useTransport } from "../../context/hooks/useTransport";
+import { useTour } from "../../context/hooks/useTour";
 
 export const Reserva = () => {
+  const { user } = useAuth();
   const [page, setPage] = useState(0);
+  const { transports, setTransportList } = useTransport();
+  const { tours, setTourList } = useTour();
+
   const TitlePages = [
     "Información del Arriendo",
-    "Servicios Transporte",
-    "Servicios Tour",
+    "Servicios Adicionales",
     "Pagar",
   ];
+  const schema = yup
+    .object()
+    .shape({
+      correo: yup
+        .string()
+        .email("Debe tener un Formato de Email")
+        .required("Correo es requerido"),
+      tel: yup
+        .number("Solo Números Enteros")
+        .integer("Solo Números Enteros")
+        .positive("Solo Números Enteros")
+        .required("Telefóno es requerido")
+        .transform((value) => (isNaN(value) ? undefined : value))
+        .nullable(),
+      inv: yup
+        .number()
+        .positive()
+        .integer()
+        .min(2)
+        .transform((value) => (isNaN(value) ? undefined : value)),
+    })
+    .required();
 
-  const methods = useForm();
+  const methods = useForm({
+    resolver: yupResolver(schema),
+  });
   const onSubmit = (data) => console.log(data);
 
-  const PageDisplay = () => {
-    if (page === 0) {
-      return (
-        <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(onSubmit)}>
-            {" "}
-            <SummaryData department={department} user={user}></SummaryData>
-          </form>
-        </FormProvider>
-      );
-    } else if (page === 1) {
-      return <Transport></Transport>;
-    } else return <Tour></Tour>;
+  const formContent = (children) => {
+    return (
+      <FormProvider {...methods}>
+        <form
+          className="h-full w-full"
+          onSubmit={methods.handleSubmit(onSubmit)}
+        >
+          {children}
+        </form>
+      </FormProvider>
+    );
   };
 
-  const [circle, setCircle] = useState(3);
+  const PageDisplay = () => {
+    return formContent(
+      page === 0 ? (
+        <SummaryData department={department} user={user} />
+      ) : page === 1 ? (
+        <Service />
+      ) : (
+        <Tour />
+      )
+    );
+  };
+
+  const [circle, setCircle] = useState(2);
   const [btnActive, setBtnActive] = useState(0);
   const [widthBar, setWidthBar] = useState(0);
   const array = [];
@@ -66,15 +103,7 @@ export const Reserva = () => {
         key={i}
       >
         <p className="text-base 2xl:text-2xl">
-          {i === 0 ? (
-            <HiPencilAlt />
-          ) : i === 1 ? (
-            <MdOutlineDirectionsBus />
-          ) : i === 2 ? (
-            <MdOutlineTour />
-          ) : (
-            <HiCash />
-          )}
+          {i === 0 ? <HiPencilAlt /> : i === 1 ? <HiOutlineStar /> : <HiCash />}
         </p>
       </Circle>
     );
@@ -87,9 +116,8 @@ export const Reserva = () => {
   const { id } = useParams();
   const { department, setDepartment, imageCharge, setImageCharge } =
     useDepartment();
-  const [date, setDate] = useState(new Date());
   const [flag, setFlag] = useState(true);
-  const { user } = useAuth();
+
   const [charge, setCharge] = useState();
   const [cliente, setCliente] = useState({
     rut: user.RUT,
@@ -141,6 +169,16 @@ export const Reserva = () => {
         img: dept.IMAGENES[0].url,
       });
     };
+    const listTransport = transports.filter((tran) => {
+      if (tran.ID_LOCALIDAD === department.ID_LOCALIDAD) return tran;
+    });
+    setTransportList(listTransport);
+
+    const listTour = tours.filter((tr) => {
+      if (tr.ID_LOCALIDAD === department.ID_LOCALIDAD) return tr;
+    });
+    setTourList(listTour);
+    
 
     getDept();
   }, []);
@@ -217,10 +255,10 @@ export const Reserva = () => {
   return (
     <>
       <div className="BoxContent relative z-30 min-h-screen flex justify-center items-center  ">
-        <div className="BoxMain w-[80%] h-full sm:h-[80%] container mx-auto sm:flex sm:flex-row shadow-xl rounded-2xl sm:mt-8 sm:mb-6 2xl:mt-12 ">
+        <div className="BoxMain w-[90%] sm:[80%] h-full sm:h-[80%] container mx-auto sm:flex sm:flex-row shadow-xl rounded-2xl sm:mt-8 sm:mb-6 2xl:mt-12 ">
           <div className="InfoShopping bg-white basis-[70%] h-[45rem] sm:h-[35rem] 2xl:h-[50rem] rounded-t-2xl sm:rounded-tr-none sm:rounded-tl-2xl sm:rounded-bl-2xl flex flex-col font-semibold">
             <div className="basis-[15%] flex flex-col border-b-2 border-purple-600 ">
-              <h2 className="flex w-full basis-[50%] justify-center items-center ">
+              <h2 className="flex w-full basis-[50%] justify-center items-center text-sm sm:text-base 2xl:text-2xl underline">
                 {TitlePages[page]}
               </h2>
               <div className="w-[70%] flex flex-row items-center justify-between justify-self-stretch container mx-auto basis-[50%] lining-nums text-sm relative z-10 my-2">
@@ -266,7 +304,7 @@ export const Reserva = () => {
           </div>
           <div className="InfoSummary bg-white basis-[30%] h-[25rem] sm:h-[35rem] 2xl:h-[50rem] flex flex-col rounded-b-2xl sm:rounded-bl-none sm:rounded-tr-2xl sm:rounded-br-2xl  ">
             <div className="basis-[15%] flex items-center justify-center underline underline-offset-4 dark:decoration-gray-800 ">
-              <h2 className="font-semibold dark:text-gray-800 uppercase">
+              <h2 className="font-semibold dark:text-gray-800 uppercase sm:text-base 2xl:text-2xl">
                 Resumen de la orden
               </h2>
             </div>
@@ -276,86 +314,5 @@ export const Reserva = () => {
         </div>
       </div>
     </>
-    // <>
-    //     <div className="BoxContent min-h-screen">
-    //       <div className="BoxCardReservation bg-white h-[80%] w-[50%] absolute top-10 left-1/2 transform -translate-x-1/2 -translate-y-2 shadow-2xl rounded-3xl">
-    //         <div className="BoxFlex flex flex-col md:flex-row w-full h-[90%] pt-4 px-4">
-    //           <div className="BoxUser basis-[60%] h-full"></div>
-    //             {/* <Login></Login> */}
-    //             {/* Recuadro Izquierdo*/}
-
-    //           {/* Recuadro Derecho*/}
-    //           <div className="BoxResumary basis-[40%] h-full border-t-[1px] md:border-l-[1px] md:border-t-[0px] flex flex-col items-start justify-center border-slate-300 ">
-    //             <img className="w-20 h-20" src={IMAGENES[0].url} alt="" />
-
-    //             <h5 className="flex capitalize items-center text-center mx-auto w-11/12 p-2">
-    //               Datos del Arriendo
-    //             </h5>
-
-    //             <h3 className="flex capitalize gap-4 items-center mx-auto w-11/12 p-2  ">
-    //               <IoBedOutline />
-    //               <span>
-    //                 {NUMERO_HABITACION > 1
-    //                   ? `${NUMERO_HABITACION} Habitaciones`
-    //                   : `${NUMERO_HABITACION} habitación`}
-    //               </span>
-    //             </h3>
-
-    //             <h3 className="flex capitalize gap-4 items-center mx-auto w-11/12 p-2 ">
-    //               <TbBath />
-    //               <span>
-    //                 {NUMERO_BANNO > 1
-    //                   ? `${NUMERO_BANNO} Baños`
-    //                   : `${NUMERO_BANNO} Baño`}
-    //               </span>
-    //             </h3>
-
-    //             <h3 className="flex capitalize gap-4 items-center mx-auto w-11/12 p-2">
-    //               <span>
-    //                 <BsBuilding />
-    //               </span>
-    //               {NOMBRE}
-    //             </h3>
-
-    //             <h3 className="flex capitalize gap-4 items-center mx-auto w-11/12 p-2">
-    //               <MdOutlineChair />
-    //               <span>{DESCRIPCION}</span>
-    //             </h3>
-
-    //             <h3 className="flex lowercase  gap-2 items-center mx-auto w-11/12 p-2">
-    //               <span>
-    //                 <BiMap />
-    //               </span>
-    //               {DIRECCION}, {UBICACION}
-    //             </h3>
-
-    //             <h3 className=" flex-col capitalize gap-4 items-center mx-auto w-11/12 p-2">
-    //               Valor Arriendo: {newValorArriendo}
-    //             </h3>
-
-    //             <h6 className="flex-col capitalize border border-red-500 gap-4 items-center mx-auto w-11/12 p-2">
-    //               Abono del 20%:{" "}
-    //               <span className="text-2xl font-semibold">{abono}</span>
-    //             </h6>
-    //           </div>
-    //         </div>
-    //         <div className="flex flex-row items-center justify-center">
-    //           <div className="basis-3/5">
-    //             <button
-    //               className="Butto bg-purple-600 flex h-auto w-1/2  mx-auto  px-4 py-2 justify-center  hover:bg-purple-700 font-semibold text-white uppercase rounded-2xl "
-    //               onClick={handleOnclick}
-    //             >
-    //               Solicitar Reserva
-    //             </button>
-    //           </div>
-    //           {charge ? (
-    //             <Spinner />
-    //           ) : (
-    //             <div className="cho-container w-1/2 basis-2/5 flex justify-center"></div>
-    //           )}
-    //         </div>
-    //       </div>
-    //     </div>
-    // </>
   );
 };

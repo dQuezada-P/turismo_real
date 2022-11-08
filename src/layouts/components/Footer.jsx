@@ -13,8 +13,8 @@ export const FooterContent = () => {
       >
         <div className="flex flex-row justify-center sm:items-center">
           <img
-            src="/public/logo.png"
-            className="mr-3 h-6 sm:h-11 p-1rounded-md"
+            src="/public/Logo New.png"
+            className="mr-3 h-6 sm:h-8 p-1rounded-md"
             alt="Turismo Real Logo"
           />
           <span className="text-xl font-semibold dark:text-white">

@@ -5,6 +5,7 @@ const Tour = createContext();
 
 const ContextTour = ({ children }) => {
   const [tours, setTours] = useState([]);
+  const [tourList, setTourList] = useState([]);
   const [charging, setCharging] = useState(true);
   useEffect(() => {
     const get = async () => {
@@ -20,7 +21,9 @@ const ContextTour = ({ children }) => {
   }, []);
 
   return (
-    <Tour.Provider value={{ tours, setTours, charging, setCharging }}>
+    <Tour.Provider
+      value={{ tours, setTours, charging, setCharging, tourList, setTourList }}
+    >
       {children}
     </Tour.Provider>
   );
