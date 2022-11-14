@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/hooks/useAuth";
 import { useReservation } from "../context/hooks/useReservation";
+import { addReservation } from "../services/reservation/ApiRequestReservation";
 
 export const Notificacion = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -10,7 +11,6 @@ export const Notificacion = () => {
   const [payment, setPayment] = useState({});
   const [flag, setFlag] = useState(true);
   const { token } = useAuth();
-  const { reservation, setReservation } = useReservation();
   const navigate = useNavigate();
   useEffect(() => {
     try {
@@ -22,7 +22,6 @@ export const Notificacion = () => {
               id: payid,
             }
           );
-
           setPayment(data);
           setFlag(false);
         };
@@ -31,17 +30,17 @@ export const Notificacion = () => {
     } catch (error) {
       console.error(error);
     }
-    const binds = {
-      token,
-      payment,
-    };
-    console.log(payment)
 
-    if (!flag)
+    if (payment.status == "approved")
       try {
-        axios.post("http://localhost:3000/api/reserva", binds);
-        setReservation(payment);
-        navigate("/departamentos");
+        const result = async () => {
+          const res = await addReservation(payment, token);
+          console.log(res);
+          navigate("/departamentos");
+        };
+        result();
+        // axios.post("http://localhost:3000/api/reserva", payment);
+        // navigate("/departamentos");
       } catch (error) {
         console.error(error);
       }

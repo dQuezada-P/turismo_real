@@ -9,7 +9,6 @@ export const SummaryData = ({ department, user }) => {
     control,
     formState: { errors },
   } = useFormContext();
-
   return (
     <div className="w-full h-full flex flex-col sm:flex-row font-semibold">
       <div className="InfoUser w-full basis-[50%] border-b-2 border-purple-600 sm:border-b-0  sm:border-r-2 items-center justify-center ">
@@ -47,11 +46,11 @@ export const SummaryData = ({ department, user }) => {
                   id="name"
                   type="text"
                   className="border-2 border-gray-200 rounded w-full py-0 2xl:py-2 leading-tight focus:outline-none focus:bg-white basis-[75%] text-center text-sm 2xl:text-base text-black lining-nums"
-                  {...register("dias")}
+                  {...register("day")}
                 />
               </div>
-              <p className="text-red-700 text-xs text-end w-full">
-                {errors.dias?.message}
+              <p className="text-red-700 text-xs text-end w-full lining-nums">
+                {errors.day?.message}
               </p>
               <div className="flex flex-row place-items-center gap-2">
                 {" "}
@@ -67,10 +66,11 @@ export const SummaryData = ({ department, user }) => {
                   name="correo"
                   className="border-2 border-gray-200 rounded w-full py-0 2xl:py-2 leading-tight focus:outline-none focus:bg-white basis-[75%] text-center text-sm 2xl:text-base text-black lining-nums"
                   placeholder="correo@correo.cl"
+                  defaultValue={user.CORREO}
                   {...register("correo")}
                 />
               </div>
-              <p className="text-red-700 text-xs text-end w-full">
+              <p className="text-red-700 text-xs text-end w-full lining-nums">
                 {errors.correo?.message}
               </p>
               <div className="flex flex-row place-items-center gap-2">
@@ -85,11 +85,12 @@ export const SummaryData = ({ department, user }) => {
                   id="tel"
                   type="text"
                   className=" border-2 border-gray-200 rounded  py-0 2xl:py-2 leading-tight focus:outline-none focus:bg-white basis-[75%] text-center text-sm 2xl:text-base text-black lining-nums"
-                  placeholder="912345678"
+                  placeholder="+56912345678"
+                  defaultValue={user.TELEFONO}
                   {...register("tel")}
                 />
               </div>
-              <p className="text-red-700 text-xs text-end w-full">
+              <p className="text-red-700 text-xs text-end w-full lining-nums">
                 {errors.tel?.message}
               </p>
               <div className="flex flex-row place-items-center gap-2">
@@ -103,11 +104,11 @@ export const SummaryData = ({ department, user }) => {
                 <input
                   id="inv"
                   type="text"
-                  className=" border-2 border-gray-200 rounded w-full py-0 2xl:py-2 text-gray-700 leading-tight focus:outline-none focus:bg-white basis-[75%] text-center text-sm 2xl:text-base"
+                  className="border-2 border-gray-200 rounded  py-0 2xl:py-2 leading-tight focus:outline-none focus:bg-white basis-[75%] text-center text-sm 2xl:text-base text-black lining-nums"
                   {...register("inv")}
                 />
               </div>
-              <p className="text-red-700 text-xs text-end w-full">
+              <p className="text-red-700 text-xs text-end w-full lining-nums">
                 {errors.inv?.message}
               </p>
               <div className="flex flex-row place-items-center gap-2 mb-4 sm:mb-0">
@@ -122,19 +123,21 @@ export const SummaryData = ({ department, user }) => {
                   id="fecha"
                   control={control}
                   name="fecha"
-                  render={({ field: { onChange, onBlur, value } }) => (
+                  render={({ field: { onChange, value } }) => (
                     <DatePicker
                       className=" lining-nums border-2 text-black w-full border-gray-200 rounded py-0 sm:py-1 2xl:py-2 focus:outline-none focus:bg-white basis-auto text-xs 2xl:text-lg text-center "
                       onChange={onChange}
-                      onBlur={onBlur}
                       selected={value}
                       minDate={new Date()}
+                      dateFormat={'dd/MM/yyyy'}
                     />
                   )}
                 />
               </div>
-
-              <input type="submit" id="submit" />
+              <p className="text-red-700 text-xs text-end w-full">
+                {errors.fecha?.message}
+              </p>
+              <input id='btnSubmit' hidden type="submit" />
             </div>
           </div>
         </div>
@@ -179,7 +182,6 @@ export const SummaryData = ({ department, user }) => {
                   disabled
                 />
                 <label
-                  htmlFor=""
                   className="text-xs sm:text-base 2xl:text-xl basis-[25%] ml-8"
                 >
                   Baños:{" "}

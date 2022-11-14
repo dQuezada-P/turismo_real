@@ -1,5 +1,4 @@
 import { Navigate, Outlet } from "react-router-dom";
-import Modal from "../components/modal/Modal";
 import { useAuth } from "../context/hooks/useAuth";
 
 const ProtectedRoutes = () => {

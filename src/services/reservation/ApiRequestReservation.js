@@ -1,5 +1,5 @@
 import { HttpPost } from "../ApiRequest";
 
-export const createRservation = data => {
-  return HttpPost('/reserva', data)
-}
+export const addReservation = (data, token) => {
+  return HttpPost("/reserva", data, token);
+};

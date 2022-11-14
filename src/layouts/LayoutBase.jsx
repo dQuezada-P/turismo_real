@@ -6,7 +6,7 @@ import { Header } from "./components/Header";
 export const LayoutBase = () => {
   const navigate = useNavigate();
   useEffect(() => {
-    navigate("/departamentos");
+    // navigate("/departamentos");
   }, []);
     return (
       <>

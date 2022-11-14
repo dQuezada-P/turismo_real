@@ -1,4 +1,4 @@
-import { Dropdown, Table } from "flowbite-react";
+import { Checkbox, Dropdown, Radio, Table } from "flowbite-react";
 import { TableBody } from "flowbite-react/lib/esm/components/Table/TableBody";
 import { TableCell } from "flowbite-react/lib/esm/components/Table/TableCell";
 import { TableRow } from "flowbite-react/lib/esm/components/Table/TableRow";
@@ -6,53 +6,135 @@ import $ from "jquery";
 import { useFormContext } from "react-hook-form";
 import { useTransport } from "../../../context/hooks/useTransport";
 import { useTour } from "../../../context/hooks/useTour";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useReservation } from "../../../context/hooks/useReservation";
 
 export const Service = () => {
-  const [btn, setBtn] = useState(true);
+  const { reservation, setReservation } = useReservation();
+  const [titleTransporte, setTitleTransporte] = useState(true);
+  const [flagTransporte, setFlagTransporte] = useState(true);
+  const [titleTour, setTitleTour] = useState(true);
+  const [flagTour, setFlagTour] = useState(true);
   const divTransport = $("#transport");
   const oTransport = $("#oTransport");
-  const btnTransport = $("#omiTransport");
   const divTour = $("#tour");
   const otour = $("#otour");
-  const btnTour = $("#omiTour");
-  const radionBtnTransport = $("#rTransport");
-  const { transportList } = useTransport();
-  const { tourList } = useTour();
-  const { register } = useFormContext();
+  const { transportList, setFlagTra } = useTransport();
+  const { tourList, setFlagTr } = useTour();
+  const [registerTran, setRegisterTran] = useState({});
+  const {
+    register,
+    formState: { errors },
+    unregister,
+  } = useFormContext();
+
+  useEffect(() => {
+    $("input:radio").prop("checked", false);
+    setRegisterTran(!flagTransporte ? { ...register("transport") } : {});
+  }, [flagTransporte]);
+  useEffect(() => {
+    $("input:checkbox").prop("checked", false);
+  }, []);
+
+  const handleTransporte = () => {
+    if (divTransport.is(":visible")) {
+      divTransport.slideUp();
+      setFlagTransporte(true);
+      setTitleTransporte(true);
+      $("input:radio").prop("checked", false);
+      unregister("transport");
+      setFlagTra(false);
+    } else if (divTransport.is(":hidden")) {
+      divTransport.slideDown();
+      setFlagTransporte(false);
+      setTitleTransporte(false);
+    }
+    if (oTransport.is(":visible")) {
+      oTransport.addClass("hidden");
+    }
+  };
+  const handleOmitirTransporte = () => {
+    if (oTransport.is(":visible")) {
+      oTransport.addClass("hidden");
+    } else if (oTransport.is(":hidden")) {
+      oTransport.removeClass("hidden");
+    }
+    if (divTransport.is(":visible")) {
+      divTransport.slideUp();
+      setTitleTransporte(true);
+      setFlagTransporte(true);
+    }
+    unregister("transport");
+    setFlagTra(true);
+    setReservation({ ...reservation, transporte: null });
+  };
+
+  const handleTour = () => {
+    if (divTour.is(":visible")) {
+      divTour.slideUp();
+      setTitleTour(true);
+      setFlagTour(true);
+      setFlagTr(false);
+      unregister("tour");
+      setReservation({ ...reservation, tour: false });
+    } else if (divTour.is(":hidden")) {
+      divTour.slideDown();
+      setTitleTour(false);
+      setFlagTour(false);
+    }
+    if (otour.is(":visible")) {
+      otour.addClass("hidden");
+    }
+  };
+
+  const handleOmitirTour = () => {
+    if (otour.is(":visible")) {
+      otour.addClass("hidden");
+    } else if (otour.is(":hidden")) {
+      otour.removeClass("hidden");
+    }
+    if (divTour.is(":visible")) {
+      divTour.slideUp();
+      setTitleTour(true);
+      setFlagTour(true);
+    }
+    unregister("tour");
+    setFlagTr(true);
+  };
+
+  $("input[type=radio]").change(function () {
+    setFlagTra(true);
+  });
+  $("input[type=checkbox]").change(function () {
+    setFlagTr(true);
+  });
+
   return (
     <div className="flex flex-col items-center gap-4 font-semibold h-full ">
+      <p className="flex text-xs w-[95%] mt-4 underline ml-2">
+        Debe seleccionar un servicio / Omitir un servicio
+      </p>
       <div className="w-[95%] mt-2 rounded-lg bg-gray-100 ">
         <div className="border-b-2 border-gray-700 flex items-center place-items-center py-1 gap-4 ">
           <p className="text-sm ml-2 2xl:text-base">Servicios Transportes</p>
           <p id="oTransport" className="text-red-700 hidden ">
             Ha Escogido Omitir el Servicio!
           </p>
+          <p>{errors.transport?.message}</p>
         </div>
+        <input id="btnSubmit" hidden type="submit" />
         <div className="py-2 ml-4 text-sm w-min">
-          <Dropdown label="Seleccionar">
+          <Dropdown
+            inline={false}
+            label={titleTransporte ? "Seleccionar" : "Volver"}
+          >
             <Dropdown.Item>
               <button
                 className="py-1 px-2"
                 type="button"
-                onClick={(e) => {
-                  if (divTransport.is(":visible")) {
-                    divTransport.slideUp();
-                    btnTransport.removeClass("hidden");
-                    radionBtnTransport.prop("checked" , false)
-                    radionBtnTransport.removeAttr("checked");
-                  } else if (divTransport.is(":hidden")) {
-                    radionBtnTransport.prop("checked" , true)
-                    divTransport.slideDown();
-                    btnTransport.addClass("hidden");
-                  }
-
-                  if (oTransport.is(":visible")) {
-                    oTransport.addClass("hidden");
-                  }
-                }}
+                onClick={handleTransporte}
               >
-                Agregar Servicio
+                {flagTransporte ? "Agregar Servicio" : "Cerrar Ventana"}
               </button>{" "}
             </Dropdown.Item>
             <Dropdown.Divider />
@@ -62,13 +144,7 @@ export const Service = () => {
                 id="omiTransport"
                 type="button"
                 className="w-full py-1 px-2"
-                onClick={() => {
-                  if (oTransport.is(":visible")) {
-                    oTransport.addClass("hidden");
-                  } else if (oTransport.is(":hidden")) {
-                    oTransport.removeClass("hidden");
-                  }
-                }}
+                onClick={handleOmitirTransporte}
               >
                 Omitir
               </button>
@@ -81,28 +157,53 @@ export const Service = () => {
         >
           <Table hoverable={true} className="mb-4">
             <Table.Head>
-              <Table.HeadCell>Terminal</Table.HeadCell>
-              <Table.HeadCell>Conductor</Table.HeadCell>
-              <Table.HeadCell>Fecha</Table.HeadCell>
-              <Table.HeadCell>Horario</Table.HeadCell>
-              <Table.HeadCell>Precio</Table.HeadCell>
-              <Table.HeadCell>Escoger</Table.HeadCell>
+              <Table.HeadCell className="text-xs 2xl:text-base">
+                Terminal
+              </Table.HeadCell>
+              <Table.HeadCell className="text-xs 2xl:text-base">
+                Conductor
+              </Table.HeadCell>
+              <Table.HeadCell className="text-xs 2xl:text-base">
+                Fecha
+              </Table.HeadCell>
+              <Table.HeadCell className="text-xs 2xl:text-base">
+                Horario
+              </Table.HeadCell>
+              <Table.HeadCell className="text-xs 2xl:text-base">
+                Precio
+              </Table.HeadCell>
+              <Table.HeadCell className="text-xs 2xl:text-base">
+                Escoger
+              </Table.HeadCell>
             </Table.Head>
-            <TableBody>
+            <TableBody className="overflow-scroll h-1">
               {transportList.map((tran) => (
                 <TableRow key={tran.ID}>
-                  <TableCell>{tran.TERMINAL}</TableCell>
-                  <TableCell>{tran.CONDUCTOR}</TableCell>
-                  <TableCell>{tran.FECHA}</TableCell>
-                  <TableCell>{tran.HORARIO}</TableCell>
-                  <TableCell>{tran.PRECIO}</TableCell>
+                  <TableCell className="text-xs 2xl:text-base">
+                    {tran.TERMINAL}
+                  </TableCell>
+                  <TableCell className="text-xs 2xl:text-base">
+                    {tran.CONDUCTOR}
+                  </TableCell>
+                  <TableCell className="text-xs 2xl:text-base lining-nums">
+                    {tran.FECHA}
+                  </TableCell>
+                  <TableCell className="text-xs 2xl:text-base lining-nums">
+                    {tran.HORARIO}
+                  </TableCell>
+                  <TableCell className="text-xs 2xl:text-base lining-nums">
+                    {tran.PRECIO}
+                  </TableCell>
                   <TableCell className="text-center">
-                    <input
-                      id="rTransport"
+                    <Radio
+                      className="rTransport"
                       type="radio"
-                      name="transport"
+                      name={`transport${tran.ID}`}
                       value={tran.ID}
-                      {...register("transport")}
+                      onChange={(e) => {
+                        setFlagTra(true);
+                      }}
+                      {...registerTran}
                     />
                   </TableCell>
                 </TableRow>
@@ -111,7 +212,7 @@ export const Service = () => {
           </Table>
         </div>
       </div>
-      <div className="w-[95%] mt-2 rounded-lg bg-gray-100 ">
+      <div className="w-[95%] mt-2 rounded-lg bg-gray-100 mb-4 ">
         <div className="border-b-2 border-gray-700 flex items-center place-items-center py-1 gap-4 ">
           <p className="text-sm ml-2 2xl:text-base">Servicios Tour</p>
           <p id="otour" className="text-red-700 hidden ">
@@ -119,26 +220,10 @@ export const Service = () => {
           </p>
         </div>
         <div className="py-2 ml-4 text-sm w-min">
-          <Dropdown label="Seleccionar">
+          <Dropdown label={titleTour ? "Seleccionar" : "Volver"}>
             <Dropdown.Item>
-              <button
-                className="py-1 px-2"
-                type="button"
-                onClick={(e) => {
-                  if (divTour.is(":visible")) {
-                    divTour.slideUp();
-                    btnTour.removeClass("hidden");
-                  } else if (divTour.is(":hidden")) {
-                    divTour.slideDown();
-                    btnTour.addClass("hidden");
-                  }
-
-                  if (otour.is(":visible")) {
-                    otour.addClass("hidden");
-                  }
-                }}
-              >
-                Agregar Servicio
+              <button className="py-1 px-2" type="button" onClick={handleTour}>
+                {flagTour ? "Agregar Servicio" : "Cerrar Ventana"}
               </button>{" "}
             </Dropdown.Item>
             <Dropdown.Divider />
@@ -148,13 +233,8 @@ export const Service = () => {
                 id="omiTour"
                 type="button"
                 className="w-full py-1 px-2 "
-                onClick={() => {
-                  if (otour.is(":visible")) {
-                    otour.addClass("hidden");
-                  } else if (otour.is(":hidden")) {
-                    otour.removeClass("hidden");
-                  }
-                }}
+                name="transport"
+                onClick={handleOmitirTour}
               >
                 Omitir
               </button>
@@ -167,20 +247,45 @@ export const Service = () => {
         >
           <Table hoverable={true} className="mb-4">
             <Table.Head>
-              <Table.HeadCell>Descripción</Table.HeadCell>
-              <Table.HeadCell>Fecha</Table.HeadCell>
-              <Table.HeadCell>Cupos</Table.HeadCell>
-              <Table.HeadCell>Precio</Table.HeadCell>
-              <Table.HeadCell>Acción</Table.HeadCell>
+              <Table.HeadCell className="text-xs 2xl:text-sm">
+                Descripción
+              </Table.HeadCell>
+              <Table.HeadCell className="text-xs 2xl:text-sm">
+                Fecha
+              </Table.HeadCell>
+              <Table.HeadCell className="text-xs 2xl:text-sm">
+                Cupos
+              </Table.HeadCell>
+              <Table.HeadCell className="text-xs 2xl:text-sm">
+                Precio
+              </Table.HeadCell>
+              <Table.HeadCell className="text-xs 2xl:text-sm">
+                Acción
+              </Table.HeadCell>
             </Table.Head>
             <TableBody>
               {tourList.map((tr) => (
                 <TableRow key={tr.ID}>
-                  <TableCell>{tr.DESCRIPCION}</TableCell>
-                  <TableCell>{tr.FECHA}</TableCell>
-                  <TableCell>{tr.CUPO}</TableCell>
-                  <TableCell>{tr.PRECIO}</TableCell>
-                  <TableCell></TableCell>
+                  <TableCell className="text-xs 2xl:text-sm ">
+                    {tr.DESCRIPCION}
+                  </TableCell>
+                  <TableCell className="text-xs 2xl:text-sm lining-nums">
+                    {tr.FECHA}
+                  </TableCell>
+                  <TableCell className="text-xs 2xl:text-sm ">
+                    {tr.CUPO}
+                  </TableCell>
+                  <TableCell className="text-xs 2xl:text-sm lining-nums">
+                    {tr.PRECIO}
+                  </TableCell>
+                  <TableCell className="text-xs 2xl:text-sm">
+                    <Checkbox
+                      type="checkbox"
+                      id={`tour`}
+                      value={tr.ID}
+                      {...register(`tour`)}
+                    />
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

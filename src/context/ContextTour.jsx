@@ -6,7 +6,8 @@ const Tour = createContext();
 const ContextTour = ({ children }) => {
   const [tours, setTours] = useState([]);
   const [tourList, setTourList] = useState([]);
-  const [charging, setCharging] = useState(true);
+  const [flagTr, setFlagTr] = useState(false);
+  
   useEffect(() => {
     const get = async () => {
       try {
@@ -14,15 +15,12 @@ const ContextTour = ({ children }) => {
         setTours(tours);
       } catch (error) {}
     };
-    setTimeout(() => {
-      setCharging(false);
-    }, 1500);
     get();
   }, []);
 
   return (
     <Tour.Provider
-      value={{ tours, setTours, charging, setCharging, tourList, setTourList }}
+      value={{ tours, setTours, tourList, setTourList,flagTr, setFlagTr }}
     >
       {children}
     </Tour.Provider>

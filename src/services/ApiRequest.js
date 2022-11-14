@@ -17,3 +17,4 @@ export const HttpPost = (endpoint, data, token = null) => {
         console.log(error)
     }
 }
+

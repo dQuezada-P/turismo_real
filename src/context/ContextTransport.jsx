@@ -6,6 +6,7 @@ const Transport = createContext();
 const ContextTransport = ({ children }) => {
   const [transports, setTransports] = useState([]);
   const [transportList, setTransportList] = useState([]);
+  const [flagTra, setFlagTra] = useState(false);
   useEffect(() => {
     try {
       const get = async () => {
@@ -18,7 +19,14 @@ const ContextTransport = ({ children }) => {
 
   return (
     <Transport.Provider
-      value={{ transports, setTransports, transportList, setTransportList }}
+      value={{
+        transports,
+        setTransports,
+        transportList,
+        setTransportList,
+        flagTra,
+        setFlagTra,
+      }}
     >
       {children}
     </Transport.Provider>

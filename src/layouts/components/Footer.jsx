@@ -13,8 +13,8 @@ export const FooterContent = () => {
       >
         <div className="flex flex-row justify-center sm:items-center">
           <img
-            src="/public/Logo New.png"
-            className="mr-3 h-6 sm:h-8 p-1rounded-md"
+            src="/public/Logo-TR-Border.png"
+            className="mr-3 h-6 sm:h-14 p-1rounded-md"
             alt="Turismo Real Logo"
           />
           <span className="text-xl font-semibold dark:text-white">
@@ -22,7 +22,7 @@ export const FooterContent = () => {
             <span className="text-gold-200 dark:text-white">Real</span>
           </span>
         </div>
-        <h2 className=" hidden sm:inline font-semibold text-white">
+        <h2 className="hidden sm:inline font-semibold text-white">
           Turismo Real 2012 - 2022 <span className="dark:text-gold-200">©</span>
           . Todos los derechos reservados.
         </h2>
