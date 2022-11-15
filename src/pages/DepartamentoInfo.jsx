@@ -137,8 +137,9 @@ export const Departamento = () => {
       </div>
       <div className="BoxImg h-72 sm:h-64 2xl:h-96 mx-4 sm:w-2/4 2xl:w-4/6 sm:mx-0 top-[28rem] sm:top-0 relative sm:z-30 shadow-sm">
         <Carousel>
-          {department.IMAGENES.map((img) => (
+          {department.IMAGENES.map((img, i) => (
             <img
+              key={i}
               src={`${img.url}`}
               alt="Imagen"
               className="object-cover object-center"

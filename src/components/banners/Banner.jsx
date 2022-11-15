@@ -3,7 +3,7 @@ export default function Banner({ title, desc1, name, desc2, desc3 }) {
     <>
       {" "}
       <div
-        className="Banner w-full h-40 2xl:h-52 relative z-30 bg-fondo-footer overflow-hidden"
+        className="Banner w-full h-40 2xl:h-52 relative z-30 bg-fondo-footer overflow-hidden mt-4"
         style={{
           backgroundImage: `url(https://turismoreal2.s3.amazonaws.com/Fondo.jpg)`,
         }}

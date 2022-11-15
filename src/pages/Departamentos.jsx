@@ -1,22 +1,57 @@
 import { useDepartment } from "../context/hooks/useDepartment";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/hooks/useAuth";
 import Banner from "../components/banners/Banner";
 import { MdOutlineBathtub, MdOutlineBed } from "react-icons/md";
 import Modal from "../components/modal/Modal";
+import { getLocations } from "../services/locations/locations";
 export const Departamentos = () => {
-  const { departments, setDepartments, charging, setCharging } =
-    useDepartment();
+  const { departments, setDepartments, bkupDepartment } = useDepartment();
   const { showModal, setShowModal } = useAuth();
   let { state } = useLocation();
   const nav = useNavigate();
+  const [locations, setLocations] = useState([]);
+  const [filterLocation, setFilterLocation] = useState(departments);
+  let flag
+  useEffect(() => {
+    const getStates = async () => {
+      const states = await getLocations();
+      setLocations(states);
+      flag = true
+    };
+    getStates();
+    return () => {
+      setDepartments(bkupDepartment);
+    };
+  }, []);
+
   useEffect(() => {
     if (state) {
       setShowModal(true);
       nav("", { state: false });
     }
   }, [state]);
+  
+  const handleFilterLocation = (e) => {
+    if (e.target.value != 0) {
+      if (flag) {
+        const deptFilters = departments.filter((dept) => {
+          return dept.ID_LOCALIDAD == e.target.value;
+        });
+        setDepartments(deptFilters);
+        flag = false;
+      } else {
+        const deptFilters = filterLocation.filter((dept) => {
+          return dept.ID_LOCALIDAD == e.target.value;
+        });
+        setDepartments(deptFilters);
+        flag = true;
+      }
+    }else{
+      setDepartments(bkupDepartment)
+    }
+  };
   if (departments.length == 0)
     return (
       <div className=" h-full relative z-30">
@@ -62,15 +97,18 @@ export const Departamentos = () => {
           <select
             id="filter"
             className="block p-2 mb-6 ml-4 sm:ml-0 w-11/12 sm:w-1/4 2xl:w-1/6 text-base relative text-purple-600 bg-gray-50 rounded-lg border border-purple-300 focus:ring-purple-400 focus:border-purple-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-white dark:focus:border-white shadow-md"
+            onChange={handleFilterLocation}
           >
-            <option selected>Seleccionar Localidad</option>
-            <option value="">La serena</option>
-            <option value="">Pucon</option>
-            <option value="">Santiago</option>
+            <option value={0}>Seleccionar Localidad</option>
+            {locations.map((location) => (
+              <option className="" key={location.ID} value={location.ID}>
+                {location.NOMBRE}
+              </option>
+            ))}
           </select>
         </div>
         {/* Cards */}
-        <div className=" container ml-4 sm:mx-auto flex flex-col sm:grid sm:grid-cols-3 2xl:grid-cols-4 gap-4 mb-8 ">
+        <div className=" min-h-[30rem] container ml-4 sm:mx-auto flex flex-col sm:grid sm:grid-cols-3 2xl:grid-cols-4 gap-4 mb-8 ">
           {departments.map((depto) => (
             <div
               className="w-11/12 h-60 2xl:h-72 shadow-lg rounded-b-2xl transform transition duration-200 sm:hover:scale-105"

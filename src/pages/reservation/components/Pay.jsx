@@ -86,7 +86,6 @@ export const Pay = () => {
       total: reservation.abono + (valueTransport + valueTr),
     });
   }, [valueTransport, valueTour]);
-  console.log(reservation.total);
   if (!chargeTr && !chargeTran) return <div></div>;
 
   valueTour.forEach((value) => {

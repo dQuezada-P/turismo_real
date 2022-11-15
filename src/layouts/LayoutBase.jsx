@@ -8,10 +8,10 @@ export const LayoutBase = () => {
   useEffect(() => {
     // navigate("/departamentos");
   }, []);
-    return (
-      <>
-        <Header />
-        <Content Children={<Outlet />} />
-      </>
-    );
+  return (
+    <>
+      <Header />
+      <Content Children={<Outlet />} />
+    </>
+  );
 };
