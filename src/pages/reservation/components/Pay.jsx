@@ -5,12 +5,13 @@ import { getTour } from "../../../services/tours/ApiRequestTour";
 import { getTransport } from "../../../services/transports/ApiRequestTransport";
 import { getMercadoPago } from "../../../services/mercadoPago/mercadoPago";
 import { useAuth } from "../../../context/hooks/useAuth";
+import { Spinner } from "../../../components/spinner/Spinner";
 
 export const Pay = () => {
   const [valueTransport, setValueTransport] = useState(0);
   const [valueTour, setValueTour] = useState([]);
   const { reservation, flagMercado, setReservation } = useReservation();
-  const [valueTotal, setValueTotal] = useState(0);
+  const [charge, setCharge] = useState();
   const { department } = useDepartment();
   const [flag, setFlag] = useState(true);
   const [chargeTran, setChargeTran] = useState(false);
@@ -52,6 +53,7 @@ export const Pay = () => {
 
   useEffect(() => {
     if (flagMercado) {
+      charge == null ? setCharge(true) : null;
       setTimeout(async () => {
         try {
           if (flag) {
@@ -71,6 +73,7 @@ export const Pay = () => {
                 label: "Pagar",
               },
             });
+            setCharge(false);
             setFlag(false);
           }
         } catch (error) {
@@ -107,7 +110,7 @@ export const Pay = () => {
           </div>
           <div className="flex flex-row items-center w-[80%] mx-auto">
             <h3 className="text-sm 2xl:text-lg w-44">Ubicación: </h3>
-            <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lowercase">
+            <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg capitalize">
               {department.UBICACION}
             </p>
           </div>
@@ -215,9 +218,9 @@ export const Pay = () => {
           </div>
         </div>
       </div>
-      <div className=" flex flex-row gap-4 sm:gap-24 text-center m-4 justify-center">
-        <div className="flex flex-row w- full items-center ">
-          <h3 className="text-base 2xl:text-lg w-32 ">Total a Pagar: </h3>
+      <div className="flex flex-col sm:flex-row gap-4 sm:gap-24 text-center m-4 justify-center">
+        <div className="flex flex-row items-center justify-center ">
+          <h3 className="text-base 2xl:text-lg w-32 text-center">Total a Pagar: </h3>
           <p className="text-base 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
             {Intl.NumberFormat("es-CL", {
               currency: "CLP",
@@ -225,7 +228,12 @@ export const Pay = () => {
             }).format(reservation.abono + (valueTransport + valueTr))}
           </p>
         </div>
-        <div id="mercadoPago" className="cho-container"></div>
+        {charge ? (
+         <Spinner/>
+        ) : (
+          <div id="mercadoPago" className="cho-container"></div>
+        )}
+
         <input id="btnSubmit" hidden type="submit" />
       </div>
     </div>

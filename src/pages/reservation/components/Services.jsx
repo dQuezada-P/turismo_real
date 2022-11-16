@@ -108,7 +108,6 @@ export const Service = () => {
   $("input[type=checkbox]").change(function () {
     setFlagTr(true);
   });
-
   return (
     <div className="flex flex-col items-center gap-4 font-semibold h-full ">
       <p className="flex text-xs w-[95%] mt-4 underline ml-2">
@@ -121,6 +120,14 @@ export const Service = () => {
             Ha Escogido Omitir el Servicio!
           </p>
           <p>{errors.transport?.message}</p>
+          <p
+            id=""
+            className={
+              !transportList.length == 0 ? `hidden` : "text-red-700 uppercase"
+            }
+          >
+            *No existen servicios de transporte para este departamento*
+          </p>
         </div>
         <input id="btnSubmit" hidden type="submit" />
         <div className="py-2 ml-4 text-sm w-min">
@@ -133,6 +140,7 @@ export const Service = () => {
                 className="py-1 px-2"
                 type="button"
                 onClick={handleTransporte}
+                disabled={transportList.length == 0 ? "disabled" : ""}
               >
                 {flagTransporte ? "Agregar Servicio" : "Cerrar Ventana"}
               </button>{" "}
@@ -192,7 +200,10 @@ export const Service = () => {
                     {tran.HORARIO}
                   </TableCell>
                   <TableCell className="text-xs 2xl:text-base lining-nums">
-                    {tran.PRECIO}
+                    {Intl.NumberFormat("es-CL", {
+                      currency: "CLP",
+                      style: "currency",
+                    }).format(tran.PRECIO)}
                   </TableCell>
                   <TableCell className="text-center">
                     <Radio
@@ -218,11 +229,25 @@ export const Service = () => {
           <p id="otour" className="text-red-700 hidden ">
             Ha Escogido Omitir el Servicio!
           </p>
+          <p>{errors.transport?.message}</p>
+          <p
+            id=""
+            className={
+              !tourList.length == 0 ? `hidden` : "text-red-700 uppercase"
+            }
+          >
+            *No existen servicios de tour para este departamento*
+          </p>
         </div>
         <div className="py-2 ml-4 text-sm w-min">
           <Dropdown label={titleTour ? "Seleccionar" : "Volver"}>
             <Dropdown.Item>
-              <button className="py-1 px-2" type="button" onClick={handleTour}>
+              <button
+                className="py-1 px-2"
+                type="button"
+                onClick={handleTour}
+                disabled={transportList.length == 0 ? "disabled" : ""}
+              >
                 {flagTour ? "Agregar Servicio" : "Cerrar Ventana"}
               </button>{" "}
             </Dropdown.Item>
@@ -276,7 +301,10 @@ export const Service = () => {
                     {tr.CUPO}
                   </TableCell>
                   <TableCell className="text-xs 2xl:text-sm lining-nums">
-                    {tr.PRECIO}
+                    {Intl.NumberFormat("es-CL", {
+                      currency: "CLP",
+                      style: "currency",
+                    }).format(tr.PRECIO)}
                   </TableCell>
                   <TableCell className="text-xs 2xl:text-sm">
                     <Checkbox

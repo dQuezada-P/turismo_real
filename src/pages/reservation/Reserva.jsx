@@ -30,6 +30,7 @@ export const Reserva = () => {
   const [page, setPage] = useState(0);
   const { transports, setTransportList, flagTra, setFlagTra } = useTransport();
   const { tours, setTourList, flagTr, setFlagTr } = useTour();
+  const [charge, setCharge] = useState(false);
 
   const TitlePages = [
     "Información del Arriendo",
@@ -39,34 +40,34 @@ export const Reserva = () => {
   const schema = yup
     .object()
     .shape({
-      // correo: yup
-      // .string()
-      // .email("Debe tener un Formato de Email")
-      // .required("Correo es requerido"),
-      // tel: yup
-      //   .string()
-      //   .matches(
-      //     /^(\+?56)?(\s?)(0?9)(\s?)[98765432]\d{7}$/,
-      //     "Debe tener formato celular"
-      //   )
-      //   .required("Campo requerido"),
-      // inv: yup
-      //   .number()
-      //   .moreThan(0, "Número positivos")
-      //   .integer("Debe ser número entero")
-      //   .min(0)
-      //   .max(20, "Maximo 20 Personas")
-      //   .transform((value) => (isNaN(value) ? undefined : value))
-      //   .required('Campo requerido, si no lleva invitados coloque "0"'),
-      // day: yup
-      //   .number()
-      //   .transform((value) => (isNaN(value) ? undefined : value))
-      //   .required("Campo requerido")
-      //   .integer("Números Enteros")
-      //   .min(1, "Minimo 1 Dia")
-      //   .max(60, "Maximo 60 Dias"),
+      correo: yup
+      .string()
+      .email("Debe tener un Formato de Email")
+      .required("Correo es requerido"),
+      tel: yup
+        .string()
+        .matches(
+          /^(\+?56)?(\s?)(0?9)(\s?)[98765432]\d{7}$/,
+          "Debe tener formato celular"
+        )
+        .required("Campo requerido"),
+      inv: yup
+        .number()
+        .moreThan(0, "Número positivos")
+        .integer("Debe ser número entero")
+        .min(0)
+        .max(20, "Maximo 20 Personas")
+        .transform((value) => (isNaN(value) ? undefined : value))
+        .required('Campo requerido, si no lleva invitados coloque "0"'),
+      day: yup
+        .number()
+        .transform((value) => (isNaN(value) ? undefined : value))
+        .required("Campo requerido")
+        .integer("Números Enteros")
+        .min(1, "Minimo 1 Dia")
+        .max(60, "Maximo 60 Dias"),
       // fecha: yup.string().matches(/^(?:(?:(?:0?[1-9]|1\d|2[0-8])[/](?:0?[1-9]|1[0-2])|(?:29|30)[/](?:0?[13-9]|1[0-2])|31[/](?:0?[13578]|1[02]))[/](?:0{2,3}[1-9]|0{1,2}[1-9]\d|0?[1-9]\d{2}|[1-9]\d{3})|29[/]0?2[/](?:\d{1,2}(?:0[48]|[2468][048]|[13579][26])|(?:0?[48]|[13579][26]|[2468][048])00))$/,'Formato dd/MM/yyyy').required('Campo requerido')
-      // fecha: yup.string().required()
+      fecha: yup.string().required()
     })
     .required();
 
@@ -165,17 +166,20 @@ export const Reserva = () => {
   useEffect(() => {
     const getDept = async () => {
       const dept = await GetDepartamento(id);
-      setDepartment(dept);
-      setReservation({
-        ...reservation,
-        rut: user.RUT,
-        idUser: user.ID_ROL,
-        idDep: dept.ID,
-        nombre: dept.NOMBRE,
-        valor: dept.VALOR_ARRIENDO,
-        img: dept.IMAGENES[0].url,
-        abono: dept.VALOR_ARRIENDO * 0.2,
-      });
+      if (!dept.msg) {
+        setDepartment(dept);
+        setCharge(true);
+        setReservation({
+          ...reservation,
+          rut: user.RUT,
+          idUser: user.ID_ROL,
+          idDep: dept.ID,
+          nombre: dept.NOMBRE,
+          valor: dept.VALOR_ARRIENDO,
+          img: dept.IMAGENES[0].url,
+          abono: dept.VALOR_ARRIENDO * 0.2,
+        });
+      }
     };
     const listTransport = transports.filter((tran) => {
       if (tran.ID_LOCALIDAD === department.ID_LOCALIDAD) return tran;
@@ -210,33 +214,7 @@ export const Reserva = () => {
     btnSubmit.trigger("click");
   };
 
-  // const handleMercadoPago = async () => {
-  //   setTimeout(async () => {
-  //     try {
-  //       if (flag) {
-  //         const idPreference = await getMercadoPago();
-  //         const mp = new MercadoPago(
-  //           "TEST-09d711eb-afb7-405b-bed2-7f54177a7dc2",
-  //           {
-  //             locale: "es-CL",
-  //           }
-  //         );
-  //         mp.checkout({
-  //           preference: {
-  //             id: idPreference,
-  //           },
-  //           render: {
-  //             container: ".cho-container",
-  //             label: "Pagar",
-  //           },
-  //         });
-  //         setFlag(false);
-  //       }
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   }, 2000);
-  // };
+  if (!charge) return <div className="flex items-center justify-center min-h-screen relative z-30 font-bold underline text-purple-600"><div className="uppercase text-3xl">Departamento No se encuentra registrado</div></div>;
 
   return (
     <>
@@ -294,19 +272,8 @@ export const Reserva = () => {
               </button>
             </div>
           </div>
-          {/* <div className="InfoSummary bg-white basis-[30%] h-[25rem] sm:h-[35rem] 2xl:h-[50rem] flex flex-col rounded-b-2xl sm:rounded-bl-none sm:rounded-tr-2xl sm:rounded-br-2xl  ">
-            <div className="basis-[15%] flex items-center justify-center underline underline-offset-4 dark:decoration-gray-800 ">
-              <h2 className="font-semibold dark:text-gray-800 uppercase sm:text-base 2xl:text-2xl">
-                Resumen de la orden
-              </h2>
-            </div>
-            <div className=" basis-[60%]">Products</div>
-            <div className=" basis-[15%]">Total</div>
-          </div> */}
         </div>
       </div>
     </>
   );
 };
-
-// text-center w-28 2xl:w-44 sm:w-36 flex flex-row items-center justify-center gap-2 h-[50%] px-4 py-2 2xl:px-12 dark:ring-gray-600 bg-gray-700 text-white rounded-lg ease-out dark:from-black dark:to-gray-600 ring-purple-500 text-sm sm:text-base 2xl:text-lg m-4
