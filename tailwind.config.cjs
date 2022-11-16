@@ -97,8 +97,11 @@ module.exports = {
           'Segoe UI Symbol', 
           'Noto Color Emoji'
         ]
-      }
+      },
+      // container: {
+      //   padding: '2rem',
+      // },
     },
   },
-  plugins: [require("@tailwindcss/forms"), require("flowbite/plugin")],
+  plugins: [require("@tailwindcss/forms"), require("flowbite/plugin"), require('tailwind-scrollbar')],
 };

@@ -4,7 +4,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import { Navbar, Dropdown, Avatar, Button } from "flowbite-react";
 
 export const Header = () => {
-  const { user, isLogged } = useAuth();
+  const { user, setUser, isLogged, setToken } = useAuth();
 
   useEffect(() => {
     const themeToggleDarkIcon = document.getElementById(
@@ -26,7 +26,13 @@ export const Header = () => {
       document.documentElement.classList.remove("dark");
       themeToggleLightIcon.classList.toggle("hidden");
     }
-  }, []);
+  }, [user]);
+
+  const handleLogOut = ()=>{
+    localStorage.removeItem('token');
+    setUser(null);
+    setToken(null);
+  }
 
   const onToggleDarkMode = (e) => {
     const themeToggleDarkIcon = document.getElementById(
@@ -73,39 +79,43 @@ export const Header = () => {
             {user.CORREO}
           </span>
         </Dropdown.Header>
-        <button
-          id="theme-toggle"
-          onClick={onToggleDarkMode}
-          type="button"
-          className="text-gray-500 ml-1 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5"
-        >
-          <svg
-            id="theme-toggle-dark-icon"
-            className="hidden w-5 h-5"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-          </svg>
-          <svg
-            id="theme-toggle-light-icon"
-            className="hidden w-5 h-5"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-              fillRule="evenodd"
-              clipRule="evenodd"
-            ></path>
-          </svg>
-        </button>
+        <Dropdown.Item><NavLink to={'/perfil'} className="mx-auto">Perfil</NavLink></Dropdown.Item>
+        <Dropdown.Item onClick={handleLogOut}>
+          <span className="mx-auto">Cerrar Sesión</span>
+        </Dropdown.Item>
+        
         <Dropdown.Divider />
-        <Dropdown.Item>Perfil</Dropdown.Item>
-        <Dropdown.Divider />
-        <Dropdown.Item>Cerrar Sesión</Dropdown.Item>
+        <Dropdown.Item>
+          <button
+            id="theme-toggle"
+            onClick={onToggleDarkMode}
+            type="button"
+            className="text-gray-500 w-full dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5"
+          >
+            <svg
+              id="theme-toggle-dark-icon"
+              className="hidden w-5 h-5 mx-auto"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+            </svg>
+            <svg
+              id="theme-toggle-light-icon"
+              className="hidden w-5 h-5 mx-auto"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                fillRule="evenodd"
+                clipRule="evenodd"
+              ></path>
+            </svg>
+          </button>
+        </Dropdown.Item>
       </Dropdown>
       <Navbar.Toggle />
     </>
@@ -116,21 +126,24 @@ export const Header = () => {
         inline={true}
         label={<Avatar rounded={true} />}
       >
-        <Dropdown.Header>
+        <Dropdown.Item>
           <NavLink to={"/login"} >
             <Button gradientDuoTone="purpleToBlue" className="mb-1 w-full">Iniciar Sesión</Button>
           </NavLink>
+        </Dropdown.Item>
+        <Dropdown.Item>
           <Button gradientDuoTone="purpleToBlue" className="w-full">Registrarme</Button>
-        </Dropdown.Header>
+        </Dropdown.Item>
+        <Dropdown.Item>
         <button
           id="theme-toggle"
           onClick={onToggleDarkMode}
           type="button"
-          className="text-gray-500 ml-3 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5"
+          className="text-gray-500 w-full dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5"
         >
           <svg
             id="theme-toggle-dark-icon"
-            className="hidden w-5 h-5"
+            className="hidden w-5 h-5 mx-auto"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
@@ -139,7 +152,7 @@ export const Header = () => {
           </svg>
           <svg
             id="theme-toggle-light-icon"
-            className="hidden w-5 h-5"
+            className="hidden w-5 h-5 mx-auto"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
@@ -151,6 +164,8 @@ export const Header = () => {
             ></path>
           </svg>
         </button>
+        </Dropdown.Item>
+        
       </Dropdown>
       <Navbar.Toggle />
     </>
@@ -179,11 +194,11 @@ export const Header = () => {
         <div className="flex md:order-2 gap-2">{navbarUser}</div>
         <Navbar.Collapse className="text-lg text-center">
           
-            <Navbar.Link active={currentLocation == "/departamentos"} >
-              <NavLink to="/departamentos" >
-                Departamentos
-              </NavLink>
-            </Navbar.Link>
+          <Navbar.Link active={currentLocation == "/departamentos" || currentLocation == "/"} >
+            <NavLink to="/departamentos" >
+              Departamentos
+            </NavLink>
+          </Navbar.Link>
           
           <NavLink to="/tours">
             <Navbar.Link active={currentLocation == "/tours"} >
