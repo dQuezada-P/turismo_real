@@ -13,7 +13,7 @@ export const FooterContent = () => {
       >
         <div className="flex flex-row justify-center sm:items-center">
           <img
-            src="/public/Logo-TR-Border.png"
+            src="/public/Logo New.png"
             className="mr-3 h-6 sm:h-14 p-1rounded-md"
             alt="Turismo Real Logo"
           />

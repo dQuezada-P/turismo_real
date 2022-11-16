@@ -18,6 +18,7 @@ import { ContextReservation } from "../context/ContextReservation";
 import { LayoutBase } from "../layouts/LayoutBase";
 import { ContextTransport } from "../context/ContextTransport";
 import { Notificacion } from "../pages/Notificacion";
+import { PerfilUsuario } from "../pages/userProfile/PerfilUsuario";
 
 export const AppRouter = () => {
   return (
@@ -29,6 +30,7 @@ export const AppRouter = () => {
               <ContextTour>
                 <Routes>
                   <Route path="/" element={<LayoutBase />}>
+                    <Route index element={<Departamentos />} />
                     <Route path="login" element={<Login />} />
                     <Route path="notificacion" element={<Notificacion/>}/>
                     <Route path="departamentos" element={<Departamentos />} />
@@ -38,6 +40,7 @@ export const AppRouter = () => {
                     <Route path="contactanos" element={<Contactanos />} />
                     <Route path="*" element={<Navigate to="departamentos" />} />
                     <Route element={<ProtectedRoutes />}>
+                      <Route path="perfil" element={<PerfilUsuario />} />
                       <Route path="reserva/:id" element={<Reserva />} />
                     </Route>
                   </Route>

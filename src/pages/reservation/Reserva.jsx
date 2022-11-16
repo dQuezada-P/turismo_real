@@ -23,6 +23,8 @@ import { useTransport } from "../../context/hooks/useTransport";
 import { useTour } from "../../context/hooks/useTour";
 import { useReservation } from "../../context/hooks/useReservation";
 import { Pay } from "./components/Pay";
+import { ModalAlert } from "../../components/modal/ModalAlert";
+
 
 export const Reserva = () => {
   const { reservation, setReservation, setFlagMercado } = useReservation();
@@ -37,6 +39,7 @@ export const Reserva = () => {
     "Servicios Adicionales",
     "Pagar",
   ];
+
   const schema = yup
     .object()
     .shape({

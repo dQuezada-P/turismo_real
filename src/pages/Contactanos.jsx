@@ -2,9 +2,13 @@ import React from "react";
 import { ModalAlert } from "../components/modal/ModalAlert";
 
 export const Contactanos = () => {
+  const test = () => {
+    console.log('test')
+  }
+
   return (
     <>
-    <ModalAlert/>
+    <ModalAlert onConfirmation={test} />
       <div className="w-full min-h-[calc(100vh-176px)] overflow-hidden">
         <img
           className="absolute w-full -top-[32rem]"
