@@ -51,6 +51,26 @@ export const Tours = () => {
             "vitae quidem ipsum</span> unde commodi nemo alias ipsam nam, incidunt accusantium in adipisci eius, eligendi, perspiciatis corrupti at sequi molestiae praesentium. Ut totam harum placeat, velit veritatis accusantium, doloribus asperiores repudiandae magnam maxime impedit nemo assumenda a."
           }
         />
+        <div className="mx-auto container">
+          <label
+            htmlFor="filter"
+            className="block my-2 ml-4 sm:ml-0 relative text-base 2xl:text-lg font-semibold text-purple-600 dark:text-white"
+          >
+            Búsqueda Avanzada
+          </label>
+          <select
+            id="filter"
+            className="block p-2 mb-6 ml-4 sm:ml-0 w-11/12 sm:w-1/4 2xl:w-1/6 text-base relative text-purple-600 bg-gray-50 rounded-lg border border-purple-300 focus:ring-purple-400 focus:border-purple-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-white dark:focus:border-white shadow-md"
+            onChange={handleFilterLocation}
+          >
+            <option value={0}>Seleccionar Localidad</option>
+            {locations.map((location) => (
+              <option className="" key={location.ID} value={location.ID}>
+                {location.NOMBRE}
+              </option>
+            ))}
+          </select>
+        </div>
         <h2 className="text-4xl text-center text-purple-800 underline decoration-black min-h-screen mt-40">
           No HAY Tours Disponbles
         </h2>

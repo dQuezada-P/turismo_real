@@ -4,7 +4,6 @@ const Reservation = createContext();
 
 const ContextReservation = ({ children }) => {
   const [reservation, setReservation] = useState({
-    id: "",
     nombre: "",
     rut:"",
     tel: "",

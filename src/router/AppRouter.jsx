@@ -32,7 +32,7 @@ export const AppRouter = () => {
                   <Route path="/" element={<LayoutBase />}>
                     <Route index element={<Departamentos />} />
                     <Route path="login" element={<Login />} />
-                    <Route path="notificacion" element={<Notificacion/>}/>
+                   
                     <Route path="departamentos" element={<Departamentos />} />
                     <Route path="departamento/:id" element={<Departamento />} />
                     <Route path="tours" element={<Tours />} />
@@ -42,6 +42,7 @@ export const AppRouter = () => {
                     <Route element={<ProtectedRoutes />}>
                       <Route path="perfil" element={<PerfilUsuario />} />
                       <Route path="reserva/:id" element={<Reserva />} />
+                      <Route path="notificacion" element={<Notificacion/>}/>
                     </Route>
                   </Route>
                 </Routes>

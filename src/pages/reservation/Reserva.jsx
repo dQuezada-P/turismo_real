@@ -70,7 +70,7 @@ export const Reserva = () => {
         .min(1, "Minimo 1 Dia")
         .max(60, "Maximo 60 Dias"),
       // fecha: yup.string().matches(/^(?:(?:(?:0?[1-9]|1\d|2[0-8])[/](?:0?[1-9]|1[0-2])|(?:29|30)[/](?:0?[13-9]|1[0-2])|31[/](?:0?[13578]|1[02]))[/](?:0{2,3}[1-9]|0{1,2}[1-9]\d|0?[1-9]\d{2}|[1-9]\d{3})|29[/]0?2[/](?:\d{1,2}(?:0[48]|[2468][048]|[13579][26])|(?:0?[48]|[13579][26]|[2468][048])00))$/,'Formato dd/MM/yyyy').required('Campo requerido')
-      fecha: yup.string().required()
+      fecha: yup.date("Formato Fecha").required('Formato Fecha dd/mm/yyyy').transform((value) => (isNaN(value) ? undefined : value))
     })
     .required();
 
@@ -217,7 +217,7 @@ export const Reserva = () => {
     btnSubmit.trigger("click");
   };
 
-  if (!charge) return <div className="flex items-center justify-center min-h-screen relative z-30 font-bold underline text-purple-600"><div className="uppercase text-3xl">Departamento No se encuentra registrado</div></div>;
+  if (!charge) return <div className="flex items-center justify-center min-h-screen relative z-30 font-bold underline "><div className="uppercase text-3xl">Departamento No se encuentra registrado</div></div>;
 
   return (
     <>

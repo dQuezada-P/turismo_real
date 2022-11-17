@@ -94,6 +94,8 @@ export const Pay = () => {
   valueTour.forEach((value) => {
     valueTr = valueTr + value;
   });
+
+  console.log(reservation)
   return (
     <div className="flex flex-col w-full h-full font-semibold">
       <h2 className="flex justify-center underline basis-[10%] my-1 text-sm 2xl:text-lg">

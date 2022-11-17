@@ -7,6 +7,7 @@ const ContextAuth = ({ children }) => {
   const [user, setUser] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [charging, setCharging] = useState(true);
+  const [resToken, setResToken] = useState(false);
 
   const isLogged = () => {
     return token && user;
@@ -47,6 +48,8 @@ const ContextAuth = ({ children }) => {
         setShowModal,
         charging,
         setCharging,
+        resToken,
+        setResToken,
       }}
     >
       {children}
