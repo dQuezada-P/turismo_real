@@ -3,17 +3,22 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from '../context/hooks/useAuth';
 import { AuthUser } from '../services/auth/auth.js';
 import { BsFileLock } from "react-icons/bs";
+import { useDepartment } from '../context/hooks/useDepartment';
 
 export const Login = (next) => {
   const { user, setUser, isLogged, token, setToken } = useAuth();
-  const navigate = useNavigate();
+  const {setDepartments, bkupDepartment} =useDepartment()
 
+  const navigate = useNavigate();
   useEffect(() => { 
     if (isLogged()) {
       console.log("Está logueado")
       navigate('/departamentos');
     }
     else console.info('No se ha logueado');
+    return()=>{
+      setDepartments(bkupDepartment)
+    }
   }, [token, user])
 
   const username = useFormInput('');
@@ -43,7 +48,7 @@ export const Login = (next) => {
   }
 
   return (<>
-  <div className="flex min-h-[calc(100vh-176px)] items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div className="flex min-h-screen items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div className="w-full max-w-lg bg-white flex items-center justify-center py-10 rounded-xl drop-shadow-xl">
       <div className="w-full max-w-md space-y-8">
         <div>

@@ -14,7 +14,7 @@ export const Departamentos = () => {
     filterLocation,
     setFilterLocation,
   } = useDepartment();
-  const { showModal, setShowModal } = useAuth();
+  const { showModal, setShowModal , token } = useAuth();
   let { state } = useLocation();
   const nav = useNavigate();
   const [locations, setLocations] = useState([]);
@@ -29,7 +29,7 @@ export const Departamentos = () => {
     return () => {
       setDepartments(bkupDepartment);
     };
-  }, []);
+  }, [token]);
 
   useEffect(() => {
     if (state) {
