@@ -3,8 +3,14 @@ import Banner from "../components/banners/Banner";
 import { getLocations } from "../services/locations/locations";
 import { useState, useEffect } from "react";
 export const Tours = () => {
-  const { tours, setTours, bkupTours, setBkupTours } = useTour();
-  const [filterLocation, setFilterLocation] = useState(tours);
+  const {
+    tours,
+    setTours,
+    bkupTours,
+    setBkupTours,
+    filterLocation,
+    setFilterLocation,
+  } = useTour();
   const [locations, setLocations] = useState([]);
   let flag;
   useEffect(() => {

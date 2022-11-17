@@ -6,6 +6,7 @@ const Tour = createContext();
 const ContextTour = ({ children }) => {
   const [tours, setTours] = useState([]);
   const [bkupTours, setBkupTours] = useState([]);
+  const [filterLocation, setFilterLocation] = useState([]);
   const [tourList, setTourList] = useState([]);
   const [flagTr, setFlagTr] = useState(false);
 
@@ -14,7 +15,8 @@ const ContextTour = ({ children }) => {
       try {
         const tours = await getTours();
         setTours(tours);
-        setBkupTours(tours)
+        setBkupTours(tours);
+        setFilterLocation(tours)
       } catch (error) {}
     };
     get();
@@ -31,6 +33,8 @@ const ContextTour = ({ children }) => {
         setFlagTr,
         bkupTours,
         setBkupTours,
+        filterLocation,
+        setFilterLocation,
       }}
     >
       {children}

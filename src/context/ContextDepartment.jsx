@@ -7,6 +7,7 @@ const ContextDepartment = ({ children }) => {
   const [departments, setDepartments] = useState([]);
   const [department, setDepartment] = useState({});
   const [bkupDepartment, setBkupDepartment] = useState([]);
+  const [filterLocation, setFilterLocation] = useState([]);
   const [images, setImages] = useState([]);
   const [imageCharge, setImageCharge] = useState(true);
   const [charging, setCharging] = useState(true);
@@ -18,6 +19,7 @@ const ContextDepartment = ({ children }) => {
         const getdeptos = await GetDepartamentos(token);
         setDepartments(getdeptos);
         setBkupDepartment(getdeptos);
+        setFilterLocation(getdeptos)
       } catch (error) {
         console.log(error);
       }
@@ -45,6 +47,8 @@ const ContextDepartment = ({ children }) => {
         setImageCharge,
         bkupDepartment,
         setBkupDepartment,
+        filterLocation,
+        setFilterLocation,
       }}
     >
       {children}

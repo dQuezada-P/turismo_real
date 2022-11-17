@@ -7,15 +7,19 @@ import { MdOutlineBathtub, MdOutlineBed } from "react-icons/md";
 import Modal from "../components/modal/Modal";
 import { getLocations } from "../services/locations/locations";
 export const Departamentos = () => {
-  const { departments, setDepartments, bkupDepartment } = useDepartment();
+  const {
+    departments,
+    setDepartments,
+    bkupDepartment,
+    filterLocation,
+    setFilterLocation,
+  } = useDepartment();
   const { showModal, setShowModal } = useAuth();
   let { state } = useLocation();
   const nav = useNavigate();
   const [locations, setLocations] = useState([]);
-  const [filterLocation, setFilterLocation] = useState([]);
   let flag;
   useEffect(() => {
-    setFilterLocation(bkupDepartment)
     const getStates = async () => {
       const states = await getLocations();
       setLocations(states);
@@ -40,7 +44,7 @@ export const Departamentos = () => {
         const deptFilters = departments.filter((dept) => {
           return dept.ID_LOCALIDAD == e.target.value;
         });
-        console.log(deptFilters)
+        console.log(deptFilters);
         setDepartments(deptFilters);
         flag = false;
       } else {
