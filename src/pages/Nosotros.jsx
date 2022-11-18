@@ -11,7 +11,7 @@ export const Nosotros = () => {
           ></img>
         </div>
         <div className="basis-[50%] flex items-center justify-center font-semibold">
-          <h1 className="bg-gray-100 p-4 shadow-2xl rounded-2xl leading-loose ">
+          <h1 className="px-4 py-10 shadow-2xl rounded-2xl leading-loose bg-white ">
             La empresa “Turismo Real”, es una empresa familiar que se dedica al
             arriendo de departamentos propiedad de la empresa, y otros servicios
             en zonas turísticas del país. Tiene 10 años en el mercado y de a

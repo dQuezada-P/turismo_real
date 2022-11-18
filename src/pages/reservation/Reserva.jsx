@@ -97,9 +97,9 @@ export const Reserva = () => {
             fecha: e.fecha,
             cantPersonas: e.inv,
             correo: e.correo,
-            transporte: e.transport,
-            tour: e.tour,
-          });
+            transporte: e.transport == undefined ? 0 : e.transport,
+            tour: e.tour == undefined ? 0 : e.tour,
+          })
         }
       } else {
         setPage((currPage) => currPage + 1);

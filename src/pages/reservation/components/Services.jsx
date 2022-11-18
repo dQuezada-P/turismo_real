@@ -56,8 +56,10 @@ export const Service = () => {
   const handleOmitirTransporte = () => {
     if (oTransport.is(":visible")) {
       oTransport.addClass("hidden");
+      setFlagTra(false);
     } else if (oTransport.is(":hidden")) {
       oTransport.removeClass("hidden");
+      setFlagTra(true);
     }
     if (divTransport.is(":visible")) {
       divTransport.slideUp();
@@ -65,7 +67,6 @@ export const Service = () => {
       setFlagTransporte(true);
     }
     unregister("transport");
-    setFlagTra(true);
     setReservation({ ...reservation, transporte: null });
   };
 
@@ -90,8 +91,10 @@ export const Service = () => {
   const handleOmitirTour = () => {
     if (otour.is(":visible")) {
       otour.addClass("hidden");
+      setFlagTr(false);
     } else if (otour.is(":hidden")) {
       otour.removeClass("hidden");
+      setFlagTr(true);
     }
     if (divTour.is(":visible")) {
       divTour.slideUp();
@@ -99,7 +102,6 @@ export const Service = () => {
       setFlagTour(true);
     }
     unregister("tour");
-    setFlagTr(true);
   };
 
   $("input[type=radio]").change(function () {
@@ -108,6 +110,8 @@ export const Service = () => {
   $("input[type=checkbox]").change(function () {
     setFlagTr(true);
   });
+
+  console.log(tourList);
   return (
     <div className="flex flex-col items-center gap-4 font-semibold h-full ">
       <p className="flex text-xs w-[95%] mt-4 underline ml-2">

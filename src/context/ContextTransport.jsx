@@ -11,7 +11,8 @@ const ContextTransport = ({ children }) => {
     try {
       const get = async () => {
         const listTransports = await getTransports();
-        setTransports(listTransports);
+        const list = listTransports.filter((tr)=>{ return tr.ESTADO === 1})
+        setTransports(list);
       };
       get();
     } catch (error) {}

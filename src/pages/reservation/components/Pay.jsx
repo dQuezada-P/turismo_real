@@ -22,7 +22,7 @@ export const Pay = () => {
   useEffect(() => {
     try {
       const getTran = async () => {
-        if (reservation.transporte == undefined) {
+        if (reservation.transporte == 0) {
         } else {
           const { PRECIO } = await getTransport(reservation.transporte);
           setValueTransport(PRECIO);
@@ -30,7 +30,11 @@ export const Pay = () => {
         setChargeTran(true);
       };
       const getTr = async () => {
-        if (!reservation.tour) {
+        if (reservation.tour != 0) {
+          const { PRECIO } = await getTour(reservation.tour);
+          setValueTour(valueTour.concat(PRECIO));
+          setChargeTr(true);
+          console.log("a");
         } else if (Array.isArray(reservation.tour)) {
           const list = await Promise.all(
             reservation.tour.map(async (id) => {
@@ -40,15 +44,17 @@ export const Pay = () => {
           );
           setValueTour(list);
           setChargeTr(true);
+        } else if (typeof reservation.tour == "string") {
         } else {
-          const { PRECIO } = await getTour(reservation.tour);
-          setValueTour(valueTour.concat(PRECIO));
-          setChargeTr(true);
+          setValueTour(valueTr);
         }
       };
       getTr();
       getTran();
     } catch (error) {}
+    return () => {
+      setValueTour([]);
+    };
   }, []);
 
   useEffect(() => {
@@ -86,16 +92,21 @@ export const Pay = () => {
   useEffect(() => {
     setReservation({
       ...reservation,
-      total: reservation.abono + (valueTransport + valueTr),
+      total: Math.round(
+        reservation.abono +
+          (valueTransport + valueTr) +
+          (reservation.abono + (valueTransport + valueTr)) * 0.1
+      ),
     });
   }, [valueTransport, valueTour]);
   if (!chargeTr && !chargeTran) return <div></div>;
 
-  valueTour.forEach((value) => {
-    valueTr = valueTr + value;
-  });
+  if (valueTour != 0) {
+    valueTour.forEach((value) => {
+      valueTr = valueTr + value;
+    });
+  }
 
-  console.log(reservation)
   return (
     <div className="flex flex-col w-full h-full font-semibold">
       <h2 className="flex justify-center underline basis-[10%] my-1 text-sm 2xl:text-lg">
@@ -127,7 +138,7 @@ export const Pay = () => {
           </div>
           <div className="flex flex-row items-center w-[80%] mx-auto">
             <h3 className="text-sm 2xl:text-lg w-44 lining-nums">
-              Bono del 20% por La Reservación:{" "}
+              Costo Reservación:{" "}
             </h3>
             <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
               {Intl.NumberFormat("es-CL", {
@@ -222,7 +233,7 @@ export const Pay = () => {
       </div>
       <div className="flex flex-col sm:flex-row gap-4 sm:gap-24 text-center m-4 justify-center">
         <div className="flex flex-row items-center justify-center ">
-          <h3 className="text-base 2xl:text-lg w-32 text-center">Total a Pagar: </h3>
+          <h3 className="text-base 2xl:text-lg w-32 text-center">SubTotal: </h3>
           <p className="text-base 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
             {Intl.NumberFormat("es-CL", {
               currency: "CLP",
@@ -230,8 +241,23 @@ export const Pay = () => {
             }).format(reservation.abono + (valueTransport + valueTr))}
           </p>
         </div>
+        <div className="flex flex-row items-center justify-center ">
+          <h3 className="text-base 2xl:text-lg w-32 text-center">
+            Total a Pagar:{" "}
+          </h3>
+          <p className="text-base 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
+            {Intl.NumberFormat("es-CL", {
+              currency: "CLP",
+              style: "currency",
+            }).format(
+              reservation.abono +
+                (valueTransport + valueTr) +
+                (reservation.abono + (valueTransport + valueTr)) * 0.1
+            )}
+          </p>
+        </div>
         {charge ? (
-         <Spinner/>
+          <Spinner />
         ) : (
           <div id="mercadoPago" className="cho-container"></div>
         )}

@@ -6,7 +6,7 @@ export default function Modal() {
   useEffect(() => {
     setTimeout(() => {
       setShowModal(false)
-    }, 1500);
+    }, 5500);
   });
 
   return (

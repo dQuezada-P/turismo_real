@@ -33,13 +33,13 @@ export const Departamento = () => {
           <div className="InfoLeft w-full h-full basis-3/5 flex sm:items-center">
             <div className="w-full sm:h-4/5 flex flex-wrap font-semibold justify-center ">
               <div className="Favorites ml-8 mt-4 sm:mt-0 h-min text-2xl 2xl:text-3xl w-full ">
-                <button className="text-purple-600 hover:text-purple-500 dark:text-gray-700 hover:dark:text-slate-600 mr-2">
+                {/* <button className="text-purple-600 hover:text-purple-500 dark:text-gray-700 hover:dark:text-slate-600 mr-2">
                   <VscHeart className="transform transition duration-200 sm:hover:scale-125" />
                 </button>
                 <button className="text-purple-600 hover:text-purple-500 dark:text-gray-700 hover:dark:text-slate-600">
                   {" "}
                   <RiShareForwardLine className="transform transition duration-200 sm:hover:scale-125" />
-                </button>
+                </button> */}
               </div>
               <div className="Box w-[85%] h-[75%] rounded-2xl shadow-xl bg-gray-100 dark:bg-gray-700 flex flex-col gap-10 items-center justify-center ">
                 <h3 className="Title sm:text-sm 2xl:text-xl font-sans w-full text-center uppercase">
