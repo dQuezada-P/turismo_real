@@ -22,8 +22,8 @@ export const RowReserva = ({reserva}) => {
     </Table.Cell>
     <Table.Cell>
       { reserva.ESTADO == 0 ? (
-          <button className="">
-            <div className="relative h-10 w-10 text-red-700 dark:text-orange-700 flex flex-col items-center justify-center select-none">
+          <button className="md:hover:bg-gray-200 rounded-md text-red-700 dark:text-orange-700">
+            <div className="relative h-10 w-10  flex flex-col items-center justify-center select-none">
               <HiOutlineClipboard className="absolute" size={'2rem'}/>
               <div className="absolute font-bold text-lg ">x</div>
             </div>

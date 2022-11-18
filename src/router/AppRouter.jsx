@@ -20,6 +20,7 @@ import { ContextTransport } from "../context/ContextTransport";
 import { Notificacion } from "../pages/Notificacion";
 import { PerfilUsuario } from "../pages/userProfile/PerfilUsuario";
 import { ContextLoading } from "../context/ContextLoading";
+import { SignIn } from "../pages/SignIn";
 
 export const AppRouter = () => {
   return (
@@ -34,6 +35,7 @@ export const AppRouter = () => {
                     <Route path="/" element={<LayoutBase />}>
                       <Route index element={<Departamentos />} />
                       <Route path="login" element={<Login />} />
+                      <Route path="signin" element={<SignIn />} />
                       <Route path="departamentos" element={<Departamentos />} />
                       <Route path="departamento/:id" element={<Departamento />} />
                       <Route path="tours" element={<Tours />} />
