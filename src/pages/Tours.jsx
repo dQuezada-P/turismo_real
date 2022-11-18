@@ -43,7 +43,7 @@ export const Tours = () => {
       setTours(bkupTours);
     }
   };
-
+  console.log(tours);
   if (tours.length == 0)
     return (
       <div className=" h-full relative z-30">
@@ -123,10 +123,8 @@ export const Tours = () => {
             >
               <div className="h-full w-full rounded-t-2xl">
                 <img
-                  src={
-                    "https://ollaguatravel.com/wp-content/uploads/2015/12/Stgo1.jpg"
-                  }
-                  alt=""
+                  src={tour.IMAGENES[0].url}
+                  alt='iamgen'
                   className="object-cover w-full rounded-t-2xl h-3/5"
                 />
                 <div className="rounded-b-2xl bg-white h-2/5 flex flex-col">

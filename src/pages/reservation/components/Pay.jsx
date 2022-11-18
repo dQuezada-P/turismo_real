@@ -30,12 +30,11 @@ export const Pay = () => {
         setChargeTran(true);
       };
       const getTr = async () => {
-        if (reservation.tour != 0) {
+        if (reservation.tour != 0 && reservation.tour.length == 0) {
           const { PRECIO } = await getTour(reservation.tour);
           setValueTour(valueTour.concat(PRECIO));
           setChargeTr(true);
-          console.log("a");
-        } else if (Array.isArray(reservation.tour)) {
+        } else if (reservation.tour.length >= 1) {
           const list = await Promise.all(
             reservation.tour.map(async (id) => {
               const { PRECIO } = await getTour(id);
@@ -56,7 +55,6 @@ export const Pay = () => {
       setValueTour([]);
     };
   }, []);
-
   useEffect(() => {
     if (flagMercado) {
       charge == null ? setCharge(true) : null;
@@ -106,7 +104,6 @@ export const Pay = () => {
       valueTr = valueTr + value;
     });
   }
-
   return (
     <div className="flex flex-col w-full h-full font-semibold">
       <h2 className="flex justify-center underline basis-[10%] my-1 text-sm 2xl:text-lg">
@@ -184,9 +181,9 @@ export const Pay = () => {
                 Omitido
               </p>
             ) : Array.isArray(reservation.tour) ? (
-              reservation.tour.map((id) => (
+              reservation.tour.map((id, i) => (
                 <p
-                  key={id}
+                  key={i}
                   className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 mr-2 rounded-lg lining-nums"
                 >
                   {id}
@@ -215,12 +212,15 @@ export const Pay = () => {
                 }).format(0)}
               </p>
             ) : Array.isArray(reservation.tour) ? (
-              valueTour.map((id) => (
+              valueTour.map((value, i) => (
                 <p
-                  key={id}
+                  key={i}
                   className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 mr-2 rounded-lg lining-nums"
                 >
-                  {id}
+                  {Intl.NumberFormat("es-CL", {
+                    currency: "CLP",
+                    style: "currency",
+                  }).format(value)}
                 </p>
               ))
             ) : (

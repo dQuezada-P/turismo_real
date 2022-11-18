@@ -110,8 +110,7 @@ export const Service = () => {
   $("input[type=checkbox]").change(function () {
     setFlagTr(true);
   });
-
-  console.log(tourList);
+  console.log(tourList)
   return (
     <div className="flex flex-col items-center gap-4 font-semibold h-full ">
       <p className="flex text-xs w-[95%] mt-4 underline ml-2">
@@ -250,7 +249,7 @@ export const Service = () => {
                 className="py-1 px-2"
                 type="button"
                 onClick={handleTour}
-                disabled={transportList.length == 0 ? "disabled" : ""}
+                disabled={tourList.length == 0 ? "disabled" : ""}
               >
                 {flagTour ? "Agregar Servicio" : "Cerrar Ventana"}
               </button>{" "}
