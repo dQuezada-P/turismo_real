@@ -9,32 +9,45 @@ export const Contactanos = () => {
           src="https://turismoreal2.s3.amazonaws.com/Fondo.jpg"
           alt=""
         />
-        <div className="relative w-[90%] mx-auto sm:w-[900px] top-20 font-semibold">
-          <div className="bg-white w-full px-20 py-10 rounded-[30px] shadow-[0px_15px_15px_rgba(0,0,0,0.5)]  ">
-            <div className="mx-auto w-[100%]">
-              <p className="text-[30px] font-semibold mb-6">Contáctanos</p>
-              <form className="flex justify-center flex-col"  >
-                <div className="flex flex-col mb-6">
-                  <label htmlFor="">Nombre Completo</label>
-                  <input className="border-b border-black rounded-lg h-8" type="text" />
+        <div className="relative w-[90%] mx-auto sm:w-[900px] mt-8 top-80 sm:top-0 2xl:top-20 font-semibold">
+          <div className="bg-white w-full py-10 rounded-[30px] shadow-[0px_15px_15px_rgba(0,0,0,0.5)]  ">
+            <div className="w-full container mx-auto">
+              <p className="text-[30px] font-semibold mb-6 text-center underline ">
+                Contáctanos
+              </p>
+              <form className="flex justify-center flex-col w-full">
+                <div className="flex flex-col gap-4 w-[90%] mx-auto">
+                  <label htmlFor="">Nombre Completo:</label>
+                  <input
+                    className="border-b border-black rounded-lg h-8 mb-4"
+                    type="text"
+                  />
                 </div>
-                <div className="flex flex-col mb-6">
-                  <label htmlFor="">Correo Electronico</label>
-                  <input className="border-b border-black rounded-lg h-8" type="text" />
+                <div className="flex flex-col gap-4 w-[90%] mx-auto">
+                  <label htmlFor="">Correo Electronico:</label>
+                  <input
+                    className="border-b border-black rounded-lg h-8 mb-4"
+                    type="text"
+                  />
                 </div>
-                <div className="flex flex-col mb-6">
-                  <label htmlFor="">Asunto</label>
-                  <input className="border-b border-black rounded-lg h-8" type="text" />
+                <div className="flex flex-col gap-4 w-[90%] mx-auto">
+                  <label htmlFor="">Asunto:</label>
+                  <input
+                    className="border-b border-black rounded-lg h-8 mb-4"
+                    type="text"
+                  />
                 </div>
-                <div className="flex flex-col mb-6">
+                <div className="flex flex-col gap-4 w-[90%] mx-auto">
                   <label className="mb-3" htmlFor="">
-                    Mensaje
+                    Mensaje:
                   </label>
-                  <textarea className="border border-black rounded-lg h-16" />
+                  <textarea className="border border-black rounded-lg h-16 mb-4" />
                 </div>
-                <button className="rounded-full bg-purple-600 px-10 py-2 w-fit text-white mb-8" >
-                  Enviar
-                </button>
+                <div className="flex flex-col gap-4 w-[90%] mx-auto">
+                  <button className="rounded-2xl w-full sm:w-[25%] mx-auto sm:mx-0 bg-purple-600 px-10 py-2 text-white hover:bg-purple-500">
+                    Enviar
+                  </button>
+                </div>
               </form>
             </div>
           </div>
