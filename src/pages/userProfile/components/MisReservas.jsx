@@ -1,10 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react'; 
 import { Card, Table } from 'flowbite-react';
 import { useAuth } from '../../../context/hooks/useAuth';
+import { getUserReservations } from '../../../services/reservation/ApiRequestReservation';
+
+import { LoadingScreen } from '../../../components/loadingScreen/LoadingScreen';
+import { useLoading } from '../../../context/hooks/useLoading';
+import { RowReserva } from './RowReserva';
 
 export const MisReservas = () => {
   const { user } = useAuth();
+  const [reservations, setReservations] = useState(null);
+  const { isLoading, setIsLoading } = useLoading();
 
+  useEffect(() => {
+    
+
+    Promise.all([
+      getUserReservations({id_user:user.ID})
+    ]).then(([reservationList]) => {
+      setReservations(reservationList);
+      console.log(reservationList);
+    }).finally(() => {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000)
+    })
+  }, [])
+  
   return <Card className="mb-3">
     <h5 className="ml-4 mb-2 text-3xl font-bold text-gray-900 dark:text-white">
       Historial de reservas
@@ -20,41 +42,23 @@ export const MisReservas = () => {
             Fecha ingreso
           </Table.HeadCell>
           <Table.HeadCell>
-            Valor Arriendo
+            Total Reserva
           </Table.HeadCell>
           <Table.HeadCell>
             Estado
           </Table.HeadCell>
           <Table.HeadCell>
-            <span className="sr-only">
-              Acciones
-            </span>
+            Cancelar<br/> Reserva
           </Table.HeadCell>
         </Table.Head>
         <Table.Body className="divide-y">
-          <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-            
-            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-              Apple MacBook Pro 17"
-            </Table.Cell>
-            <Table.Cell>
-              Sliver
-            </Table.Cell>
-            <Table.Cell>
-              Laptop
-            </Table.Cell>
-            <Table.Cell>
-              $2999
-            </Table.Cell>
-            <Table.Cell>
-              <a
-                href="/tables"
-                className="font-medium text-blue-600 hover:underline dark:text-blue-500"
-              >
-                Edit
-              </a>
-            </Table.Cell>
-          </Table.Row>
+          
+          { reservations 
+            ? reservations.map( reservation => {  
+              return <RowReserva reserva={reservation} />
+            })
+            : ('')
+          }
           
         </Table.Body>
       </Table>
@@ -68,4 +72,6 @@ export const MisReservas = () => {
     <div className="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
     </div>
   </Card>
+    
+  
 }

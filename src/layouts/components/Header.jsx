@@ -80,9 +80,9 @@ export const Header = () => {
             {user.CORREO}
           </span>
         </Dropdown.Header>
-        <Dropdown.Item><NavLink to={'/perfil'} className="mx-auto">Perfil</NavLink></Dropdown.Item>
+        <Dropdown.Item><NavLink to={'/perfil'} className="w-full text-center">Perfil</NavLink></Dropdown.Item>
         <Dropdown.Item onClick={handleLogOut}>
-          <span className="mx-auto">Cerrar Sesión</span>
+          <span className="w-full text-center">Cerrar Sesión</span>
         </Dropdown.Item>
         
         <Dropdown.Divider />

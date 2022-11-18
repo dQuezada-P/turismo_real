@@ -19,37 +19,39 @@ import { LayoutBase } from "../layouts/LayoutBase";
 import { ContextTransport } from "../context/ContextTransport";
 import { Notificacion } from "../pages/Notificacion";
 import { PerfilUsuario } from "../pages/userProfile/PerfilUsuario";
+import { ContextLoading } from "../context/ContextLoading";
 
 export const AppRouter = () => {
   return (
     <>
       <Router>
-        <ContextReservation>
-          <ContextDepartment>
-            <ContextTransport>
-              <ContextTour>
-                <Routes>
-                  <Route path="/" element={<LayoutBase />}>
-                    <Route index element={<Departamentos />} />
-                    <Route path="login" element={<Login />} />
-                   
-                    <Route path="departamentos" element={<Departamentos />} />
-                    <Route path="departamento/:id" element={<Departamento />} />
-                    <Route path="tours" element={<Tours />} />
-                    <Route path="nosotros" element={<Nosotros />} />
-                    <Route path="contactanos" element={<Contactanos />} />
-                    <Route path="*" element={<Navigate to="departamentos" />} />
-                    <Route element={<ProtectedRoutes />}>
-                      <Route path="perfil" element={<PerfilUsuario />} />
-                      <Route path="reserva/:id" element={<Reserva />} />
-                      <Route path="notificacion" element={<Notificacion/>}/>
+        <ContextLoading>
+          <ContextReservation>
+            <ContextDepartment>
+              <ContextTransport>
+                <ContextTour>
+                  <Routes>
+                    <Route path="/" element={<LayoutBase />}>
+                      <Route index element={<Departamentos />} />
+                      <Route path="login" element={<Login />} />
+                      <Route path="departamentos" element={<Departamentos />} />
+                      <Route path="departamento/:id" element={<Departamento />} />
+                      <Route path="tours" element={<Tours />} />
+                      <Route path="nosotros" element={<Nosotros />} />
+                      <Route path="contactanos" element={<Contactanos />} />
+                      <Route path="*" element={<Navigate to="departamentos" />} />
+                      <Route element={<ProtectedRoutes />}>
+                        <Route path="perfil" element={<PerfilUsuario />} />
+                        <Route path="reserva/:id" element={<Reserva />} />
+                        <Route path="notificacion" element={<Notificacion/>}/>
+                      </Route>
                     </Route>
-                  </Route>
-                </Routes>
-              </ContextTour>
-            </ContextTransport>
-          </ContextDepartment>
-        </ContextReservation>
+                  </Routes>
+                </ContextTour>
+              </ContextTransport>
+            </ContextDepartment>
+          </ContextReservation>
+        </ContextLoading>
       </Router>
     </>
   );
