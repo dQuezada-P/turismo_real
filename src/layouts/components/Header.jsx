@@ -187,10 +187,10 @@ export const Header = () => {
               alt="Turismo Real Logo"
             />
             <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-              <span className="dark:text-gold-200 text-purple-600">
+              <span className="text-yellow-400 dark:text-yellow-300">
                 Turismo
               </span>
-              <span className="text-gold-200 dark:text-white">Real</span> 
+              <span className="text-purple-600 dark:text-purple-500">Real</span> 
             </span>
           </Navbar.Brand>
         </NavLink>
