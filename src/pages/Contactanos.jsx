@@ -5,11 +5,11 @@ export const Contactanos = () => {
     <>
       <div className="w-full min-h-screen overflow-hidden">
         <img
-          className="absolute w-full object-cover object-center h-screen sm:-top-[0rem]"
+          className="fixed w-full object-cover object-center h-screen"
           src="https://turismoreal2.s3.amazonaws.com/Fondo.jpg"
           alt=""
         />
-        <div className="relative w-[90%] mx-auto sm:w-[900px] mt-8 top-80 sm:top-0 2xl:top-20 font-semibold">
+        <div className="relative w-[90%] mx-auto max-w-[900px] mt-8 2xl:top-8 font-semibold">
           <div className="bg-white w-full py-10 rounded-[30px] shadow-[0px_15px_15px_rgba(0,0,0,0.5)]  ">
             <div className="w-full container mx-auto">
               <p className="text-[30px] font-semibold mb-6 text-center underline ">

@@ -133,7 +133,9 @@ export const Header = () => {
           </NavLink>
         </Dropdown.Item>
         <Dropdown.Item>
-          <Button gradientDuoTone="purpleToBlue" className="w-full">Registrarme</Button>
+          <NavLink to={"/signin"} >
+            <Button gradientDuoTone="purpleToBlue" className="w-full">Registrarme</Button>
+          </NavLink>
         </Dropdown.Item>
         <Dropdown.Item>
         <button
