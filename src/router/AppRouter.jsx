@@ -33,7 +33,7 @@ export const AppRouter = () => {
                 <ContextTour>
                   <Routes>
                     <Route path="/" element={<LayoutBase />}>
-                      <Route index element={<Departamentos />} />
+                      <Route index element={<Navigate to="departamentos" />} />
                       <Route path="login" element={<Login />} />
                       <Route path="signin" element={<SignIn />} />
                       <Route path="departamentos" element={<Departamentos />} />
