@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 import axios from "axios";
 
@@ -11,13 +11,11 @@ export const Notificacion = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const payid = searchParams.get("payment_id");
   const { token } = useAuth();
-  const navigate = useNavigate();
-  const [charge, setCharge] = useState(false);
   const { setShowModal, setModalType, modalTypes, setParams, params } = useModal();
 
 
   useEffect(() => {
-    console.log('render')
+    console.log('render Notificación')
     try {
       const validationPay = async () => {
         const { data } = await axios.post(
@@ -46,7 +44,7 @@ export const Notificacion = () => {
           };
         }
 
-        modalParams.redirect_to = '/departamentos2';
+        modalParams.redirect_to = '/perfil';
         setParams(modalParams);
         setModalType(modalTypes.info);
         setShowModal(true);
@@ -59,8 +57,6 @@ export const Notificacion = () => {
       console.error(error);
     }
   }, []);
-
-  if (!charge) return <div className="h-screen relative z-30"></div>;
 
   return <></>;
 };

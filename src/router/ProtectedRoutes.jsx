@@ -1,10 +1,27 @@
+import { useEffect } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../context/hooks/useAuth";
+import { useLoading } from "../context/hooks/useLoading";
 
 const ProtectedRoutes = () => {
-  const { user } = useAuth();
+  const { isLogged, tokenVerified } = useAuth();
+  const { isLoading, setIsLoading } = useLoading();
+
+  // useEffect(() => {
+  //   console.log(isTokenVerified)
+  // }, [isTokenVerified])
+
+  
+
   return (
-    <>{!user ? (<Navigate to={"/departamentos"} />):(<Outlet/>)}</>
+    <>
+      {
+        tokenVerified ? isLogged() ? (<Outlet/>) : <Navigate to={"/departamentos"} /> : ('')
+      }
+    </>
+
+
+    // <>{!isLogged() ? (<Navigate to={"/departamentos"} />):(<Outlet/>)}</>
   );
 };
 

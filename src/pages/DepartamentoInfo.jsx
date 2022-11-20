@@ -40,7 +40,11 @@ export const DepartamentoInfo = () => {
 
   const handleReservation = () => {
     const next_url = `/reserva/${department.ID}`;
-    if (isLogged()) navigate();
+    
+    if (isLogged()) {
+      navigate(next_url);
+      return;
+    }
 
     setModalType(modalTypes.alert);
     setParams({

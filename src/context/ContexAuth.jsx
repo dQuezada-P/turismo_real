@@ -6,7 +6,7 @@ const ContextAuth = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [charging, setCharging] = useState(true);
+  const [tokenVerified, setTokenVerified] = useState(false);
   const [resToken, setResToken] = useState(false);
 
   const isLogged = () => {
@@ -23,15 +23,13 @@ const ContextAuth = ({ children }) => {
     } catch (error) {
       console.error(error);
     }
-    setCharging(false);
+    setTokenVerified(true);
   };
 
   useEffect(() => {
     try {
       if (token && !user) {
         verifyToken();
-      } else {
-        setCharging(false);
       }
     } catch (error) {}
   });
@@ -46,8 +44,7 @@ const ContextAuth = ({ children }) => {
         isLogged,
         showModal,
         setShowModal,
-        charging,
-        setCharging,
+        tokenVerified,
         resToken,
         setResToken,
       }}
