@@ -27,6 +27,7 @@ export const Notificacion = () => {
               id: payid,
             }
           );
+          console.log(data)
           setPayment(data);
           if (data.status == "approved") {
             const dep = await GetDepartamento(
@@ -34,7 +35,6 @@ export const Notificacion = () => {
             );
             if (dep.ESTADO_RESERVA == "Y") {
               await addReservation(data, token);
-              console.log("a");
               setAlertS(true);
               setCharge(true);
             } else {

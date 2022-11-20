@@ -17,7 +17,9 @@ export const Pay = () => {
   const [chargeTran, setChargeTran] = useState(false);
   const [chargeTr, setChargeTr] = useState(false);
   const { token } = useAuth();
-  let valueTr = 0;
+  const [abono, setAbono] = useState(0);
+  const [totalReserva, setTotalReserva] = useState(0);
+  const [tr, setTr] = useState(0);
 
   useEffect(() => {
     try {
@@ -29,6 +31,7 @@ export const Pay = () => {
         }
         setChargeTran(true);
       };
+      let valueTr = 0;
       const getTr = async () => {
         if (reservation.tour != 0 && reservation.tour.length == 0) {
           const { PRECIO } = await getTour(reservation.tour);
@@ -41,6 +44,10 @@ export const Pay = () => {
               return PRECIO;
             })
           );
+          list.forEach((value) => {
+            valueTr = valueTr + value;
+          });
+          setTr(valueTr);
           setValueTour(list);
           setChargeTr(true);
         } else if (typeof reservation.tour == "string") {
@@ -51,10 +58,16 @@ export const Pay = () => {
       getTr();
       getTran();
     } catch (error) {}
-    return () => {
-      setValueTour([]);
-    };
   }, []);
+
+  useEffect(() => {
+    setReservation({
+      ...reservation,
+      abono: (reservation.valor + valueTransport + tr) * 0.2,
+      total: reservation.valor + valueTransport + tr,
+    });
+  }, [valueTransport , valueTour]);
+
   useEffect(() => {
     if (flagMercado) {
       charge == null ? setCharge(true) : null;
@@ -87,23 +100,16 @@ export const Pay = () => {
     }
   }, [flagMercado]);
 
-  useEffect(() => {
-    setReservation({
-      ...reservation,
-      total: Math.round(
-        reservation.abono +
-          (valueTransport + valueTr) +
-          (reservation.abono + (valueTransport + valueTr)) * 0.1
-      ),
-    });
-  }, [valueTransport, valueTour]);
   if (!chargeTr && !chargeTran) return <div></div>;
 
-  if (valueTour != 0) {
-    valueTour.forEach((value) => {
-      valueTr = valueTr + value;
-    });
-  }
+  // // if (valueTour != 0) {
+  // //   valueTour.forEach((value) => {
+  // //     valueTr = valueTr + value;
+  // //   });
+  // // }
+  // console.log(reservation);
+  // // console.log(valueTransport);
+  // // console.log(tr);
   return (
     <div className="flex flex-col w-full h-full font-semibold">
       <h2 className="flex justify-center underline basis-[10%] my-1 text-sm 2xl:text-lg">
@@ -133,7 +139,7 @@ export const Pay = () => {
               }).format(reservation.valor)}
             </p>
           </div>
-          <div className="flex flex-row items-center w-[80%] mx-auto">
+          {/* <div className="flex flex-row items-center w-[80%] mx-auto">
             <h3 className="text-sm 2xl:text-lg w-44 lining-nums">
               Costo Reservación:{" "}
             </h3>
@@ -143,7 +149,7 @@ export const Pay = () => {
                 style: "currency",
               }).format(reservation.valor * 0.2)}
             </p>
-          </div>
+          </div> */}
         </div>
         <div className="flex flex-col basis-[50%] w-[80%] mx-auto gap-4">
           <h2 className="text-sm 2xl:text-lg text-center">
@@ -231,14 +237,16 @@ export const Pay = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col sm:flex-row gap-4 sm:gap-24 text-center m-4 justify-center">
-        <div className="flex flex-row items-center justify-center ">
-          <h3 className="text-base 2xl:text-lg w-32 text-center">SubTotal: </h3>
+      <div className="flex flex-col sm:flex-row gap-4 sm:gap-24 text-center my-8 justify-center">
+        <div className="flex flex-row items-center justify-end ">
+          <h3 className="text-base 2xl:text-lg w-44 text-center">
+            Costo Reservación:{" "}
+          </h3>
           <p className="text-base 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
             {Intl.NumberFormat("es-CL", {
               currency: "CLP",
               style: "currency",
-            }).format(reservation.abono + (valueTransport + valueTr))}
+            }).format(reservation.valor + valueTransport + tr)}
           </p>
         </div>
         <div className="flex flex-row items-center justify-center ">
@@ -249,11 +257,7 @@ export const Pay = () => {
             {Intl.NumberFormat("es-CL", {
               currency: "CLP",
               style: "currency",
-            }).format(
-              reservation.abono +
-                (valueTransport + valueTr) +
-                (reservation.abono + (valueTransport + valueTr)) * 0.1
-            )}
+            }).format((reservation.valor + valueTransport + tr) * 0.2)}
           </p>
         </div>
         {charge ? (

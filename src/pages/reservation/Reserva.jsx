@@ -178,9 +178,8 @@ export const Reserva = () => {
           idUser: user.ID_ROL,
           idDep: dept.ID,
           nombre: dept.NOMBRE,
-          valor: dept.VALOR_ARRIENDO,
           img: dept.IMAGENES[0].url,
-          abono: dept.VALOR_ARRIENDO * 0.2,
+          valor : dept.VALOR_ARRIENDO
         });
       }
     };

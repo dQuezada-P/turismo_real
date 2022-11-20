@@ -3,21 +3,7 @@ import { useState, useEffect, createContext } from "react";
 const Reservation = createContext();
 
 const ContextReservation = ({ children }) => {
-  const [reservation, setReservation] = useState({
-    nombre: "",
-    rut:"",
-    tel: "",
-    correo:"",
-    fecha: "",
-    dias: "",
-    cantPersonas: "",
-    abono: "",
-    valor: "",
-    transporte: "",
-    tour: "",
-    img: "",
-    total: ""
-  });
+  const [reservation, setReservation] = useState({});
   const [flagMercado, setFlagMercado] = useState(false)
   return (
     <Reservation.Provider value={{ reservation, setReservation,flagMercado, setFlagMercado }}>
