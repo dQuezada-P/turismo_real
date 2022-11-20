@@ -1,49 +1,33 @@
-import { useTour } from "../context/hooks/useTour";
 import Banner from "../components/banners/Banner";
 import { getLocations } from "../services/locations/locations";
 import { useState, useEffect } from "react";
+import { getTours } from "../services/tours/ApiRequestTour";
 export const Tours = () => {
-  const {
-    tours,
-    setTours,
-    bkupTours,
-    setBkupTours,
-    filterLocation,
-    setFilterLocation,
-  } = useTour();
+  const [tours, setTours] = useState([]);
   const [locations, setLocations] = useState([]);
-  let flag;
+  const [filter, setFilter] = useState([]);
+
   useEffect(() => {
-    const getStates = async () => {
-      const states = await getLocations();
-      setLocations(states);
-      flag = true;
-    };
-    getStates();
-    return () => {
-      setTours(bkupTours);
-    };
-  }, []);
-  const handleFilterLocation = (e) => {
-    if (e.target.value != 0) {
-      if (flag) {
-        const trFilters = tours.filter((tr) => {
-          return tr.ID_LOCALIDAD == e.target.value;
-        });
-        setTours(trFilters);
-        flag = false;
-      } else {
-        const trFilters = filterLocation.filter((tr) => {
-          return tr.ID_LOCALIDAD == e.target.value;
-        });
-        setTours(trFilters);
-        flag = true;
+    Promise.all([getLocations(), getTours()]).then(
+      ([locationList, toursList]) => {
+        setLocations(locationList);
+        setTours(toursList);
       }
-    } else {
-      setTours(bkupTours);
-    }
+    );
+  }, []);
+
+  const handleFilterLocation = ({ target: { value } }) => {
+    setFilter(value);
   };
-  console.log(tours);
+
+  const filteredTours = () => {
+    if (filter == 0) return tours;
+
+    return tours.filter((tour) => {
+      return tour.ID_LOCALIDAD == filter;
+    });
+  };
+
   if (tours.length == 0)
     return (
       <div className=" h-full relative z-30">
@@ -116,7 +100,7 @@ export const Tours = () => {
           </select>
         </div>
         <div className=" min-h-[50rem] container ml-4 sm:mx-auto flex flex-col sm:grid sm:grid-cols-3 2xl:grid-cols-4 gap-4 mb-8 ">
-          {tours.map((tour) => (
+          {filteredTours().map((tour) => (
             <div
               className="w-11/12 h-60 2xl:h-72 shadow-lg rounded-b-2xl transform transition duration-200 sm:hover:scale-105"
               key={tour.ID}
@@ -124,7 +108,7 @@ export const Tours = () => {
               <div className="h-full w-full rounded-t-2xl">
                 <img
                   src={tour.IMAGENES[0].url}
-                  alt='iamgen'
+                  alt="iamgen"
                   className="object-cover w-full rounded-t-2xl h-3/5"
                 />
                 <div className="rounded-b-2xl bg-white h-2/5 flex flex-col">

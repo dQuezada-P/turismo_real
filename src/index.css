@@ -182,7 +182,23 @@
   transition:0.4s ease;
 }
 
+
+
 .mercadopago-button {
-  width: 300px!important;
-  background-color: #87428e!important;
+  width: 300px;
+  -webkit-border-radius: 20;
+  -moz-border-radius: 20;
+  border-radius: 20px;
+  -webkit-box-shadow: 0px 1px 3px #666666;
+  -moz-box-shadow: 0px 1px 3px #666666;
+  box-shadow: 0px 1px 3px #666666;
+  color: #ffffff;
+  background: #87428e!important;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.mercadopago-button:hover {
+  background: #702f5f!important;
+  text-decoration: none;
 }

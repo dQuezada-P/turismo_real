@@ -6,7 +6,7 @@ import { getMercadoPago } from "../../../services/mercadoPago/mercadoPago";
 import { useAuth } from "../../../context/hooks/useAuth";
 import { Spinner } from "../../../components/spinner/Spinner";
 
-export const Pay = ({department}) => {
+export const Pay = ({ department }) => {
   const [valueTransport, setValueTransport] = useState(0);
   const [valueTour, setValueTour] = useState([]);
   const { reservation, flagMercado, setReservation } = useReservation();
@@ -64,7 +64,7 @@ export const Pay = ({department}) => {
       abono: (reservation.valor + valueTransport + tr) * 0.2,
       total: reservation.valor + valueTransport + tr,
     });
-  }, [valueTransport , valueTour]);
+  }, [valueTransport, valueTour]);
 
   useEffect(() => {
     if (flagMercado) {
@@ -99,145 +99,135 @@ export const Pay = ({department}) => {
   }, [flagMercado]);
 
   if (!chargeTr && !chargeTran) return <div></div>;
-
-  // // if (valueTour != 0) {
-  // //   valueTour.forEach((value) => {
-  // //     valueTr = valueTr + value;
-  // //   });
-  // // }
-  // console.log(reservation);
-  // // console.log(valueTransport);
-  // // console.log(tr);
   return (
     <div className="flex flex-col w-full h-full font-semibold">
-      <h2 className="flex justify-center underline basis-[10%] my-1 text-sm 2xl:text-lg">
+      <h2 className="flex justify-center basis-[10%] my-1 text-base 2xl:text-2xl">
         Resumen de la Orden
       </h2>
       <div className="flex sm:flex-row flex-col justify-center basis-auto gap-4">
-        <div className="flex flex-col basis-[50%] gap-4">
-          <p className="text-sm 2xl:text-lg text-center">Datos Reserva</p>
-          <div className="flex flex-row w-[80%] mx-auto items-center">
-            <h3 className="text-sm 2xl:text-lg w-44">Nombre Departamento: </h3>
-            <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg">
-              {reservation.nombre}
+        <div className="basis-[50%]">
+          {" "}
+          <div className="flex flex-col h-[90%] w-[80%] border-2 border-purple-600 dark:border-gray-700 gap-4 mx-auto m-8 py-4 rounded-2xl">
+            <p className="text-sm 2xl:text-lg text-center underline underline-offset-4">
+              Datos Reserva
             </p>
+            <div className="flex flex-row w-[80%] mx-auto items-center">
+              <h3 className="text-sm 2xl:text-lg w-44">
+                Nombre Departamento:{" "}
+              </h3>
+              <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg">
+                {reservation.nombre}
+              </p>
+            </div>
+            <div className="flex flex-row items-center w-[80%] mx-auto">
+              <h3 className="text-sm 2xl:text-lg w-44">Ubicación: </h3>
+              <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg capitalize">
+                {department.UBICACION}
+              </p>
+            </div>
+            <div className="flex flex-row items-center w-[80%] mx-auto">
+              <h3 className="text-sm 2xl:text-lg w-44">Costo Arriendo: </h3>
+              <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
+                {Intl.NumberFormat("es-CL", {
+                  currency: "CLP",
+                  style: "currency",
+                }).format(reservation.valor)}
+              </p>
+            </div>
           </div>
-          <div className="flex flex-row items-center w-[80%] mx-auto">
-            <h3 className="text-sm 2xl:text-lg w-44">Ubicación: </h3>
-            <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg capitalize">
-              {department.UBICACION}
-            </p>
-          </div>
-          <div className="flex flex-row items-center w-[80%] mx-auto">
-            <h3 className="text-sm 2xl:text-lg w-44">Costo Arriendo: </h3>
-            <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
-              {Intl.NumberFormat("es-CL", {
-                currency: "CLP",
-                style: "currency",
-              }).format(reservation.valor)}
-            </p>
-          </div>
-          {/* <div className="flex flex-row items-center w-[80%] mx-auto">
-            <h3 className="text-sm 2xl:text-lg w-44 lining-nums">
-              Costo Reservación:{" "}
-            </h3>
-            <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
-              {Intl.NumberFormat("es-CL", {
-                currency: "CLP",
-                style: "currency",
-              }).format(reservation.valor * 0.2)}
-            </p>
-          </div> */}
         </div>
-        <div className="flex flex-col basis-[50%] w-[80%] mx-auto gap-4">
-          <h2 className="text-sm 2xl:text-lg text-center">
-            Servicios Adicionales
-          </h2>
-          <div className="flex flex-row items-center w-[80%] mx-auto">
-            <h3 className="text-sm 2xl:text-lg w-32">ID Transporte:</h3>
-            {reservation.transporte == undefined ? (
-              <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
-                Omitido
-              </p>
-            ) : (
-              <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
-                {reservation.transporte}
-              </p>
-            )}
-          </div>
-          <div className="flex flex-row items-center w-[80%] mx-auto">
-            <h3 className="text-sm 2xl:text-lg w-32 ">Valor Transporte: </h3>
-            <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
-              {Intl.NumberFormat("es-CL", {
-                currency: "CLP",
-                style: "currency",
-              }).format(valueTransport == undefined ? 0 : valueTransport)}
-            </p>
-          </div>
-          <div className="flex flex-row items-center w-[80%] mx-auto">
-            <h3 className="text-sm 2xl:text-lg w-32">ID Tour:</h3>
-            {!reservation.tour ? (
-              <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
-                Omitido
-              </p>
-            ) : reservation.tour.length == 0 ? (
-              <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
-                Omitido
-              </p>
-            ) : Array.isArray(reservation.tour) ? (
-              reservation.tour.map((id, i) => (
-                <p
-                  key={i}
-                  className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 mr-2 rounded-lg lining-nums"
-                >
-                  {id}
+
+        <div className="basis-[50%] ">
+          <div className="flex flex-col h-[90%] w-[80%] border-2 border-purple-600 dark:border-gray-700 gap-4 mx-auto m-8 py-4 rounded-2xl">
+            <h2 className="text-sm 2xl:text-lg text-center underline underline-offset-4">
+              Servicios Adicionales
+            </h2>
+            <div className="flex flex-row items-center w-[80%] mx-auto">
+              <h3 className="text-sm 2xl:text-lg w-32">ID Transporte:</h3>
+              {reservation.transporte == 0 ? (
+                <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
+                  Omitido
                 </p>
-              ))
-            ) : (
-              <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
-                {reservation.tour}
-              </p>
-            )}
-          </div>
-          <div className="flex flex-row items-center w-[80%] mx-auto">
-            <h3 className="text-sm 2xl:text-lg w-32">Valor Tour: </h3>
-            {!reservation.tour ? (
+              ) : (
+                <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
+                  {reservation.transporte}
+                </p>
+              )}
+            </div>
+            <div className="flex flex-row items-center w-[80%] mx-auto">
+              <h3 className="text-sm 2xl:text-lg w-32 ">Valor Transporte: </h3>
               <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
                 {Intl.NumberFormat("es-CL", {
                   currency: "CLP",
                   style: "currency",
-                }).format(0)}
+                }).format(valueTransport == undefined ? 0 : valueTransport)}
               </p>
-            ) : reservation.tour.length == 0 ? (
-              <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
-                {Intl.NumberFormat("es-CL", {
-                  currency: "CLP",
-                  style: "currency",
-                }).format(0)}
-              </p>
-            ) : Array.isArray(reservation.tour) ? (
-              valueTour.map((value, i) => (
-                <p
-                  key={i}
-                  className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 mr-2 rounded-lg lining-nums"
-                >
+            </div>
+            <div className="flex flex-row items-center w-[80%] mx-auto">
+              <h3 className="text-sm 2xl:text-lg w-32">ID Tour:</h3>
+              {!reservation.tour ? (
+                <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
+                  Omitido
+                </p>
+              ) : reservation.tour.length == 0 ? (
+                <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
+                  Omitido
+                </p>
+              ) : Array.isArray(reservation.tour) ? (
+                reservation.tour.map((id, i) => (
+                  <p
+                    key={i}
+                    className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 mr-2 rounded-lg lining-nums"
+                  >
+                    {id}
+                  </p>
+                ))
+              ) : (
+                <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
+                  {reservation.tour}
+                </p>
+              )}
+            </div>
+            <div className="flex flex-row items-center w-[80%] mx-auto">
+              <h3 className="text-sm 2xl:text-lg w-32">Valor Tour: </h3>
+              {!reservation.tour ? (
+                <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
                   {Intl.NumberFormat("es-CL", {
                     currency: "CLP",
                     style: "currency",
-                  }).format(value)}
+                  }).format(0)}
                 </p>
-              ))
-            ) : (
-              <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
-                {valueTour}
-              </p>
-            )}
+              ) : reservation.tour.length == 0 ? (
+                <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
+                  {Intl.NumberFormat("es-CL", {
+                    currency: "CLP",
+                    style: "currency",
+                  }).format(0)}
+                </p>
+              ) : Array.isArray(reservation.tour) ? (
+                valueTour.map((value, i) => (
+                  <p
+                    key={i}
+                    className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 mr-2 rounded-lg lining-nums"
+                  >
+                    {Intl.NumberFormat("es-CL", {
+                      currency: "CLP",
+                      style: "currency",
+                    }).format(value)}
+                  </p>
+                ))
+              ) : (
+                <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
+                  {valueTour}
+                </p>
+              )}
+            </div>
           </div>
         </div>
       </div>
-      <div className="flex flex-col sm:flex-row gap-4 sm:gap-24 text-center my-8 justify-center">
-        <div className="flex flex-row items-center justify-end ">
-          <h3 className="text-base 2xl:text-lg w-44 text-center">
+      <div className="flex flex-col sm:flex-row gap-4 sm:gap-24 text-center my-8 justify-center w-[80%] mx-auto ">
+        <div className="flex flex-row items-center justify-end border-2 pr-4 rounded-2xl border-purple-600 py-2 ">
+          <h3 className="text-base 2xl:text-lg w-60 text-center">
             Costo Reservación:{" "}
           </h3>
           <p className="text-base 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
@@ -247,8 +237,8 @@ export const Pay = ({department}) => {
             }).format(reservation.valor + valueTransport + tr)}
           </p>
         </div>
-        <div className="flex flex-row items-center justify-center ">
-          <h3 className="text-base 2xl:text-lg w-32 text-center">
+        <div className="flex flex-row items-center justify-center border-2 pr-4 py-2 rounded-2xl border-purple-600 ">
+          <h3 className="text-base 2xl:text-lg w-60 text-center">
             Total a Pagar:{" "}
           </h3>
           <p className="text-base 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
@@ -258,6 +248,8 @@ export const Pay = ({department}) => {
             }).format((reservation.valor + valueTransport + tr) * 0.2)}
           </p>
         </div>
+      </div>
+      <div className="flex justify-center items-center pb-8">
         {charge ? (
           <Spinner />
         ) : (

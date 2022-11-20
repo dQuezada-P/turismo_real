@@ -12,10 +12,8 @@ import { DepartamentoInfo } from "../pages/DepartamentoInfo";
 import { Login } from "../pages/Login";
 import { Reserva } from "../pages/reservation/Reserva";
 import ProtectedRoutes from "./ProtectedRoutes";
-import { ContextTour } from "../context/ContextTour";
 import { ContextReservation } from "../context/ContextReservation";
 import { LayoutBase } from "../layouts/LayoutBase";
-import { ContextTransport } from "../context/ContextTransport";
 import { Notificacion } from "../pages/Notificacion";
 import { PerfilUsuario } from "../pages/userProfile/PerfilUsuario";
 import { ContextLoading } from "../context/ContextLoading";
@@ -29,8 +27,6 @@ export const AppRouter = () => {
         <ContextLoading>
           <ContextModal>
             <ContextReservation>
-              <ContextTransport>
-                <ContextTour>
                   <Routes>
                     <Route path="/" element={<LayoutBase />}>
                       <Route
@@ -66,8 +62,6 @@ export const AppRouter = () => {
                       </Route>
                     </Route>
                   </Routes>
-                </ContextTour>
-              </ContextTransport>
             </ContextReservation>
           </ContextModal>
         </ContextLoading>

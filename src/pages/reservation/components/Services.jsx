@@ -4,12 +4,10 @@ import { TableCell } from "flowbite-react/lib/esm/components/Table/TableCell";
 import { TableRow } from "flowbite-react/lib/esm/components/Table/TableRow";
 import $ from "jquery";
 import { useFormContext } from "react-hook-form";
-import { useTransport } from "../../../context/hooks/useTransport";
-import { useTour } from "../../../context/hooks/useTour";
 import { useEffect, useState } from "react";
 import { useReservation } from "../../../context/hooks/useReservation";
 
-export const Service = () => {
+export const Service = ({ tourList, setFlagTr, transportList, setFlagTra }) => {
   const { reservation, setReservation } = useReservation();
   const [titleTransporte, setTitleTransporte] = useState(true);
   const [flagTransporte, setFlagTransporte] = useState(true);
@@ -19,8 +17,6 @@ export const Service = () => {
   const oTransport = $("#oTransport");
   const divTour = $("#tour");
   const otour = $("#otour");
-  const { transportList, setFlagTra } = useTransport();
-  const { tourList, setFlagTr } = useTour();
   const [registerTran, setRegisterTran] = useState({});
   const {
     register,
@@ -110,15 +106,14 @@ export const Service = () => {
   $("input[type=checkbox]").change(function () {
     setFlagTr(true);
   });
-  console.log(tourList)
   return (
     <div className="flex flex-col items-center gap-4 font-semibold h-full ">
-      <p className="flex text-xs w-[95%] mt-4 underline ml-2">
+      <p className="flex text-xs 2xl:text-2xl w-[95%] mt-4 underline ml-2">
         Debe seleccionar un servicio / Omitir un servicio
       </p>
-      <div className="w-[95%] mt-2 rounded-lg bg-gray-100 ">
+      <div className="w-[95%] mt-2 rounded-lg bg-gray-100 dark:bg-gray-500 ">
         <div className="border-b-2 border-gray-700 flex items-center place-items-center py-1 gap-4 ">
-          <p className="text-sm ml-2 2xl:text-base">Servicios Transportes</p>
+          <p className="text-sm ml-2 2xl:text-xl">Servicios Transportes</p>
           <p id="oTransport" className="text-red-700 hidden ">
             Ha Escogido Omitir el Servicio!
           </p>
@@ -136,6 +131,7 @@ export const Service = () => {
         <div className="py-2 ml-4 text-sm w-min">
           <Dropdown
             inline={false}
+            color='purple'
             label={titleTransporte ? "Seleccionar" : "Volver"}
           >
             <Dropdown.Item>
@@ -226,9 +222,9 @@ export const Service = () => {
           </Table>
         </div>
       </div>
-      <div className="w-[95%] mt-2 rounded-lg bg-gray-100 mb-4 ">
+      <div className="w-[95%] mt-2 rounded-lg bg-gray-100 dark:bg-gray-500 mb-4 ">
         <div className="border-b-2 border-gray-700 flex items-center place-items-center py-1 gap-4 ">
-          <p className="text-sm ml-2 2xl:text-base">Servicios Tour</p>
+          <p className="text-sm ml-2 2xl:text-xl">Servicios Tour</p>
           <p id="otour" className="text-red-700 hidden ">
             Ha Escogido Omitir el Servicio!
           </p>
@@ -243,7 +239,7 @@ export const Service = () => {
           </p>
         </div>
         <div className="py-2 ml-4 text-sm w-min">
-          <Dropdown label={titleTour ? "Seleccionar" : "Volver"}>
+          <Dropdown label={titleTour ? "Seleccionar" : "Volver"} color='purple'>
             <Dropdown.Item>
               <button
                 className="py-1 px-2"
