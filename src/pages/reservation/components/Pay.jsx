@@ -225,8 +225,8 @@ export const Pay = ({ department }) => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col sm:flex-row gap-4 sm:gap-24 text-center my-8 justify-center w-[80%] mx-auto ">
-        <div className="flex flex-row items-center justify-end border-2 pr-4 rounded-2xl border-purple-600 py-2 ">
+      <div className="flex flex-col sm:flex-row gap-4 sm:gap-24 text-center my-8 justify-center w-[100%] mx-auto ">
+        <div className="flex flex-row items-center justify-center border-2 pr-4 rounded-2xl border-purple-600 py-2 dark:border-gray-700 ">
           <h3 className="text-base 2xl:text-lg w-60 text-center">
             Costo Reservación:{" "}
           </h3>
@@ -237,7 +237,7 @@ export const Pay = ({ department }) => {
             }).format(reservation.valor + valueTransport + tr)}
           </p>
         </div>
-        <div className="flex flex-row items-center justify-center border-2 pr-4 py-2 rounded-2xl border-purple-600 ">
+        <div className="flex flex-row items-center justify-center border-2 pr-4 py-2 rounded-2xl border-purple-600 dark:border-gray-700 ">
           <h3 className="text-base 2xl:text-lg w-60 text-center">
             Total a Pagar:{" "}
           </h3>
