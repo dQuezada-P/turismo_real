@@ -19,34 +19,39 @@ export const Notificacion = () => {
   useEffect(() => {
     console.log('render')
     try {
-      if (flag) {
-        const validationPay = async () => {
-          const { data } = await axios.post(
-            "http://localhost:3000/api/mercadopago/webhook",
-            {
-              id: payid,
-            }
-          );
-          setPayment(data);
-          if (data.status == "approved") {
-            const dep = await GetDepartamento(
-              data.reservation.reservation.id_dep
-            );
-            if (dep.ESTADO_RESERVA == "Y") {
-              await addReservation(data, token);
-              console.log("a");
-              setAlertS(true);
-              setCharge(true);
-            } else {
-              setAlertR(true);
-              setCharge(true);
-            }
-          } else {
-            setAlertR(true);
-            setCharge(true);
+      const validationPay = async () => {
+        const { data } = await axios.post(
+          "http://localhost:3000/api/mercadopago/webhook",
+          {
+            id: payid,
           }
-          setFlag(false);
-        };
+        );
+
+        let modalParams = {};
+
+        if (data.status == "approved") {
+          await addReservation(data, token);
+          
+          modalParams = {
+            success: true,
+            title: "Reserva Exitosa!",
+            message: <p>Mensaje bonito {data.reservation.reservation.id_dep}</p>
+          };
+          
+        } else {
+          modalParams = {
+            success: false,
+            title: "No se pudo realizar la reserva!",
+            message: <p>Mensaje feo {data.status}</p>
+          };
+        }
+
+        modalParams.redirect_to = '/departamentos2';
+        setParams(modalParams);
+        setModalType(modalTypes.info);
+        setShowModal(true);
+
+      };
 
       validationPay();
       
