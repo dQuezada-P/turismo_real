@@ -153,6 +153,9 @@ export const SignIn = () => {
                   type="password"
                   { ...register("password") }
                 />
+                <p className="text-red-700 dark:text-red-500 text-sm text-end w-full">
+                  {errors.password?.message}
+                </p>
               </div>
 
             </div>

@@ -1,26 +1,29 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Modal, Button } from "flowbite-react";
+import { useModal } from "../../context/hooks/useModal";
 
-export const ModalAlert = ({ alert, payment }) => {
-  const [isShowed, setIsShowed] = useState(true);
 
-  useEffect(() => {
-    setIsShowed(true);
-    return () => {};
-  }, []);
+export const ModalInfo = ({ params: {success, title, message, redirect_to} }) => {
+  const { setShowModal } = useModal();
+  const navigate = useNavigate();
+
   const onCloseModal = () => {
-    setIsShowed(false);
+    setShowModal(false);
+    navigate(redirect_to);
   };
 
   return (
-    <>
-      <Modal show={isShowed} size="lg" popup={true} onClose={onCloseModal}>
-        <Modal.Header />
+    <div className="fixed w-full h-screen bg-black/[.8] z-50">
+      <Modal show={true} size="lg" popup={true} onClose={onCloseModal}>
+        <Modal.Header>
+          { title }
+        </Modal.Header>
         <Modal.Body>
           <div className="relative w-auto my-6 mx-auto max-w-sm font-semibold">
             <div
               className={
-                alert
+                success
                   ? "bg-teal-200 border-t-4 border-teal-600 rounded-b text-teal-900 p-8 shadow-md"
                   : "bg-red-200 border-t-4 border-red-600 rounded-b text-red-900 p-8 shadow-md"
               }
@@ -28,7 +31,7 @@ export const ModalAlert = ({ alert, payment }) => {
             >
               <div className="flex flex-row items-center">
                 <div className="p-8 basis-2/5">
-                  {alert ? (
+                  {success ? (
                     <svg
                       className="h-14 w-14 text-green-800"
                       fill="none"
@@ -65,26 +68,14 @@ export const ModalAlert = ({ alert, payment }) => {
                 </div>
                 <div className="basis-3/5 w-4/5">
                   <p className="font-bold text-2xl capitalize">
-                    {alert
-                      ? "Reserva Exitosa"
-                      : "No Se pudo completar la reserva"}
-                  </p>
-                  <p className="text-base lining-nums ">
-                    {alert
-                      ? `Departamento: ${payment.reservation.reservation.nombre}`
-                      : "Error al intentar comprar"}
+                    {message}
                   </p>
                 </div>
-              </div>
-              <div className="text-center">
-                {alert
-                  ? "*Se le ha enviado un correo con el detalle de la reserva*"
-                  : ""}
               </div>
             </div>
           </div>
         </Modal.Body>
       </Modal>
-    </>
+    </div>
   );
 };

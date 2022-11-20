@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useDepartment } from "../../../context/hooks/useDepartment";
 import { useReservation } from "../../../context/hooks/useReservation";
 import { getTour } from "../../../services/tours/ApiRequestTour";
 import { getTransport } from "../../../services/transports/ApiRequestTransport";
@@ -7,12 +6,11 @@ import { getMercadoPago } from "../../../services/mercadoPago/mercadoPago";
 import { useAuth } from "../../../context/hooks/useAuth";
 import { Spinner } from "../../../components/spinner/Spinner";
 
-export const Pay = () => {
+export const Pay = ({department}) => {
   const [valueTransport, setValueTransport] = useState(0);
   const [valueTour, setValueTour] = useState([]);
   const { reservation, flagMercado, setReservation } = useReservation();
   const [charge, setCharge] = useState();
-  const { department } = useDepartment();
   const [flag, setFlag] = useState(true);
   const [chargeTran, setChargeTran] = useState(false);
   const [chargeTr, setChargeTr] = useState(false);

@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from '../context/hooks/useAuth';
 import { AuthUser } from '../services/auth/auth.js';
-import { BsFileLock } from "react-icons/bs";
-import { useDepartment } from '../context/hooks/useDepartment';
 
 export const Login = (next) => {
   const { user, setUser, isLogged, token, setToken } = useAuth();
-  const {setDepartments, bkupDepartment} =useDepartment()
 
   const navigate = useNavigate();
   useEffect(() => { 
@@ -16,9 +13,6 @@ export const Login = (next) => {
       navigate('/departamentos');
     }
     else console.info('No se ha logueado');
-    return()=>{
-      setDepartments(bkupDepartment)
-    }
   }, [token, user])
 
   const username = useFormInput('');
@@ -44,7 +38,6 @@ export const Login = (next) => {
         setToken(res.token)
     })
 
-    
   }
 
   return (<>

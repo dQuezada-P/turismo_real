@@ -14,7 +14,6 @@ import { Progress } from "flowbite-react";
 import "react-datepicker/dist/react-datepicker.css";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../../context/hooks/useAuth";
-import { useDepartment } from "../../context/hooks/useDepartment";
 import { GetDepartamento } from "../../services/department/ApiRequestDepartment";
 import { Circle } from "../reservation/components/Circle";
 import { Service } from "./components/Services";
@@ -23,7 +22,7 @@ import { useTransport } from "../../context/hooks/useTransport";
 import { useTour } from "../../context/hooks/useTour";
 import { useReservation } from "../../context/hooks/useReservation";
 import { Pay } from "./components/Pay";
-import { ModalAlert } from "../../components/modal/ModalAlert";
+
 
 
 export const Reserva = () => {
@@ -33,6 +32,7 @@ export const Reserva = () => {
   const { transports, setTransportList, flagTra, setFlagTra } = useTransport();
   const { tours, setTourList, flagTr, setFlagTr } = useTour();
   const [charge, setCharge] = useState(false);
+
 
   const TitlePages = [
     "Información del Arriendo",
@@ -126,13 +126,14 @@ export const Reserva = () => {
   };
 
   const PageDisplay = () => {
+    console.log(department)
     return formContent(
       page === 0 ? (
         <SummaryData department={department} user={user} />
       ) : page === 1 ? (
         <Service />
       ) : (
-        <Pay />
+        <Pay department={department}/>
       )
     );
   };
@@ -163,7 +164,7 @@ export const Reserva = () => {
   }, [circle, btnActive]);
 
   const { id } = useParams();
-  const { department, setDepartment } = useDepartment();
+  const [department, setDepartment] = useState({})
   const [flag, setFlag] = useState(false);
 
   useEffect(() => {

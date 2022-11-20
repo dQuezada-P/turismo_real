@@ -10,11 +10,9 @@ import { RowReserva } from './RowReserva';
 export const MisReservas = () => {
   const { user } = useAuth();
   const [reservations, setReservations] = useState(null);
-  const { isLoading, setIsLoading } = useLoading();
+  const { setIsLoading } = useLoading();
 
   useEffect(() => {
-    
-
     Promise.all([
       getUserReservations({id_user:user.ID})
     ]).then(([reservationList]) => {
@@ -24,7 +22,7 @@ export const MisReservas = () => {
       setTimeout(() => {
         setIsLoading(false);
       }, 2000)
-    })
+    });
   }, [])
   
   return <Card className="mb-3">

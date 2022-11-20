@@ -1,110 +1,51 @@
-import { useDepartment } from "../context/hooks/useDepartment";
 import { useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/hooks/useAuth";
-import Banner from "../components/banners/Banner";
-import { MdOutlineBathtub, MdOutlineBed } from "react-icons/md";
-import Modal from "../components/modal/Modal";
-import { getLocations } from "../services/locations/locations";
+
 import { useLoading } from "../context/hooks/useLoading";
+import { getLocations } from "../services/locations/locations";
+import { getDepartamentos } from "../services/department/ApiRequestDepartment";
+
+import { MdOutlineBathtub, MdOutlineBed } from "react-icons/md";
+
+import Banner from "../components/banners/Banner";
+import Modal from "../components/modal/Modal";
+
 export const Departamentos = () => {
-  const {
-    departments,
-    setDepartments,
-    bkupDepartment,
-    filterLocation,
-    setFilterLocation,
-  } = useDepartment();
-  const { showModal, setShowModal, token } = useAuth();
-  const { isLoading, setIsLoading } = useLoading();
-  let { state } = useLocation();
-  const nav = useNavigate();
+  const [departments, setDepartments] = useState([]);
   const [locations, setLocations] = useState([]);
-  let flag;
+  const [filter, setFilter] = useState(0);
+
+  const { isLoading, setIsLoading } = useLoading();
+
   useEffect(() => {
+    console.log('render')
     setIsLoading(true);
-    const getStates = async () => {
-      const states = await getLocations();
-      setLocations(states);
-      flag = true;
-    };
-    getStates();
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
-    return () => {
-      setDepartments(bkupDepartment);
-    };
-  }, [token]);
 
-  useEffect(() => {
-    if (state) {
-      setShowModal(true);
-      nav("", { state: false });
-    }
-  }, [state]);
+    Promise.all([
+      getLocations(),
+      getDepartamentos()
+    ]).then(([locationList, departmentList]) => {
+      setLocations(locationList);
+      setDepartments(departmentList);
+    }).finally(() => {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
+    });
 
-  const handleFilterLocation = (e) => {
-    if (e.target.value != 0) {
-      if (flag) {
-        const deptFilters = departments.filter((dept) => {
-          return dept.ID_LOCALIDAD == e.target.value;
-        });
-        console.log(deptFilters);
-        setDepartments(deptFilters);
-        flag = false;
-      } else {
-        const deptFilters = filterLocation.filter((dept) => {
-          return dept.ID_LOCALIDAD == e.target.value;
-        });
-        setDepartments(deptFilters);
-        flag = true;
-      }
-    } else {
-      setDepartments(bkupDepartment);
-    }
-  };
+  }, []);
 
-  departments.length == 0 && isLoading ? (
-    <div className=" h-full relative z-30">
-      <Banner
-        title={"Arriendo de departamentos"}
-        name={"Turismo Real"}
-        desc1={"Si deseas viajar y conocer lugares turísticos en el país,"}
-        desc2={
-          "es el lugar correcto. Como empresa ofrecemos los mejores servicios de arriendo de departamentos, servicio de transporte y también tours a las mejores zonas turísticas cercanas a los departamentos."
-        }
-        desc3={
-          "Para la comodidad de nuestros clientes ofrecemos la facilidad de interactuar con nosotros de manera online, fácil y secilla, si presentas cualquier consulta no dudes en hablarnos, toda la información se encuentra en la sección"
-        }
-      />
-      <div className="mx-auto container">
-        <label
-          htmlFor="filter"
-          className="block my-2 ml-4 sm:ml-0 relative text-base 2xl:text-lg font-semibold text-purple-600 dark:text-white"
-        >
-          Búsqueda Avanzada
-        </label>
-        <select
-          id="filter"
-          className="block p-2 mb-6 ml-4 sm:ml-0 w-11/12 sm:w-1/4 2xl:w-1/6 text-base relative text-purple-600 bg-gray-50 rounded-lg border border-purple-300 focus:ring-purple-400 focus:border-purple-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-white dark:focus:border-white shadow-md"
-          onChange={handleFilterLocation}
-        >
-          <option value={0}>Seleccionar Localidad</option>
-          {locations.map((location) => (
-            <option className="" key={location.ID} value={location.ID}>
-              {location.NOMBRE}
-            </option>
-          ))}
-        </select>
-      </div>
-      <h2 className="text-4xl text-center text-purple-800 underline decoration-black min-h-screen mt-40">
-        No HAY Departamentos Disponbles
-      </h2>
-    </div>
-  ) : (
-    ""
-  );
+  const handleFilterLocation = ({ target: { value } }) => {
+    setFilter(value);
+  }
+
+  const filteredDepartments = () => {
+    if (filter == 0) return departments;
+
+    return departments.filter((department) => {
+      return department.ID_LOCALIDAD == filter;
+    });
+  }
 
   return (
     <>
@@ -113,7 +54,6 @@ export const Departamentos = () => {
       ) : (
         <>
           {" "}
-          <Modal />
           <div className="Page_Departamentos relative z-30">
             <Banner
               title={"Arriendo de departamentos"}
@@ -150,7 +90,7 @@ export const Departamentos = () => {
             </div>
             {/* Cards */}
             <div className=" min-h-[30rem] container ml-4 sm:mx-auto flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 mb-8 ">
-              {departments.map((depto) => (
+              {filteredDepartments().map((depto) => (
                 <div
                   className="w-11/12 h-60 2xl:h-72 shadow-lg rounded-b-2xl transform transition duration-200 sm:hover:scale-105"
                   key={depto.ID}
@@ -201,5 +141,5 @@ export const Departamentos = () => {
         </>
       )}
     </>
-  );
-};
+  )
+}

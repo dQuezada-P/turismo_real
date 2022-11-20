@@ -181,3 +181,8 @@
 .atransition{
   transition:0.4s ease;
 }
+
+.mercadopago-button {
+  width: 300px!important;
+  background-color: #87428e!important;
+}
