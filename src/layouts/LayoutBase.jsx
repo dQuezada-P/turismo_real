@@ -7,6 +7,7 @@ import { useModal } from "../context/hooks/useModal";
 
 import { LoadingScreen } from "../components/loadingScreen/LoadingScreen";
 import { ModalInfo } from "../components/modal/ModalInfo";
+import { ModalAlert } from "../components/modal/ModalAlert";
 
 
 export const LayoutBase = () => {
@@ -20,7 +21,7 @@ export const LayoutBase = () => {
   return (
     <>
       { isLoading ? (<LoadingScreen/>) : '' }
-      { showModal ? modalType == modalTypes.info ? (<ModalInfo params={params}/>) : 'ModalAlert' : '' }
+      { showModal ? modalType == modalTypes.info ? (<ModalInfo params={params}/>) : (<ModalAlert params={params}/>) : '' }
       <Header />
       <Content Children={<Outlet/>}  />
     </>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Modal, Button } from "flowbite-react";
+import { Modal } from "flowbite-react";
 import { useModal } from "../../context/hooks/useModal";
 
 

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useAuth } from '../context/hooks/useAuth';
 import { AuthUser } from '../services/auth/auth.js';
 
 export const Login = (next) => {
   const { user, setUser, isLogged, token, setToken } = useAuth();
+  const [searchParams] = useSearchParams();
+  const next_url = searchParams.get("next_url");
 
   const navigate = useNavigate();
   useEffect(() => { 
@@ -13,7 +15,7 @@ export const Login = (next) => {
       navigate('/departamentos');
     }
     else console.info('No se ha logueado');
-  }, [token, user])
+  }, [])
 
   const username = useFormInput('');
   const password = useFormInput('');
@@ -36,6 +38,7 @@ export const Login = (next) => {
         setUser(res.user)
         localStorage.setItem('token',res.token)
         setToken(res.token)
+        navigate(next_url ? next_url : '/departamentos');
     })
 
   }

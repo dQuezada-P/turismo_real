@@ -1,23 +1,25 @@
 import { useEffect, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
-
-import { useLoading } from "../context/hooks/useLoading";
-import { GetDepartamento } from "../services/department/ApiRequestDepartment";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { Carousel } from "flowbite-react";
 
 import { HiOutlineBuildingOffice, HiOutlineMapPin } from "react-icons/hi2";
 import { MdOutlineBathtub, MdOutlineBed, MdOutlineChair } from "react-icons/md";
 
+import { useLoading } from "../context/hooks/useLoading";
+import { useAuth } from "../context/hooks/useAuth";
+import { useModal } from "../context/hooks/useModal";
+import { GetDepartamento } from "../services/department/ApiRequestDepartment";
 
 export const DepartamentoInfo = () => {
   const { id } = useParams();
   const [department, setDepartment] = useState({});
 
   const { isLoading, setIsLoading } = useLoading();
+  const { setShowModal, setParams, modalTypes, setModalType } = useModal();
+  const { isLogged } = useAuth();
 
   const navigate = useNavigate();
-
 
   useEffect(() => {
     console.log('render');
@@ -35,7 +37,19 @@ export const DepartamentoInfo = () => {
     });
 
   }, []);
-  
+
+  const handleReservation = () => {
+    const next_url = `/reserva/${department.ID}`;
+    if (isLogged()) navigate();
+
+    setModalType(modalTypes.alert);
+    setParams({
+      message: 'Para poder realizar una reserva, debe iniciar sesión como usuario',
+      redirect_to: `/login?next_url=${next_url}`,
+      continue_msg: 'Iniciar Sesión'
+    });
+    setShowModal(true);
+  }
 
   return <>
     {
@@ -128,16 +142,16 @@ export const DepartamentoInfo = () => {
                     </span>
                     {department.NOMBRE}
                   </h3>
-                  <Link
+                  <button
                     className={`${
                       department.ESTADO_RESERVA == "N"
                         ? "Button w-[80%] mx-auto mt-4 py-2 rounded-lg shadow-lg ransform transition duration-200 sm:hover:scale-105 bg-gradient-to-b from-purple-600 via-purple-800 to-gray-700 text-white hover:ring-2 hover:ring-gray-300  hover:bg-gradient-to-t hover:from-gray-700 hover:to-purple-600 dark:bg-gray-700 dark:from-gray-700 dark:ring-gray-500 hidden"
                         : "Button w-[80%] mx-auto mt-4 py-2 text-center rounded-lg shadow-lg ransform transition duration-200 sm:hover:scale-105 bg-gradient-to-b from-purple-600 via-purple-800 to-gray-700 text-white hover:ring-2 hover:ring-gray-300  hover:bg-gradient-to-t hover:from-gray-700 hover:to-purple-600 dark:bg-gray-700 dark:from-gray-700 dark:ring-gray-500 "
                     }`}
-                    to={`/reserva/${department.ID}`}
+                    onClick={handleReservation}
                   >
                     Reservar
-                  </Link>
+                  </button>
                 </div>
               </div>
             </div>
