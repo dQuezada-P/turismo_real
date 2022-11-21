@@ -48,7 +48,7 @@ export const Notificacion = () => {
           modalParams = {
             success: false,
             title: "No se pudo realizar la reserva!",
-            message: <p className="capitalize font-semibold text-base">Estado de la compra: {data.status}</p>,
+            message: <p className="capitalize font-semibold text-base text-center">Estado de la compra: {data.status}</p>,
           };
         }
 

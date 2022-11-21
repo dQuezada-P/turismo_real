@@ -15,8 +15,8 @@ export const Pay = ({ department }) => {
   const [chargeTran, setChargeTran] = useState(false);
   const [chargeTr, setChargeTr] = useState(false);
   const { token } = useAuth();
-  const [abono, setAbono] = useState(0);
-  const [totalReserva, setTotalReserva] = useState(0);
+  const [tours, setTours] = useState([]);
+  const [transport, setTtransport] = useState({});
   const [tr, setTr] = useState(0);
 
   useEffect(() => {
@@ -24,29 +24,35 @@ export const Pay = ({ department }) => {
       const getTran = async () => {
         if (reservation.transporte == 0) {
         } else {
-          const { PRECIO } = await getTransport(reservation.transporte);
-          setValueTransport(PRECIO);
+          const transport = await getTransport(reservation.transporte);
+          setTtransport(transport)
+          setValueTransport(transport.PRECIO);
         }
         setChargeTran(true);
       };
       let valueTr = 0;
+      let listValue = []
       const getTr = async () => {
         if (reservation.tour != 0 && reservation.tour.length == 0) {
-          const { PRECIO } = await getTour(reservation.tour);
-          setValueTour(valueTour.concat(PRECIO));
+          const tour = await getTour(reservation.tour);
+          setTours(tour)
+          setValueTour(valueTour.concat(tour.PRECIO));
           setChargeTr(true);
         } else if (reservation.tour.length >= 1) {
           const list = await Promise.all(
             reservation.tour.map(async (id) => {
-              const { PRECIO } = await getTour(id);
-              return PRECIO;
+              const tour = await getTour(id);
+              return tour;
             })
           );
+          
           list.forEach((value) => {
-            valueTr = valueTr + value;
+            valueTr = valueTr + value.PRECIO;
+            listValue.push(value.PRECIO)
           });
+          setTours(list)
           setTr(valueTr);
-          setValueTour(list);
+          setValueTour(listValue);
           setChargeTr(true);
         } else if (typeof reservation.tour == "string") {
         } else {
@@ -63,10 +69,12 @@ export const Pay = ({ department }) => {
       ...reservation,
       abono: (reservation.valor + valueTransport + tr) * 0.2,
       total: reservation.valor + valueTransport + tr,
+      tours : tours,
+      transports : transport
     });
   }, [valueTransport, valueTour]);
-
   useEffect(() => {
+    console.log(reservation)
     if (flagMercado) {
       charge == null ? setCharge(true) : null;
       setTimeout(async () => {
@@ -239,7 +247,7 @@ export const Pay = ({ department }) => {
         </div>
         <div className="flex flex-row items-center justify-center border-2 pr-4 py-2 rounded-2xl border-purple-600 dark:border-gray-700 ">
           <h3 className="text-base 2xl:text-lg w-60 text-center">
-            Total a Pagar:{" "}
+            Abono a Pagar:{" "}
           </h3>
           <p className="text-base 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
             {Intl.NumberFormat("es-CL", {

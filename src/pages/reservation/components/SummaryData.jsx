@@ -2,6 +2,7 @@ import DatePicker from "react-datepicker";
 import { Controller, useFormContext } from "react-hook-form";
 import React, { useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
+import { TextInput } from "flowbite-react";
 
 export const SummaryData = ({ department, user }) => {
   const {
@@ -12,7 +13,7 @@ export const SummaryData = ({ department, user }) => {
   return (
     <div className="w-full h-full flex flex-col sm:flex-row font-semibold dark:bg-gray-600 ">
       <div className="InfoUser w-full basis-[50%] border-b-2 border-purple-600 dark:border-gray-700 sm:border-b-0 sm:border-r-2 items-center justify-center ">
-        <div className="border-2 border-purple-600 dark:border-gray-700 rounded-xl w-[50%] mx-auto my-4">
+        <div className="border-2 border-purple-600 dark:border-gray-700 rounded-xl w-[90%] sm:w-[50%] mx-auto my-4">
           <p className="text-center text-base 2xl:text-2xl my-2 sm:my-4 underline decoration-purple-600 dark:decoration-gray-700 ">
             Datos de Contacto
           </p>
@@ -145,7 +146,7 @@ export const SummaryData = ({ department, user }) => {
         </div>
       </div>
       <div className="InfoDept basis-[50%] w-full  flex flex-col sm:flex-row font-semibold justify-center">
-        <div className="border-2 border-purple-600 dark:border-gray-700 rounded-xl w-[50%] mx-auto my-4">
+        <div className="border-2 border-purple-600 dark:border-gray-700 rounded-xl w-[90%] sm:w-[50%]  mx-auto my-4">
           <div className="w-full h-min flex flex-col items-center justify-center">
             <p className="text-center text-base 2xl:text-2xl my-2 sm:my-4 underline decoration-purple-600 dark:decoration-gray-700 ">
               Datos del Departamento
@@ -163,7 +164,7 @@ export const SummaryData = ({ department, user }) => {
                   <input
                     id="nameD"
                     type="text"
-                    className="bg-gray-200 appearance-none border-2 py-0 2xl:py-2 border-gray-200 rounded w-full leading-tight focus:outline-none focus:bg-white basis-[75%] text-center text-xs 2xl:text-base"
+                    className="bg-gray-200 appearance-none border-2 py-0 2xl:py-2 border-gray-200 rounded w-full leading-tight focus:outline-none focus:bg-white basis-[75%] text-center text-xs 2xl:text-base lining-nums"
                     disabled
                     value={department.NOMBRE}
                   />

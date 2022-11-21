@@ -175,9 +175,18 @@ export const Reserva = () => {
   useEffect(() => {
     const get = async () => {
       const dept = await GetDepartamento(id);
+      const tours = await getTours();
+      const listTour = tours.filter((tr) => {
+        if (tr.ID_LOCALIDAD == dept.ID_LOCALIDAD) return tr;
+      });
+      const transports = await getTransports();
+        const listTransport = transports.filter((tran) => {
+          if (tran.ID_LOCALIDAD == dept.ID_LOCALIDAD) return tran;
+        });
+      setTourList(listTour);
+      setTransportList(listTransport);
       if (!dept.msg) {
         setDepartment(dept);
-        setCharge(true);
         setReservation({
           ...reservation,
           rut: user.RUT,
@@ -188,27 +197,10 @@ export const Reserva = () => {
           valor: dept.VALOR_ARRIENDO,
         });
       }
+      setCharge(true);
     };
     get();
   }, []);
-
-  useEffect(() => {
-    const getService = async () => {
-      const tours = await getTours();
-      const listTour = tours.filter((tr) => {
-        if (tr.ID_LOCALIDAD === department.ID_LOCALIDAD) return tr;
-      });
-      setTourList(listTour);
-
-      const transports = await getTransports();
-      const listTransport = transports.filter((tran) => {
-        // console.log(tran)
-        if (tran.ID_LOCALIDAD === department.ID_LOCALIDAD) return tran;
-      });
-      setTransportList(listTransport);
-    };
-    getService();
-  }, [department]);
 
   const handlePagesPrev = () => {
     if (page == 2) {
