@@ -4,10 +4,9 @@ import { NavLink, useLocation } from "react-router-dom";
 import { Navbar, Dropdown, Avatar, Button } from "flowbite-react";
 
 export const Header = () => {
-  const { user, setUser, isLogged, setToken ,setResToken } = useAuth();
+  const { user, setUser, isLogged, setToken } = useAuth();
 
   useEffect(() => {
-    setResToken(false)
     const themeToggleDarkIcon = document.getElementById(
       "theme-toggle-dark-icon"
     );

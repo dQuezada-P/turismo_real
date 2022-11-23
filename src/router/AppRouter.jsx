@@ -24,47 +24,45 @@ export const AppRouter = () => {
   return (
     <>
       <Router>
-        <ContextLoading>
-          <ContextModal>
-            <ContextReservation>
-                  <Routes>
-                    <Route path="/" element={<LayoutBase />}>
+        <ContextModal>
+          <ContextReservation>
+                <Routes>
+                  <Route path="/" element={<LayoutBase />}>
+                    <Route
+                      index
+                      element={<Navigate to="departamentos" />}
+                    />
+                    <Route path="login" element={<Login />} />
+                    <Route path="signin" element={<SignIn />} />
+                    
+                    <Route
+                      path="departamentos"
+                      element={<Departamentos />}
+                    />
+                    
+                    <Route
+                      path="departamento/:id"
+                      element={<DepartamentoInfo />}
+                    />
+                    <Route path="tours" element={<Tours />} />
+                    <Route path="nosotros" element={<Nosotros />} />
+                    <Route path="contactanos" element={<Contactanos />} />
+                    <Route
+                      path="*"
+                      element={<Navigate to="departamentos" />}
+                    />
+                    <Route element={<ProtectedRoutes />}>
+                      <Route path="perfil" element={<PerfilUsuario />} />
+                      <Route path="reserva/:id" element={<Reserva />} />
                       <Route
-                        index
-                        element={<Navigate to="departamentos" />}
+                        path="notificacion"
+                        element={<Notificacion />}
                       />
-                      <Route path="login" element={<Login />} />
-                      <Route path="signin" element={<SignIn />} />
-                      
-                      <Route
-                        path="departamentos"
-                        element={<Departamentos />}
-                      />
-                      
-                      <Route
-                        path="departamento/:id"
-                        element={<DepartamentoInfo />}
-                      />
-                      <Route path="tours" element={<Tours />} />
-                      <Route path="nosotros" element={<Nosotros />} />
-                      <Route path="contactanos" element={<Contactanos />} />
-                      <Route
-                        path="*"
-                        element={<Navigate to="departamentos" />}
-                      />
-                      <Route element={<ProtectedRoutes />}>
-                        <Route path="perfil" element={<PerfilUsuario />} />
-                        <Route path="reserva/:id" element={<Reserva />} />
-                        <Route
-                          path="notificacion"
-                          element={<Notificacion />}
-                        />
-                      </Route>
                     </Route>
-                  </Routes>
-            </ContextReservation>
-          </ContextModal>
-        </ContextLoading>
+                  </Route>
+                </Routes>
+          </ContextReservation>
+        </ContextModal>
       </Router>
     </>
   );

@@ -2,7 +2,7 @@ import { Footer, Flowbite } from "flowbite-react";
 import { BsFacebook, BsInstagram, BsTwitter } from "react-icons/bs";
 export const FooterContent = () => {
   return (
-    <footer className="dark:bg-gray-800 w-full bg-gradient-to-b from-purple-700 to-gray-800 dark:bg-gradient-to-br dark:from-gray-700 dark:to-gray-700 ">
+    <footer className="mt-15 dark:bg-gray-800  w-full bg-gradient-to-b from-purple-700 to-gray-800 dark:bg-gradient-to-br dark:from-gray-700 dark:to-gray-700 ">
       <Footer container={true} className="relative z-40 w-full">
         <div className="container flex flex-col md:flex-row md:justify-between mx-auto md:gap-9 items-center">
           <div className="flex flex-row justify-center md:items-center">
@@ -18,7 +18,7 @@ export const FooterContent = () => {
               <span className="text-gold-200 dark:text-white">Real</span>
             </span>
           </div>
-          <h2 className="hidden md:inline font-semibold text-white">
+          <h2 className="hidden md:inline font-semibold text-white text-center">
             Turismo Real 2012 - 2022{" "}
             <span className="dark:text-gold-200">©</span>. Todos los derechos
             reservados.
@@ -28,10 +28,10 @@ export const FooterContent = () => {
               href="#"
               by="Turismo Real™"
               year={2022}
-              className="text-black font-semibold md:col-span-2 md:hidden "
+              className="text-black font-semibold md:col-span-2 md:hidden"
             />
 
-            <div className="flex flex-row gap-8 mt-4 md:col-span-1 text-white ">
+            <div className="flex flex-row gap-8 mt-4 md:col-span-1 text-white  ">
               <Footer.Icon
                 href="#"
                 icon={BsFacebook}

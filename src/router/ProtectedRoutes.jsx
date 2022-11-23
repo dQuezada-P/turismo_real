@@ -5,13 +5,6 @@ import { useLoading } from "../context/hooks/useLoading";
 
 const ProtectedRoutes = () => {
   const { isLogged, tokenVerified } = useAuth();
-  const { isLoading, setIsLoading } = useLoading();
-
-  // useEffect(() => {
-  //   console.log(isTokenVerified)
-  // }, [isTokenVerified])
-
-  
 
   return (
     <>

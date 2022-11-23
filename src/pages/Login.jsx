@@ -4,7 +4,7 @@ import { useAuth } from '../context/hooks/useAuth';
 import { AuthUser } from '../services/auth/auth.js';
 
 export const Login = (next) => {
-  const { user, setUser, isLogged, token, setToken } = useAuth();
+  const { setUser, user, isLogged, setToken, setTokenVerified } = useAuth();
   const [searchParams] = useSearchParams();
   const next_url = searchParams.get("next_url");
 
@@ -15,7 +15,7 @@ export const Login = (next) => {
       navigate('/departamentos');
     }
     else console.info('No se ha logueado');
-  }, [])
+  }, [user])
 
   const username = useFormInput('');
   const password = useFormInput('');
@@ -40,11 +40,13 @@ export const Login = (next) => {
         setToken(res.token)
         navigate(next_url ? next_url : '/departamentos');
     })
+    setTokenVerified(true)
+
 
   }
 
   return (<>
-  <div className="flex min-h-screen items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div className="w-full max-w-lg bg-white flex items-center justify-center py-10 rounded-xl drop-shadow-xl">
       <div className="w-full max-w-md space-y-8">
         <div>

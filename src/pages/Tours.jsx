@@ -61,7 +61,7 @@ export const Tours = () => {
             ))}
           </select>
         </div>
-        <h2 className="text-4xl text-center text-purple-800 underline decoration-black min-h-screen mt-40">
+        <h2 className="text-4xl text-center text-purple-800 underline decoration-black mt-40">
           No HAY Tours Disponbles
         </h2>
       </div>
@@ -99,7 +99,7 @@ export const Tours = () => {
             ))}
           </select>
         </div>
-        <div className=" min-h-[50rem] container ml-4 sm:mx-auto flex flex-col sm:grid sm:grid-cols-3 2xl:grid-cols-4 gap-4 mb-8 ">
+        <div className="container ml-4 sm:mx-auto flex flex-col sm:grid sm:grid-cols-3 2xl:grid-cols-4 gap-4 mb-8 ">
           {filteredTours().map((tour) => (
             <div
               className="w-11/12 h-60 2xl:h-72 shadow-lg rounded-b-2xl transform transition duration-200 sm:hover:scale-105"
