@@ -8,6 +8,9 @@ import { addUser } from "../services/user/ApiRequestUser";
 import { useAuth } from "../context/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 
+import { useLoading } from "../context/hooks/useLoading";
+import { useModal } from "../context/hooks/useModal";
+
 import $ from "jquery";
 
 
@@ -44,6 +47,9 @@ export const SignIn = () => {
   } = useForm({resolver: yupResolver(schema) });
 
   const { isLogged, user } = useAuth();
+  const { setIsLoading } = useLoading();
+  const { setShowModal, setParams, modalTypes, setModalType } = useModal();
+
 
   const navigate = useNavigate();
 
@@ -56,34 +62,48 @@ export const SignIn = () => {
   }, [user])
 
   const onSubmit = (data) => {
+    setIsLoading(true);
+
     console.log(data)
     data.telefono = `+56${data.telefono}`;
     data.id_rol = 3;
     
-    console.log(data.imagen[0])
-    
     var formData = new FormData();
-    formData.append(data.imagen[0].name, data.imagen[0]);
+    if(data.imagen[0])
+      formData.append(data.imagen[0].name, data.imagen[0]);
     delete data.imagen;
     
     formData.append("content", JSON.stringify(data));
 
-    // axios({
-    //   method: 'post',
-    //   url: 'http://192.168.1.69:8080/api/files',
-    //   data: formData,
-    //   header: {
-    //             'Accept': 'application/json',
-    //             'Content-Type': 'multipart/form-data',
-    //           },
-    //     })
+    console.log(formData.values);
 
     Promise.all([
       addUser(formData)
     ]).then(([response]) => {
       console.log(response);
+      if (response.msg) {
+        setModalType(modalTypes.info);
+        setParams({
+          success:false,
+          title:'Error!',
+          message: response.msg,
+          redirect_to: false,
+        });
+        setShowModal(true);
+      } else {
+        setModalType(modalTypes.alert);
+        setParams({
+          message: 'Usuario creado con éxito, ten en cuenta que puedes iniciar sesión con tu rut o correo electrónico',
+          redirect_to: `/login`,
+          continue_msg: 'Iniciar Sesión',
+          success: true,
+        });
+        setShowModal(true);
+      }
+    }).catch((error) => {
+      console.log(error);
     }).finally(() => {
-
+      setIsLoading(false);
     });
   };
 
@@ -135,7 +155,7 @@ export const SignIn = () => {
                       {...register("apellido")}
                     />
                     <p className="text-red-700 dark:text-red-500 text-sm text-end w-full">
-                      {errors.apellidos?.message}
+                      {errors.apellido?.message}
                     </p>
                   </div>
                 </div>

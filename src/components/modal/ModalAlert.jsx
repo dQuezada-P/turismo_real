@@ -6,13 +6,17 @@ import { useModal } from '../../context/hooks/useModal';
 import { HiOutlineExclamationCircle } from 'react-icons/hi2';
 
 
-export const ModalAlert = ({ params: {message, redirect_to, continue_msg} }) => {
+export const ModalAlert = ({ params: {message, redirect_to = null, continue_msg, success, callback = null} }) => {
   const { setShowModal } = useModal();
   const navigate = useNavigate();
 
   const onContinue = () => {
     onCloseModal();
-    navigate(redirect_to);
+    if(callback != null)
+      callback();
+    if(redirect_to != null)
+      navigate(redirect_to);
+    
   }
 
   const onCloseModal = () => {
@@ -35,7 +39,7 @@ export const ModalAlert = ({ params: {message, redirect_to, continue_msg} }) => 
           </h3>
           <div className="flex justify-center gap-4">
             <Button
-              color="failure"
+              color={success ? "success": "failure"}
               onClick={onContinue}
             >
               {continue_msg}
@@ -44,7 +48,7 @@ export const ModalAlert = ({ params: {message, redirect_to, continue_msg} }) => 
               color="gray"
               onClick={onCloseModal}
             >
-              Cancelar
+              Volver
             </Button>
           </div>
         </div>

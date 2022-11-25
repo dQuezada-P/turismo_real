@@ -2,7 +2,11 @@ import { Footer, Flowbite } from "flowbite-react";
 import { BsFacebook, BsInstagram, BsTwitter } from "react-icons/bs";
 export const FooterContent = () => {
   return (
-    <footer className="mt-15 dark:bg-gray-800  w-full bg-gradient-to-b from-purple-700 to-gray-800 dark:bg-gradient-to-br dark:from-gray-700 dark:to-gray-700 ">
+    <footer className="mt-15 w-full bg-fondo-footer relative overflow-hidden z-30" 
+      style={{
+        backgroundImage: `url(https://turismoreal2.s3.amazonaws.com/Fondo.jpg)`,
+        
+      }}>
       <Footer container={true} className="relative z-40 w-full">
         <div className="container flex flex-col md:flex-row md:justify-between mx-auto md:gap-9 items-center">
           <div className="flex flex-row justify-center md:items-center">
@@ -12,10 +16,10 @@ export const FooterContent = () => {
               alt="Turismo Real Logo"
             />
             <span className="text-xl font-semibold dark:text-white">
-              <span className="dark:text-gold-200 text-purple-600">
+            <span className="text-yellow-300">
                 Turismo
               </span>
-              <span className="text-gold-200 dark:text-white">Real</span>
+              <span className="text-white">Real</span>
             </span>
           </div>
           <h2 className="hidden md:inline font-semibold text-white text-center">

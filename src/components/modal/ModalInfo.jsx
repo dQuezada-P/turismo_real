@@ -11,7 +11,8 @@ export const ModalInfo = ({
 
   const onCloseModal = () => {
     setShowModal(false);
-    navigate(redirect_to);
+    if (redirect_to)
+      navigate(redirect_to);
   };
 
   return (
