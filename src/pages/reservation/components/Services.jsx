@@ -7,7 +7,12 @@ import { useFormContext } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useReservation } from "../../../context/hooks/useReservation";
 
-export const Service = ({ tourList, setFlagTr, transportList, setFlagTra }) => {
+export const Service = ({
+  tourList,
+  setFlagTr,
+  transportList,
+  setFlagTra,
+}) => {
   const { reservation, setReservation } = useReservation();
   const [titleTransporte, setTitleTransporte] = useState(true);
   const [flagTransporte, setFlagTransporte] = useState(true);
@@ -18,6 +23,7 @@ export const Service = ({ tourList, setFlagTr, transportList, setFlagTra }) => {
   const divTour = $("#tour");
   const otour = $("#otour");
   const [registerTran, setRegisterTran] = useState({});
+  const [trList, settrList] = useState([]);
   const {
     register,
     formState: { errors },
@@ -30,6 +36,10 @@ export const Service = ({ tourList, setFlagTr, transportList, setFlagTra }) => {
   }, [flagTransporte]);
   useEffect(() => {
     $("input:checkbox").prop("checked", false);
+    const listCupos = tourList.filter((tr) => {
+      if (tr.CUPO - (reservation.cantPersonas + 1) >= 0) return tr;
+    });
+    settrList(listCupos)
   }, []);
 
   const handleTransporte = () => {
@@ -106,6 +116,8 @@ export const Service = ({ tourList, setFlagTr, transportList, setFlagTra }) => {
   $("input[type=checkbox]").change(function () {
     setFlagTr(true);
   });
+
+  console.log(reservation);
   return (
     <div className="flex flex-col items-center gap-4 font-semibold h-full ">
       <p className="flex text-xs 2xl:text-2xl w-[95%] mt-4 underline ml-2">
@@ -131,7 +143,7 @@ export const Service = ({ tourList, setFlagTr, transportList, setFlagTra }) => {
         <div className="py-2 ml-4 text-sm w-min">
           <Dropdown
             inline={false}
-            color='purple'
+            color="purple"
             label={titleTransporte ? "Seleccionar" : "Volver"}
           >
             <Dropdown.Item>
@@ -232,20 +244,20 @@ export const Service = ({ tourList, setFlagTr, transportList, setFlagTra }) => {
           <p
             id=""
             className={
-              !tourList.length == 0 ? `hidden` : "text-red-700 uppercase"
+              !trList.length == 0 ? `hidden` : "text-red-700 uppercase"
             }
           >
-            *No existen servicios de tour para este departamento*
+            *No existen servicios de tour para este departamento/Cupos limitados por acompañantes*
           </p>
         </div>
         <div className="py-2 ml-4 text-sm w-min">
-          <Dropdown label={titleTour ? "Seleccionar" : "Volver"} color='purple'>
+          <Dropdown label={titleTour ? "Seleccionar" : "Volver"} color="purple">
             <Dropdown.Item>
               <button
                 className="py-1 px-2"
                 type="button"
                 onClick={handleTour}
-                disabled={tourList.length == 0 ? "disabled" : ""}
+                disabled={trList.length == 0 ? "disabled" : ""}
               >
                 {flagTour ? "Agregar Servicio" : "Cerrar Ventana"}
               </button>{" "}
@@ -288,7 +300,7 @@ export const Service = ({ tourList, setFlagTr, transportList, setFlagTra }) => {
               </Table.HeadCell>
             </Table.Head>
             <TableBody>
-              {tourList.map((tr) => (
+              {trList.map((tr) => (
                 <TableRow key={tr.ID}>
                   <TableCell className="text-xs 2xl:text-sm ">
                     {tr.DESCRIPCION}

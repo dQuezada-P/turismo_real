@@ -94,16 +94,19 @@ export const Reserva = () => {
           setBtnActive(btnActive + 1);
           setReservation({
             ...reservation,
-            dias: e.day,
-            tel: e.tel,
-            fecha: e.fecha,
-            cantPersonas: e.inv,
-            correo: e.correo,
             transporte: e.transport == undefined ? 0 : e.transport,
             tour: e.tour == undefined || e.tour == false ? 0 : e.tour,
           });
         }
       } else {
+        setReservation({
+          ...reservation,
+          dias: e.day,
+          tel: e.tel,
+          fecha: e.fecha,
+          cantPersonas: e.inv,
+          correo: e.correo,
+        });
         setPage((currPage) => currPage + 1);
         setBtnActive(btnActive + 1);
       }
@@ -137,6 +140,7 @@ export const Reserva = () => {
           setFlagTra={setFlagTra}
           tourList={tourList}
           transportList={transportList}
+          setTourList={setTourList}
         />
       ) : (
         <Pay department={department} />
@@ -180,9 +184,10 @@ export const Reserva = () => {
         if (tr.ID_LOCALIDAD == dept.ID_LOCALIDAD) return tr;
       });
       const transports = await getTransports();
-        const listTransport = transports.filter((tran) => {
-          if (tran.ID_LOCALIDAD == dept.ID_LOCALIDAD) return tran;
-        });
+      const listTransport = transports.filter((tran) => {
+        if (tran.ID_LOCALIDAD == dept.ID_LOCALIDAD && tran.ESTADO != 0)
+          return tran;
+      });
       setTourList(listTour);
       setTransportList(listTransport);
       if (!dept.msg) {
@@ -230,7 +235,6 @@ export const Reserva = () => {
         </div>
       </div>
     );
-
   return (
     <>
       <div className="BoxContent relative z-30 min-h-screen flex justify-center items-center font-semibold font-serif">

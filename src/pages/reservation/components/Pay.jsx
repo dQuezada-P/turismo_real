@@ -25,43 +25,51 @@ export const Pay = ({ department }) => {
         if (reservation.transporte == 0) {
         } else {
           const transport = await getTransport(reservation.transporte);
-          setTtransport(transport)
+          setTtransport(transport);
           setValueTransport(transport.PRECIO);
         }
         setChargeTran(true);
       };
       let valueTr = 0;
-      let listValue = []
+      let listValue = [];
+      let listt = [];
       const getTr = async () => {
-        if (reservation.tour != 0 && reservation.tour.length == 0) {
-          const tour = await getTour(reservation.tour);
-          setTours(tour)
-          setValueTour(valueTour.concat(tour.PRECIO));
-          setChargeTr(true);
-        } else if (reservation.tour.length >= 1) {
+        if (reservation.tour == 0) {
+        } else if (Array.isArray(reservation.tour)) {
           const list = await Promise.all(
             reservation.tour.map(async (id) => {
               const tour = await getTour(id);
               return tour;
             })
           );
-          
+
           list.forEach((value) => {
             valueTr = valueTr + value.PRECIO;
-            listValue.push(value.PRECIO)
+            listValue.push(value.PRECIO);
           });
-          setTours(list)
+          setTours(list);
           setTr(valueTr);
           setValueTour(listValue);
           setChargeTr(true);
-        } else if (typeof reservation.tour == "string") {
         } else {
-          setValueTour(valueTr);
+          const tour = await getTour(reservation.tour);
+          valueTr = tour.PRECIO;
+          listValue.push(tour.PRECIO);
+          listt.push(tour);
+          setTours(listt);
+          setTr(valueTr);
+          setValueTour(listValue);
+          setChargeTr(true);
         }
       };
       getTr();
       getTran();
     } catch (error) {}
+    // return () => {
+    //   setTours([]);
+    //   setTr(0);
+    //   setValueTour([]);
+    // };
   }, []);
 
   useEffect(() => {
@@ -69,12 +77,12 @@ export const Pay = ({ department }) => {
       ...reservation,
       abono: (reservation.valor + valueTransport + tr) * 0.2,
       total: reservation.valor + valueTransport + tr,
-      tours : tours,
-      transports : transport
+      tours: tours,
+      transports: transport,
     });
   }, [valueTransport, valueTour]);
   useEffect(() => {
-    console.log(reservation)
+    console.log(reservation);
     if (flagMercado) {
       charge == null ? setCharge(true) : null;
       setTimeout(async () => {
