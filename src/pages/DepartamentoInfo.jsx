@@ -50,7 +50,8 @@ export const DepartamentoInfo = () => {
     setParams({
       message: 'Para poder realizar una reserva, debe iniciar sesión como usuario',
       redirect_to: `/login?next_url=${next_url}`,
-      continue_msg: 'Iniciar Sesión'
+      continue_msg: 'Iniciar Sesión',
+      success: true,
     });
     setShowModal(true);
   }

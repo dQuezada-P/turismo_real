@@ -189,7 +189,7 @@ export const Header = () => {
               <span className="text-yellow-400 dark:text-yellow-300">
                 Turismo
               </span>
-              <span className="text-purple-600 dark:text-purple-500">Real</span> 
+              <span className="text-purple-600 dark:text-white">Real</span> 
             </span>
           </Navbar.Brand>
         </NavLink>

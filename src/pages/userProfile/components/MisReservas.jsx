@@ -17,7 +17,6 @@ export const MisReservas = () => {
       getUserReservations({id_user:user.ID})
     ]).then(([reservationList]) => {
       setReservations(reservationList);
-      console.log(reservationList);
     }).finally(() => {
       setTimeout(() => {
         setIsLoading(false);

@@ -20,7 +20,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.39.1",
     "react-icons": "^4.4.0",
-    "react-router-dom": "^6.3.0",
+    "react-router-dom": "^6.4.3",
     "react-sdk-mercadopago": "^1.1.1",
     "yup": "^0.32.11"
   },

@@ -92,7 +92,7 @@ export const Departamentos = () => {
             <div className=" min-h-[30rem] container ml-4 sm:mx-auto flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 mb-8 ">
               {filteredDepartments().map((depto) => (
                 <div
-                  className="w-11/12 h-60 2xl:h-72 shadow-lg rounded-b-2xl transform transition duration-200 sm:hover:scale-105"
+                  className="w-11/12 h-60 2xl:h-72 shadow-xl rounded-b-2xl transform transition duration-200 sm:hover:scale-105"
                   key={depto.ID}
                 >
                   <div className="h-full w-full rounded-t-2xl">

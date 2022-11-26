@@ -18,6 +18,15 @@ export const HttpPost = (endpoint, data, token = null) => {
     }
 }
 
+export const HttpPut = (endpoint, data, token = null) => {
+    try {
+        return axios.put('http://localhost:3000/api' + endpoint, data, { headers: { authorization: token } })
+        .then(response =>{ return response.data })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 // export const HttpPostFile = (endpoint, data, token = null) => {
 //     try {
 //         return axios.post('http://localhost:3000/api' + endpoint, data, { 
