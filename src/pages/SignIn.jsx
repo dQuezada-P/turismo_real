@@ -93,7 +93,7 @@ export const SignIn = () => {
       } else {
         setModalType(modalTypes.alert);
         setParams({
-          message: 'Usuario creado con éxito, ten en cuenta que puedes iniciar sesión con tu rut o correo electrónico',
+          message: 'Usuario creado con éxito. Para poder iniciar sesión debes verificar tu usuario, se te ha enviado un correo electrónico para hacerlo.',
           redirect_to: `/login`,
           continue_msg: 'Iniciar Sesión',
           success: true,

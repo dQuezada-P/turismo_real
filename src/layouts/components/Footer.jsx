@@ -16,7 +16,7 @@ export const FooterContent = () => {
               alt="Turismo Real Logo"
             />
             <span className="text-xl font-semibold dark:text-white">
-            <span className="text-yellow-300">
+              <span className="text-yellow-300">
                 Turismo
               </span>
               <span className="text-white">Real</span>
@@ -24,7 +24,7 @@ export const FooterContent = () => {
           </div>
           <h2 className="hidden md:inline font-semibold text-white text-center">
             Turismo Real 2012 - 2022{" "}
-            <span className="dark:text-gold-200">©</span>. Todos los derechos
+            <span className="text-gold-200">©</span>. Todos los derechos
             reservados.
           </h2>
           <div className="flex flex-col justify-center items-center">
@@ -32,7 +32,7 @@ export const FooterContent = () => {
               href="#"
               by="Turismo Real™"
               year={2022}
-              className="text-black font-semibold md:col-span-2 md:hidden"
+              className="text-white font-semibold md:col-span-2 md:hidden"
             />
 
             <div className="flex flex-row gap-8 mt-4 md:col-span-1 text-white  ">
