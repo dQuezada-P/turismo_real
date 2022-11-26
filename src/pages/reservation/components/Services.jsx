@@ -133,7 +133,7 @@ export const Service = ({
           <p
             id=""
             className={
-              !transportList.length == 0 ? `hidden` : "text-red-700 uppercase"
+              !transportList.length == 0 ? `hidden` : "text-red-600 tracking-wide uppercase"
             }
           >
             *No existen servicios de transporte para este departamento*
@@ -244,10 +244,10 @@ export const Service = ({
           <p
             id=""
             className={
-              !trList.length == 0 ? `hidden` : "text-red-700 uppercase"
+              !trList.length == 0 ? `hidden` : "text-red-600 uppercase tracking-wide"
             }
           >
-            *No existen servicios de tour para este departamento/Cupos limitados por acompañantes*
+            *No existen servicios de tour para este departamento y/o Se excede los cupos*
           </p>
         </div>
         <div className="py-2 ml-4 text-sm w-min">
