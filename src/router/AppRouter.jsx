@@ -19,6 +19,7 @@ import { PerfilUsuario } from "../pages/userProfile/PerfilUsuario";
 import { ContextLoading } from "../context/ContextLoading";
 import { ContextModal } from "../context/ContextModal";
 import { SignIn } from "../pages/SignIn";
+import { ConfirmarCuenta } from "../pages/auth/ConfirmarCuenta";
 
 export const AppRouter = () => {
   return (
@@ -33,6 +34,7 @@ export const AppRouter = () => {
                       element={<Navigate to="departamentos" />}
                     />
                     <Route path="login" element={<Login />} />
+                    <Route path="confirmar-cuenta" element={<ConfirmarCuenta />} />
                     <Route path="signin" element={<SignIn />} />
                     
                     <Route

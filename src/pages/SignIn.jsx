@@ -11,9 +11,6 @@ import { useNavigate } from "react-router-dom";
 import { useLoading } from "../context/hooks/useLoading";
 import { useModal } from "../context/hooks/useModal";
 
-import $ from "jquery";
-
-
 yup.setLocale({
   mixed: {
     required: 'Campo es requerido',
@@ -64,7 +61,6 @@ export const SignIn = () => {
   const onSubmit = (data) => {
     setIsLoading(true);
 
-    console.log(data)
     data.telefono = `+56${data.telefono}`;
     data.id_rol = 3;
     
