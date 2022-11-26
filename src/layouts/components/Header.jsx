@@ -181,7 +181,7 @@ export const Header = () => {
         <NavLink to={"/"} className={'transform transition duration-300 sm:hover:scale-110 '}>
           <Navbar.Brand>
             <img
-              src="/public/Logo New.png"
+              src="https://turismoreal2.s3.amazonaws.com/Logo+New.png"
               className="mr-3 h-6 sm:h-8 p-1rounded-md"
               alt="Turismo Real Logo"
             />

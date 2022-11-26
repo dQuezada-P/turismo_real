@@ -19,7 +19,7 @@ export const Notificacion = () => {
     try {
       const validationPay = async () => {
         const { data } = await axios.post(
-          "http://localhost:3000/api/mercadopago/webhook",
+          "http://52.91.212.222/api/mercadopago/webhook",
           {
             id: payid,
           }

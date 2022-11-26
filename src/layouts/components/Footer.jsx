@@ -11,7 +11,7 @@ export const FooterContent = () => {
         <div className="container flex flex-col md:flex-row md:justify-between mx-auto md:gap-9 items-center">
           <div className="flex flex-row justify-center md:items-center">
             <img
-              src="/public/Logo New.png"
+              src="https://turismoreal2.s3.amazonaws.com/Logo+New.png"
               className="mr-3 h-6 md:h-14 p-1rounded-md"
               alt="Turismo Real Logo"
             />
