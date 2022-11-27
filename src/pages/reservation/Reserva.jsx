@@ -160,7 +160,7 @@ export const Reserva = () => {
         classname={`flex items-center justify-center rounded-[50%] h-8 w-8 transition-transform ease-in border-2 2xl:h-12 2xl:w-12 ${
           i <= btnActive
             ? "bg-purple-600 border-purple-700 text-white shadow-lg"
-            : "bg-white border-gray-400"
+            : "bg-white border-gray-400 text-gray-600"
         }`}
         key={i}
       >

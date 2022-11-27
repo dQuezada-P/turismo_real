@@ -120,7 +120,7 @@ export const Pay = ({ department }) => {
       <h2 className="flex justify-center basis-[10%] my-1 text-base 2xl:text-2xl ">
         Resumen de la Orden
       </h2>
-      <div className="flex sm:flex-row flex-col justify-center basis-auto gap-4 ">
+      <div className="flex md:flex-row flex-col justify-center basis-auto gap-4 ">
         <div className="basis-[50%]">
           {" "}
           <div className="flex flex-col h-[90%] w-[80%] border-2 border-purple-600 dark:border-gray-700 gap-4 mx-auto m-8 py-4 rounded-2xl">
@@ -241,23 +241,23 @@ export const Pay = ({ department }) => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col sm:flex-row gap-4 sm:gap-24 text-center my-8 justify-center w-[100%] mx-auto ">
-        <div className="flex flex-row items-center justify-center border-2 pr-4 rounded-2xl border-purple-600 py-2 dark:border-gray-700 ">
-          <h3 className="text-base 2xl:text-lg w-60 text-center">
+      <div className="flex flex-col md:flex-row gap-4 md:gap-24 text-center my-8 justify-center w-[100%] mx-auto px-10">
+        <div className="flex flex-row items-center justify-center border-2 px-4 py-4 rounded-2xl border-purple-600 py-2 dark:border-gray-700">
+          <h3 className="text-base 2xl:text-lg text-center ">
             Costo Reservación :{" "}
           </h3>
-          <p className="text-base 2xl:text-lg bg-white py-1 px-2 dark:bg-gray-600 rounded-lg lining-nums">
+          <p className="text-base 2xl:text-lg bg-transparent pl-2  rounded-lg lining-nums">
             {Intl.NumberFormat("es-CL", {
               currency: "CLP",
               style: "currency",
             }).format((reservation.valor*reservation.dias) + valueTransport + tr)}
           </p>
         </div>
-        <div className="flex flex-row items-center justify-center border-2 pr-4 py-2 rounded-2xl border-purple-600 dark:border-gray-700 ">
-          <h3 className="text-base 2xl:text-lg w-60 text-center">
+        <div className="flex flex-row items-center justify-center border-2 px-4 py-4 rounded-2xl border-purple-600 dark:border-gray-700 ">
+          <h3 className="text-base 2xl:text-lg text-center">
             Abono a Pagar:{" "}
           </h3>
-          <p className="text-base 2xl:text-lg bg-white dark:bg-gray-600 py-1 px-2 rounded-lg lining-nums">
+          <p className="text-base 2xl:text-lg bg-white dark:bg-gray-600 pl-2 rounded-lg lining-nums">
             {Intl.NumberFormat("es-CL", {
               currency: "CLP",
               style: "currency",
