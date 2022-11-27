@@ -75,8 +75,8 @@ export const Pay = ({ department }) => {
   useEffect(() => {
     setReservation({
       ...reservation,
-      abono: (reservation.valor + valueTransport + tr) * 0.2,
-      total: reservation.valor + valueTransport + tr,
+      abono: ((reservation.valor*reservation.dias) + valueTransport + tr) * 0.2,
+      total: ((reservation.valor*reservation.dias) + valueTransport + tr),
       tours: tours,
       transports: transport,
     });
@@ -142,7 +142,7 @@ export const Pay = ({ department }) => {
               </p>
             </div>
             <div className="flex flex-row items-center w-[80%] mx-auto">
-              <h3 className="text-sm 2xl:text-lg w-44">Costo Arriendo: </h3>
+              <h3 className="text-sm 2xl:text-lg w-44">Costo Arriendo Por Noche: </h3>
               <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
                 {Intl.NumberFormat("es-CL", {
                   currency: "CLP",
@@ -244,13 +244,13 @@ export const Pay = ({ department }) => {
       <div className="flex flex-col sm:flex-row gap-4 sm:gap-24 text-center my-8 justify-center w-[100%] mx-auto ">
         <div className="flex flex-row items-center justify-center border-2 pr-4 rounded-2xl border-purple-600 py-2 dark:border-gray-700 ">
           <h3 className="text-base 2xl:text-lg w-60 text-center">
-            Costo Reservación:{" "}
+            Costo Reservación :{" "}
           </h3>
           <p className="text-base 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
             {Intl.NumberFormat("es-CL", {
               currency: "CLP",
               style: "currency",
-            }).format(reservation.valor + valueTransport + tr)}
+            }).format((reservation.valor*reservation.dias) + valueTransport + tr)}
           </p>
         </div>
         <div className="flex flex-row items-center justify-center border-2 pr-4 py-2 rounded-2xl border-purple-600 dark:border-gray-700 ">
@@ -261,7 +261,7 @@ export const Pay = ({ department }) => {
             {Intl.NumberFormat("es-CL", {
               currency: "CLP",
               style: "currency",
-            }).format((reservation.valor + valueTransport + tr) * 0.2)}
+            }).format(((reservation.valor*reservation.dias) + valueTransport + tr) * 0.2)}
           </p>
         </div>
       </div>

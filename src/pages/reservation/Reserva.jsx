@@ -195,7 +195,7 @@ export const Reserva = () => {
         setReservation({
           ...reservation,
           rut: user.RUT,
-          idUser: user.ID_ROL,
+          idUser: user.ID,
           idDep: dept.ID,
           nombre: dept.NOMBRE,
           img: dept.IMAGENES[0].url,

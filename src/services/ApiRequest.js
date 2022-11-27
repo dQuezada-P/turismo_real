@@ -20,7 +20,7 @@ export const HttpPost = (endpoint, data, token = null) => {
 
 export const HttpPut = (endpoint, data, token = null) => {
     try {
-        return axios.put('http://52.91.212.222/api' + endpoint, data, { headers: { authorization: token } })
+        return axios.put('http://52.91.212.222:3000/api' + endpoint, data, { headers: { authorization: token } })
         .then(response =>{ return response.data })
     } catch (error) {
         console.log(error)

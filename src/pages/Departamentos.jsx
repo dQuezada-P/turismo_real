@@ -18,26 +18,24 @@ export const Departamentos = () => {
   const { isLoading, setIsLoading } = useLoading();
 
   useEffect(() => {
-    console.log('render')
+    console.log("render");
     setIsLoading(true);
 
-    Promise.all([
-      getLocations(),
-      getDepartamentos()
-    ]).then(([locationList, departmentList]) => {
-      setLocations(locationList);
-      setDepartments(departmentList);
-    }).finally(() => {
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 2000);
-    });
-
+    Promise.all([getLocations(), getDepartamentos()])
+      .then(([locationList, departmentList]) => {
+        setLocations(locationList);
+        setDepartments(departmentList);
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 2000);
+      });
   }, []);
 
   const handleFilterLocation = ({ target: { value } }) => {
     setFilter(value);
-  }
+  };
 
   const filteredDepartments = () => {
     if (filter == 0) return departments;
@@ -45,7 +43,7 @@ export const Departamentos = () => {
     return departments.filter((department) => {
       return department.ID_LOCALIDAD == filter;
     });
-  }
+  };
 
   return (
     <>
@@ -68,7 +66,7 @@ export const Departamentos = () => {
                 "Para la comodidad de nuestros clientes ofrecemos la facilidad de interactuar con nosotros de manera online, fácil y secilla, si presentas cualquier consulta no dudes en hablarnos, toda la información se encuentra en la sección"
               }
             />
-            <div className="mx-auto container">
+            <div className="mx-auto container mb-4">
               <label
                 htmlFor="filter"
                 className="block my-2 ml-4 sm:ml-0 relative text-base 2xl:text-lg font-semibold text-purple-600 dark:text-white"
@@ -87,8 +85,10 @@ export const Departamentos = () => {
                   </option>
                 ))}
               </select>
+              <p className="text-black dark:text-white text-xl md:text-lg bg-white dark:bg-gray-700 w-fit p-3 px-4 rounded-xl shadow-xl">Los valores de arriendos mostrados son por noche</p>
             </div>
             {/* Cards */}
+
             <div className=" min-h-[30rem] container ml-4 sm:mx-auto flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 mb-8 ">
               {filteredDepartments().map((depto) => (
                 <div
@@ -110,6 +110,7 @@ export const Departamentos = () => {
                           style: "currency",
                         }).format(depto.VALOR_ARRIENDO)}
                       </h3>
+
                       <div className="flex flex-row items-center ">
                         <h4 className="ml-4 font-semibold text-sm basis-2/5   ">
                           {depto.UBICACION}{" "}
@@ -141,5 +142,5 @@ export const Departamentos = () => {
         </>
       )}
     </>
-  )
-}
+  );
+};
