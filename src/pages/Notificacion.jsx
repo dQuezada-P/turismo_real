@@ -19,7 +19,7 @@ export const Notificacion = () => {
     try {
       const validationPay = async () => {
         const { data } = await axios.post(
-          "http://52.91.212.222:3000/api/mercadopago/webhook",
+          "http://3.209.249.183:3000/api/mercadopago/webhook",
           {
             id: payid,
           }
@@ -28,6 +28,7 @@ export const Notificacion = () => {
         let modalParams = {};
 
         if (data.status == "approved") {
+          console.log('data ', data);
           await addReservation(data, token);
 
           modalParams = {
