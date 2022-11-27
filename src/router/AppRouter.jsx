@@ -20,6 +20,7 @@ import { ContextLoading } from "../context/ContextLoading";
 import { ContextModal } from "../context/ContextModal";
 import { SignIn } from "../pages/SignIn";
 import { ConfirmarCuenta } from "../pages/auth/ConfirmarCuenta";
+import { Reserva2 } from "../pages/reservation/Reserva2";
 
 export const AppRouter = () => {
   return (
@@ -56,6 +57,7 @@ export const AppRouter = () => {
                     <Route element={<ProtectedRoutes />}>
                       <Route path="perfil" element={<PerfilUsuario />} />
                       <Route path="reserva/:id" element={<Reserva />} />
+                      <Route path="reserva2/:id" element={<Reserva2/>} />
                       <Route
                         path="notificacion"
                         element={<Notificacion />}

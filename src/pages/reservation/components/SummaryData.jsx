@@ -2,7 +2,7 @@ import DatePicker from "react-datepicker";
 import { Controller, useFormContext } from "react-hook-form";
 import React, { useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
-import { TextInput } from "flowbite-react";
+import { TextInput, Label } from "flowbite-react";
 
 export const SummaryData = ({ department, user }) => {
   const {
@@ -11,143 +11,139 @@ export const SummaryData = ({ department, user }) => {
     formState: { errors },
   } = useFormContext();
   return (
-    <div className="w-full h-full flex flex-col sm:flex-row font-semibold dark:bg-gray-600 ">
-      <div className="InfoUser w-full basis-[50%] border-b-2 border-purple-600 dark:border-gray-700 sm:border-b-0 sm:border-r-2 items-center justify-center ">
-        <div className="border-2 border-purple-600 dark:border-gray-700 rounded-xl w-[90%] sm:w-[50%] mx-auto my-4">
-          <p className="text-center text-base 2xl:text-2xl my-2 sm:my-4 underline decoration-purple-600 dark:decoration-gray-700 ">
-            Datos de Contacto
-          </p>
-          <div className="w-full h-min flex flex-col">
-            <div className="flex flex-col items-center gap-4">
-              <div className="flex flex-col gap-4">
-                <div className="flex flex-row place-items-center gap-2 ">
-                  {" "}
-                  <label
-                    htmlFor="rut"
-                    className="text-xs sm:text-base 2xl:text-xl basis-[25%]"
-                  >
-                    Rut:{" "}
-                  </label>
-                  <input
-                    id="rut"
-                    type="text"
-                    className="bg-gray-200 appearance-none border-2 py-0 2xl:py-2 border-gray-200 rounded w-full leading-tight focus:outline-none focus:bg-white basis-[75%] lining-nums text-center text-xs 2xl:text-base"
-                    disabled
-                    value={user.RUT}
-                  />
-                </div>
-                <div className="flex flex-row place-items-center gap-2">
-                  {" "}
-                  <label
-                    htmlFor="name"
-                    className="text-xs sm:text-base 2xl:text-xl basis-[25%]"
-                  >
-                    Dias:{" "}
-                  </label>
-                  <input
-                    id="name"
-                    type="text"
-                    className="border-2 border-gray-200 rounded w-full py-0 2xl:py-2 leading-tight focus:outline-none focus:bg-white basis-[75%] text-center text-sm 2xl:text-base text-black lining-nums"
-                    {...register("day")}
-                  />
-                </div>
-                <p className="text-red-700 text-xs text-end w-full lining-nums">
-                  {errors.day?.message}
-                </p>
-                <div className="flex flex-row place-items-center gap-2">
-                  {" "}
-                  <label
-                    htmlFor="email"
-                    className="text-xs sm:text-base 2xl:text-xl basis-[25%]"
-                  >
-                    Correo:{" "}
-                  </label>
-                  <input
-                    id="email"
-                    type="text"
-                    name="correo"
-                    className="border-2 border-gray-200 rounded w-full py-0 2xl:py-2 leading-tight focus:outline-none focus:bg-white basis-[75%] text-center text-sm 2xl:text-base text-black lining-nums"
-                    placeholder="correo@correo.cl"
-                    defaultValue={user.CORREO}
-                    {...register("correo")}
-                  />
-                </div>
-                <p className="text-red-700 text-xs text-end w-full lining-nums">
-                  {errors.correo?.message}
-                </p>
-                <div className="flex flex-row place-items-center gap-2">
-                  {" "}
-                  <label
-                    htmlFor="tel"
-                    className="text-xs sm:text-base 2xl:text-xl basis-[25%]"
-                  >
-                    Telefóno:{" "}
-                  </label>
-                  <input
-                    id="tel"
-                    type="text"
-                    className=" border-2 border-gray-200 rounded  py-0 2xl:py-2 leading-tight focus:outline-none focus:bg-white basis-[75%] text-center text-sm 2xl:text-base text-black lining-nums"
-                    placeholder="+56912345678"
-                    defaultValue={user.TELEFONO}
-                    {...register("tel")}
-                  />
-                </div>
-                <p className="text-red-700 text-xs text-end w-full lining-nums">
-                  {errors.tel?.message}
-                </p>
-                <div className="flex flex-row place-items-center gap-2">
-                  {" "}
-                  <label
-                    htmlFor="inv"
-                    className="text-xs sm:text-base 2xl:text-xl basis-[25%]"
-                  >
-                    Invitados:{" "}
-                  </label>
-                  <input
-                    id="inv"
-                    type="text"
-                    className="border-2 border-gray-200 rounded  py-0 2xl:py-2 leading-tight focus:outline-none focus:bg-white basis-[75%] text-center text-sm 2xl:text-base text-black lining-nums"
-                    {...register("inv")}
-                  />
-                </div>
-                <p className="text-red-700 text-xs text-end w-full lining-nums">
-                  {errors.inv?.message}
-                </p>
-                <div className="flex flex-row place-items-center gap-2 mb-4 sm:mb-0">
-                  {" "}
-                  <label
-                    htmlFor="fecha"
-                    className="text-xs sm:text-base 2xl:text-xl basis-[25%]"
-                  >
-                    Fecha:{" "}
-                  </label>
-                  <Controller
-                    id="fecha"
-                    control={control}
-                    name="fecha"
-                    render={({ field: { onChange, value } }) => (
-                      <DatePicker
-                        className=" lining-nums border-2 text-black w-full border-gray-200 rounded py-0 sm:py-1 2xl:py-2 focus:outline-none focus:bg-white basis-auto text-xs 2xl:text-lg text-center "
-                        onChange={onChange}
-                        selected={value}
-                        minDate={new Date()}
-                        dateFormat={"dd/MM/yyyy"}
-                      />
-                    )}
-                  />
-                </div>
-                <p className="text-red-700 text-xs text-end w-full">
-                  {errors.fecha?.message}
-                </p>
-                <input id="btnSubmit" hidden type="submit" />
+    <div className="w-full h-full flex flex-col md:flex-row font-semibold dark:bg-gray-600 ">
+      <div className="InfoUser w-full pb-4 md:pr-4 border-b-2 border-purple-600 dark:border-gray-700 sm:border-b-0 md:border-r-2 items-center justify-center ">
+        
+        <p className="text-center text-base 2xl:text-2xl my-4 underline decoration-purple-600 dark:decoration-gray-700 ">
+          Datos de Contacto
+        </p>
+        <div className="w-full flex flex-col gap-4">
+          <div className="xl:flex md:gap-4 ">
+            <div className="w-full mb-2">
+              <div className="mb-2 block">
+                <Label htmlFor="rut" value="Rut" />
+                <span className="text-red-500 text-2xl h-full align-middle">
+                  *
+                </span>
               </div>
+              <TextInput
+                id="rut"
+                type="text"
+                name="rut"
+                value={user.RUT}
+                disabled
+              />
+            </div>
+            <div className="w-full mb-2">
+              <div className="mb-2 block">
+                <Label htmlFor="correo" value="Correo" />
+                <span className="text-red-500 text-2xl h-full align-middle">
+                  *
+                </span>
+              </div>
+              <TextInput
+                id="correo"
+                type="text"
+                name="correo"
+                value={user.CORREO}
+                {...register("correo")}
+              />
+              <p className="text-red-700 dark:text-red-500 text-sm text-end w-full">
+                {errors.correo?.message}
+              </p>
             </div>
           </div>
+          <div className="xl:flex md:gap-4 ">
+            <div className="w-full mb-2">
+              <div className="mb-2 block">
+                <Label htmlFor="tel" value="Teléfono" />
+                <span className="text-red-500 text-2xl h-full align-middle">
+                  *
+                </span>
+              </div>
+              <TextInput
+                id="tel"
+                type="text"
+                name="tel"
+                value={user.TELEFONO}
+                {...register("tel")}
+              />
+              <p className="text-red-700 dark:text-red-500 text-sm text-end w-full">
+                {errors.tel?.message}
+              </p>
+            </div>
+
+            <div className="w-full mb-2">
+              <div className="mb-2 block">
+                <Label htmlFor="day" value="Días" />
+                <span className="text-red-500 text-2xl h-full align-middle">
+                  *
+                </span>
+              </div>
+              <TextInput
+                id="day"
+                type="text"
+                name="day"
+                {...register("day")}
+              />
+              <p className="text-red-700 dark:text-red-500 text-sm text-end w-full">
+                {errors.day?.message}
+              </p>
+            </div>
+          </div>
+          <div className="xl:flex md:gap-4 ">
+            <div className="w-full mb-2">
+              <div className="mb-2 block">
+                <Label htmlFor="inv" value="Invitados" />
+                <span className="text-red-500 text-2xl h-full align-middle">
+                  *
+                </span>
+              </div>
+              <TextInput
+                id="inv"
+                type="text"
+                name="inv"
+                {...register("inv")}
+              />
+              <p className="text-red-700 dark:text-red-500 text-sm text-end w-full">
+                {errors.inv?.message}
+              </p>
+            </div>
+        
+            <div className="w-full mb-2">
+              {" "}
+              <div className="mb-2 block">
+                <Label htmlFor="fecha" value="Fecha" />
+                <span className="text-red-500 text-2xl h-full align-middle">
+                  *
+                </span>
+              </div>
+              <Controller
+                id="fecha"
+                control={control}
+                name="fecha"
+                render={({ field: { onChange, value } }) => (
+                  <DatePicker
+                    className="block w-full border disabled:cursor-not-allowed disabled:opacity-50 bg-gray-50 border-gray-300 text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 rounded-lg p-2.5 text-sm"
+                    onChange={onChange}
+                    selected={value}
+                    minDate={new Date()}
+                    dateFormat={"dd/MM/yyyy"}
+                  />
+                )}
+              />
+              <p className="text-red-700 dark:text-red-500 text-sm text-end w-full">
+              {errors.fecha?.message}
+            </p>
+            </div>
+          </div>
+          
+          
+          <input id="btnSubmit" hidden type="submit" />
         </div>
       </div>
-      <div className="InfoDept basis-[50%] w-full  flex flex-col sm:flex-row font-semibold justify-center">
-        <div className="border-2 border-purple-600 dark:border-gray-700 rounded-xl w-[90%] sm:w-[50%]  mx-auto my-4">
-          <div className="w-full h-min flex flex-col items-center justify-center">
+      <div className="InfoDept  w-full  flex flex-col sm:flex-row md:basis-[100%] xl:md:basis-[75%] font-semibold justify-center">
+        <div className="w-full h-min flex flex-col px-4">
             <p className="text-center text-base 2xl:text-2xl my-2 sm:my-4 underline decoration-purple-600 dark:decoration-gray-700 ">
               Datos del Departamento
             </p>
@@ -205,7 +201,6 @@ export const SummaryData = ({ department, user }) => {
               </div>
             </div>
           </div>
-        </div>
       </div>
     </div>
   );

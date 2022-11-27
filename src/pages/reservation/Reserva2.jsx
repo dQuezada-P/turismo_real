@@ -24,7 +24,7 @@ import { Pay } from "./components/Pay";
 import { getTours } from "../../services/tours/ApiRequestTour";
 import { getTransports } from "../../services/transports/ApiRequestTransport";
 
-export const Reserva = () => {
+export const Reserva2 = () => {
   const { reservation, setReservation, setFlagMercado } = useReservation();
   const { user } = useAuth();
   const [page, setPage] = useState(0);
