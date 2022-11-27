@@ -107,7 +107,7 @@ export const Tours = () => {
             >
               <div className="h-full w-full rounded-t-2xl">
                 <img
-                  src={tour.IMAGENES[0].url}
+                  src={tour.IMAGENES ? tour.IMAGENES[0].url : '' }
                   alt="iamgen"
                   className="object-cover w-full rounded-t-2xl h-3/5"
                 />

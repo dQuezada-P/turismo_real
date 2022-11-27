@@ -198,7 +198,7 @@ export const Reserva = () => {
           idUser: user.ID,
           idDep: dept.ID,
           nombre: dept.NOMBRE,
-          img: dept.IMAGENES[0].url,
+          img: dept.IMAGENES ? dept.IMAGENES[0].url : '' ,
           valor: dept.VALOR_ARRIENDO,
         });
       }

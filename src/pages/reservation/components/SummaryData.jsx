@@ -197,7 +197,7 @@ export const SummaryData = ({ department, user }) => {
                 <div className="flex flex-row place-items-center"> </div>
                 <div className="flex flex-row h-48 justify-center ">
                   <img
-                    src={department.IMAGENES[0].url}
+                    src={department.IMAGENES ? department.IMAGENES[0].url : '' }
                     alt="Imagen"
                     className="w-60 h-44 2xl:w-72 2xl:h-52  rounded-md border-2 border-gray-700"
                   />
