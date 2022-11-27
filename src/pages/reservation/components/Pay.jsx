@@ -116,11 +116,11 @@ export const Pay = ({ department }) => {
 
   if (!chargeTr && !chargeTran) return <div></div>;
   return (
-    <div className="flex flex-col w-full h-full font-semibold">
-      <h2 className="flex justify-center basis-[10%] my-1 text-base 2xl:text-2xl">
+    <div className="flex flex-col w-full h-full font-semibold dark:bg-gray-600 rounded-lg">
+      <h2 className="flex justify-center basis-[10%] my-1 text-base 2xl:text-2xl ">
         Resumen de la Orden
       </h2>
-      <div className="flex sm:flex-row flex-col justify-center basis-auto gap-4">
+      <div className="flex sm:flex-row flex-col justify-center basis-auto gap-4 ">
         <div className="basis-[50%]">
           {" "}
           <div className="flex flex-col h-[90%] w-[80%] border-2 border-purple-600 dark:border-gray-700 gap-4 mx-auto m-8 py-4 rounded-2xl">
@@ -128,22 +128,22 @@ export const Pay = ({ department }) => {
               Datos Reserva
             </p>
             <div className="flex flex-row w-[80%] mx-auto items-center">
-              <h3 className="text-sm 2xl:text-lg w-44">
+              <h3 className="text-sm 2xl:text-lg w-44  ">
                 Nombre Departamento:{" "}
               </h3>
-              <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg">
+              <p className="text-sm 2xl:text-lg bg-white py-1 px-2 dark:bg-gray-600 rounded-lg">
                 {reservation.nombre}
               </p>
             </div>
             <div className="flex flex-row items-center w-[80%] mx-auto">
               <h3 className="text-sm 2xl:text-lg w-44">Ubicación: </h3>
-              <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg capitalize">
+              <p className="text-sm 2xl:text-lg bg-white py-1 px-2 rounded-lg dark:bg-gray-600 capitalize">
                 {department.UBICACION}
               </p>
             </div>
             <div className="flex flex-row items-center w-[80%] mx-auto">
               <h3 className="text-sm 2xl:text-lg w-44">Costo Arriendo Por Noche: </h3>
-              <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
+              <p className="text-sm 2xl:text-lg bg-white py-1 px-2 dark:bg-gray-600 rounded-lg lining-nums">
                 {Intl.NumberFormat("es-CL", {
                   currency: "CLP",
                   style: "currency",
@@ -155,24 +155,24 @@ export const Pay = ({ department }) => {
 
         <div className="basis-[50%] ">
           <div className="flex flex-col h-[90%] w-[80%] border-2 border-purple-600 dark:border-gray-700 gap-4 mx-auto m-8 py-4 rounded-2xl">
-            <h2 className="text-sm 2xl:text-lg text-center underline underline-offset-4">
+            <h2 className="text-sm 2xl:text-lg text-center underline  underline-offset-4">
               Servicios Adicionales
             </h2>
             <div className="flex flex-row items-center w-[80%] mx-auto">
               <h3 className="text-sm 2xl:text-lg w-32">ID Transporte:</h3>
               {reservation.transporte == 0 ? (
-                <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
+                <p className="text-sm 2xl:text-lg bg-white py-1 dark:bg-gray-600 px-2 rounded-lg lining-nums">
                   Omitido
                 </p>
               ) : (
-                <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
+                <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2  rounded-lg lining-nums">
                   {reservation.transporte}
                 </p>
               )}
             </div>
             <div className="flex flex-row items-center w-[80%] mx-auto">
               <h3 className="text-sm 2xl:text-lg w-32 ">Valor Transporte: </h3>
-              <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
+              <p className="text-sm 2xl:text-lg bg-white py-1 px-2 dark:bg-gray-600 rounded-lg lining-nums">
                 {Intl.NumberFormat("es-CL", {
                   currency: "CLP",
                   style: "currency",
@@ -182,11 +182,11 @@ export const Pay = ({ department }) => {
             <div className="flex flex-row items-center w-[80%] mx-auto">
               <h3 className="text-sm 2xl:text-lg w-32">ID Tour:</h3>
               {!reservation.tour ? (
-                <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
+                <p className="text-sm 2xl:text-lg bg-white py-1 px-2 dark:bg-gray-600 rounded-lg lining-nums">
                   Omitido
                 </p>
               ) : reservation.tour.length == 0 ? (
-                <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
+                <p className="text-sm 2xl:text-lg bg-gray-200  py-1 px-2 rounded-lg lining-nums">
                   Omitido
                 </p>
               ) : Array.isArray(reservation.tour) ? (
@@ -207,7 +207,7 @@ export const Pay = ({ department }) => {
             <div className="flex flex-row items-center w-[80%] mx-auto">
               <h3 className="text-sm 2xl:text-lg w-32">Valor Tour: </h3>
               {!reservation.tour ? (
-                <p className="text-sm 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
+                <p className="text-sm 2xl:text-lg bg-white dark:bg-gray-600 py-1 px-2 rounded-lg lining-nums">
                   {Intl.NumberFormat("es-CL", {
                     currency: "CLP",
                     style: "currency",
@@ -246,7 +246,7 @@ export const Pay = ({ department }) => {
           <h3 className="text-base 2xl:text-lg w-60 text-center">
             Costo Reservación :{" "}
           </h3>
-          <p className="text-base 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
+          <p className="text-base 2xl:text-lg bg-white py-1 px-2 dark:bg-gray-600 rounded-lg lining-nums">
             {Intl.NumberFormat("es-CL", {
               currency: "CLP",
               style: "currency",
@@ -257,7 +257,7 @@ export const Pay = ({ department }) => {
           <h3 className="text-base 2xl:text-lg w-60 text-center">
             Abono a Pagar:{" "}
           </h3>
-          <p className="text-base 2xl:text-lg bg-gray-200 py-1 px-2 rounded-lg lining-nums">
+          <p className="text-base 2xl:text-lg bg-white dark:bg-gray-600 py-1 px-2 rounded-lg lining-nums">
             {Intl.NumberFormat("es-CL", {
               currency: "CLP",
               style: "currency",

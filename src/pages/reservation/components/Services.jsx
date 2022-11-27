@@ -126,14 +126,14 @@ export const Service = ({
       <div className="w-[95%] mt-2 rounded-lg bg-gray-100 dark:bg-gray-500 ">
         <div className="border-b-2 border-gray-700 flex items-center place-items-center py-1 gap-4 ">
           <p className="text-sm ml-2 2xl:text-xl">Servicios Transportes</p>
-          <p id="oTransport" className="text-red-700 hidden ">
-            Ha Escogido Omitir el Servicio!
+          <p id="oTransport" className="text-red-700 hidden  dark:text-white">
+          Ningún Transporte seleccionado!
           </p>
           <p>{errors.transport?.message}</p>
           <p
             id=""
             className={
-              !transportList.length == 0 ? `hidden` : "text-red-600 tracking-wide uppercase"
+              !transportList.length == 0 ? `hidden` : "text-red-600 tracking-wide uppercase dark:text-white"
             }
           >
             *No existen servicios de transporte para este departamento*
@@ -237,14 +237,14 @@ export const Service = ({
       <div className="w-[95%] mt-2 rounded-lg bg-gray-100 dark:bg-gray-500 mb-4 ">
         <div className="border-b-2 border-gray-700 flex items-center place-items-center py-1 gap-4 ">
           <p className="text-sm ml-2 2xl:text-xl">Servicios Tour</p>
-          <p id="otour" className="text-red-700 hidden ">
-            Ha Escogido Omitir el Servicio!
+          <p id="otour" className=" dark:text-white text-red-700 hidden">
+            Ningún Tour seleccionado !
           </p>
           <p>{errors.transport?.message}</p>
           <p
             id=""
             className={
-              !trList.length == 0 ? `hidden` : "text-red-600 uppercase tracking-wide"
+              !trList.length == 0 ? `hidden` : "text-red-600 uppercase tracking-wide uppercase dark:text-white"
             }
           >
             *No existen servicios de tour para este departamento y/o Se excede los cupos*

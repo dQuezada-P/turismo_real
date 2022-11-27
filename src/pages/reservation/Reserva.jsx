@@ -258,8 +258,8 @@ export const Reserva = () => {
                 type="button"
                 className={
                   page == 0
-                    ? "text-center w-28 2xl:w-44 sm:w-36 flex flex-row items-center justify-center gap-2 h-[50%] px-4 py-2 2xl:px-12 dark:ring-gray-600 bg-gray-700 text-white rounded-lg ease-out dark:from-black dark:to-gray-600 ring-purple-500 text-sm sm:text-base 2xl:text-lg "
-                    : "text-center w-28 2xl:w-44 sm:w-36 flex flex-row items-center justify-center gap-2 h-[50%] px-4 py-2 2xl:px-12 hover:ring-2 dark:ring-gray-700 bg-gray-700 text-white rounded-lg transform transition duration-100 hover:scale-105 ease-out bg-gradient-to-t from-black to-purple-600 dark:from-black dark:to-gray-700 ring-purple-500 text-sm sm:text-base 2xl:text-lg"
+                    ? "text-center w-28 2xl:w-44 sm:w-36 flex flex-row items-center justify-center gap-2 h-[50%] px-4 py-2 2xl:px-12 dark:ring-gray-600 dark:bg-gray-700 bg-white dark:text-white text-black rounded-lg ease-out dark:from-black dark:to-gray-600 ring-purple-500 text-sm sm:text-base 2xl:text-lg "
+                    : "text-center w-28 2xl:w-44 sm:w-36 flex flex-row items-center justify-center gap-2 h-[50%] px-4 py-2 2xl:px-12 hover:ring-2 dark:ring-gray-600 dark:bg-gray-700 bg-white dark:text-white text-black rounded-lg transform transition duration-100 hover:scale-105 ease-out  from-black to-purple-600 dark:from-black dark:to-gray-700 ring-purple-500 text-sm sm:text-base 2xl:text-lg"
                 }
                 onClick={handlePagesPrev}
                 disabled={page == 0}
@@ -275,8 +275,8 @@ export const Reserva = () => {
                 type="button"
                 className={
                   !flag
-                    ? "text-center w-28 2xl:w-44 sm:w-36 flex flex-row items-center justify-center gap-2 h-[50%] px-4 py-2 2xl:px-12 hover:ring-2 dark:ring-gray-600 bg-gray-700 text-white rounded-lg transform transition duration-100 hover:scale-105 ease-out bg-gradient-to-t from-black to-purple-600 dark:from-black dark:to-gray-700 ring-purple-500 text-sm sm:text-base 2xl:text-lg m-4"
-                    : "text-center w-28 2xl:w-44 sm:w-36 items-center justify-center gap-2 h-[50%] px-4 py-2 2xl:px-12 dark:ring-gray-600 bg-gray-700 text-white rounded-lg ease-out dark:from-black dark:to-gray-700 ring-purple-500 text-sm sm:text-base 2xl:text-lg m-4 disabled flex"
+                    ? "text-center w-28 2xl:w-44 sm:w-36 flex flex-row items-center justify-center gap-2 h-[50%] px-4 py-2 2xl:px-12 hover:ring-2 dark:ring-gray-600 dark:bg-gray-700 bg-white dark:text-white text-black rounded-lg transform transition duration-100 hover:scale-105 ease-out  from-black to-purple-600 dark:from-black dark:to-gray-700 ring-purple-500 text-sm sm:text-base 2xl:text-lg m-4"
+                    : "text-center w-28 2xl:w-44 sm:w-36 items-center justify-center gap-2 h-[50%] px-4 py-2 2xl:px-12 dark:ring-gray-600 dark:bg-gray-700 bg-white dark:text-white text-black rounded-lg ease-out dark:from-black dark:to-gray-700 ring-purple-500 text-sm sm:text-base 2xl:text-lg m-4 disabled flex"
                 }
                 disabled={page == TitlePages.length - 1 ? flag : ""}
                 onClick={handlePagesNext}
