@@ -98,7 +98,7 @@ export const Departamentos = () => {
                   <div className="h-full w-full rounded-t-2xl">
                     <NavLink to={`/departamento/${depto.ID}`}>
                       <img
-                        src={depto.IMAGENES[0].url}
+                        src={depto.IMAGENES[0]?.url }
                         alt="Imagen"
                         className="object-cover w-full rounded-t-2xl h-3/5"
                       />
