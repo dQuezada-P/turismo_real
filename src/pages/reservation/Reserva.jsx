@@ -183,12 +183,14 @@ export const Reserva = () => {
       const dept = await GetDepartamento(id);
       const tours = await getTours();
       const listTour = tours.filter((tr) => {
+        console.log(tr);
         if (tr.ID_LOCALIDAD == dept.ID_LOCALIDAD) return tr;
       });
       const transports = await getTransports();
       const listTransport = transports.filter((tran) => {
-        if (tran.ID_LOCALIDAD == dept.ID_LOCALIDAD && tran.ESTADO != 0)
+        if (tran.ID_LOCALIDAD == dept.ID_LOCALIDAD && tran.ESTADO == 1)
           return tran;
+          console.log(tran);
       });
       setTourList(listTour);
       setTransportList(listTransport);
