@@ -242,7 +242,7 @@ export const Pay = ({ department }) => {
         </div>
       </div>
       <div className="flex flex-col md:flex-row gap-4 md:gap-24 text-center my-8 justify-center w-[100%] mx-auto px-10">
-        <div className="flex flex-row items-center justify-center border-2 px-4 py-4 rounded-2xl border-purple-600 py-2 dark:border-gray-700">
+        <div className="flex flex-row items-center justify-center border-2 px-4 py-4 rounded-2xl border-purple-600  dark:border-gray-700">
           <h3 className="text-base 2xl:text-lg text-center ">
             Costo Reservación :{" "}
           </h3>
