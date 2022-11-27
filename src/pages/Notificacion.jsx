@@ -28,6 +28,7 @@ export const Notificacion = () => {
         let modalParams = {};
 
         if (data.status == "approved") {
+          console.log('data ', data);
           await addReservation(data, token);
 
           modalParams = {
