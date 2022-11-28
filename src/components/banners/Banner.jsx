@@ -12,7 +12,7 @@ export default function Banner({ title, desc1, name, desc2, desc3 }) {
           <div className=" bg-yellow-400 bg-overlap-black w-16 sm:w-14 right-1/4   "></div>
           <div className=" bg-white bg-overlap-black w-16 sm:w-14 "></div>
         </div>
-        <div className="Text mx-auto container z-20 relative text-white   ">
+        <div className="Text mx-auto container z-20 relative text-white px-4  ">
           <h1 className=" text-2xl sm:text-lg 2xl:text-3xl  font-bold mx-8 md:mx-0 py-8 md:py-0 mb-4 sm:mt-4 capitalize text-center md:text-start">
             {title}
           </h1>

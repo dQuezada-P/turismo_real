@@ -41,7 +41,7 @@ export const Notificacion = () => {
                   Departamento: {data.reservation.reservation.nombre}
                 </p>
                 <br></br>
-                <p className="capitalize font-semibold text-base">*Se ha enviado un correo con más información*</p>
+                <p className="font-semibold text-base">*Se ha enviado un correo con más información*</p>
               </>
             ),
           };

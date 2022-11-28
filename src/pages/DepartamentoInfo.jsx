@@ -60,7 +60,7 @@ export const DepartamentoInfo = () => {
     {
       isLoading ? (
         ""
-      ) : ( <div className="container mx-auto sm:flex sm:flex-col relative my-2 gap-4 top-[20rem] sm:top-0 min-h-screen sm:w-full sm:items-center 2xl:justify-center sm:mt-6">
+      ) : ( <div className="container mx-auto sm:flex sm:flex-col relative my-2 gap-4 top-[5rem] sm:top-0 min-h-screen sm:w-full sm:items-center 2xl:justify-center sm:mt-6">
         <div className="BoxContainer h-96 sm:h-70 2xl:h-[30rem] mx-4 sm:w-2/4 2xl:w-4/6 bg-gray-50 dark:bg-white sm:mx-0 rounded-t-lg sm:rounded-lg dark:text-white">
           <div className="BoxMain w-full h-full sm:flex sm:flex-row">
             <div className="InfoLeft w-full h-full basis-3/5 flex sm:items-center">
@@ -150,8 +150,8 @@ export const DepartamentoInfo = () => {
                   <button
                     className={`${
                       department.ESTADO_RESERVA == "N"
-                        ? "Button w-[80%] mx-auto mt-4 py-2 rounded-lg shadow-lg ransform transition duration-200 sm:hover:scale-105 dark:bg-gray-700 bg-white dark:text-white text-black from-purple-600 via-purple-800 to-gray-700  hover:ring-2 hover:ring-gray-300  hover:bg-gradient-to-t hover:from-gray-700 hover:to-purple-500 dark:bg-gray-700 dark:from-gray-700 dark:ring-gray-500 hidden"
-                        : "Button w-[80%] mx-auto mt-4 py-2 text-center rounded-lg shadow-lg ransform transition duration-200 sm:hover:scale-105 dark:bg-gray-700 bg-white dark:text-white text-black from-purple-600 via-purple-800 to-gray-700  hover:ring-2 hover:ring-gray-300  hover:bg-gradient-to-t hover:from-gray-700 hover:to-purple-500 dark:bg-gray-700 dark:from-gray-700 dark:ring-gray-500 "
+                        ? "Button w-[80%] mx-auto mt-4 py-2 rounded-lg shadow-lg ransform transition duration-200 sm:hover:scale-105 dark:bg-gray-700 bg-white dark:text-white text-black from-purple-600 via-purple-800 to-gray-700  hover:ring-2 hover:ring-gray-300  hover:bg-gradient-to-t hover:from-gray-700 hover:to-purple-500 dark:from-gray-700 dark:ring-gray-500 hidden"
+                        : "Button w-[80%] mx-auto mt-4 py-2 text-center rounded-lg shadow-lg ransform transition duration-200 sm:hover:scale-105 dark:bg-gray-700 bg-white dark:text-white text-black from-purple-600 via-purple-800 to-gray-700  hover:ring-2 hover:ring-gray-300  hover:bg-gradient-to-t hover:from-gray-700 hover:to-purple-500  dark:from-gray-700 dark:ring-gray-500 "
                     }`}
                     onClick={handleReservation}
                   >
@@ -162,7 +162,7 @@ export const DepartamentoInfo = () => {
             </div>
           </div>
         </div>
-        <div className="BoxImg h-72 sm:h-64 2xl:h-96 mx-4 sm:w-2/4 2xl:w-4/6 sm:mx-0 top-[28rem] sm:top-0 relative shadow-sm">
+        <div className="BoxImg h-72 sm:h-64 2xl:h-96 mx-4 sm:w-2/4 2xl:w-4/6 sm:mx-0  shadow-sm">
           { department.IMAGENES ? 
             <Carousel>
               {department.IMAGENES.map((img, i) => (

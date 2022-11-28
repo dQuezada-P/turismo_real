@@ -52,7 +52,7 @@ export const Departamentos = () => {
       ) : (
         <>
           {" "}
-          <div className="Page_Departamentos relative z-30">
+          <div className="Page_Departamentos  relative z-30">
             <Banner
               title={"Arriendo de departamentos"}
               name={"Turismo Real"}
@@ -66,7 +66,7 @@ export const Departamentos = () => {
                 "Para la comodidad de nuestros clientes ofrecemos la facilidad de interactuar con nosotros de manera online, fácil y secilla, si presentas cualquier consulta no dudes en hablarnos, toda la información se encuentra en la sección"
               }
             />
-            <div className="mx-auto container mb-4">
+            <div className="mx-auto container px-4 mb-4">
               <label
                 htmlFor="filter"
                 className="block my-2 ml-4 sm:ml-0 relative text-base 2xl:text-lg font-semibold text-purple-600 dark:text-white"
@@ -89,7 +89,7 @@ export const Departamentos = () => {
             </div>
             {/* Cards */}
 
-            <div className=" min-h-[30rem] container ml-4 sm:mx-auto flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 mb-8 ">
+            <div className=" min-h-[30rem] px-4 container ml-4 sm:mx-auto flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 mb-8 ">
               {filteredDepartments().map((depto) => (
                 <div
                   className="w-11/12 h-60 2xl:h-72 shadow-xl rounded-b-2xl transform transition duration-200 sm:hover:scale-105"
