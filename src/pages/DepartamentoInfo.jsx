@@ -150,8 +150,8 @@ export const DepartamentoInfo = () => {
                   <button
                     className={`${
                       department.ESTADO_RESERVA == "N"
-                        ? "Button w-[80%] mx-auto mt-4 py-2 rounded-lg shadow-lg ransform transition duration-200 sm:hover:scale-105 bg-gradient-to-b from-purple-600 via-purple-800 to-gray-700 text-white hover:ring-2 hover:ring-gray-300  hover:bg-gradient-to-t hover:from-gray-700 hover:to-purple-600 dark:bg-gray-700 dark:from-gray-700 dark:ring-gray-500 hidden"
-                        : "Button w-[80%] mx-auto mt-4 py-2 text-center rounded-lg shadow-lg ransform transition duration-200 sm:hover:scale-105 bg-gradient-to-b from-purple-600 via-purple-800 to-gray-700 text-white hover:ring-2 hover:ring-gray-300  hover:bg-gradient-to-t hover:from-gray-700 hover:to-purple-600 dark:bg-gray-700 dark:from-gray-700 dark:ring-gray-500 "
+                        ? "Button w-[80%] mx-auto mt-4 py-2 rounded-lg shadow-lg ransform transition duration-200 sm:hover:scale-105 dark:bg-gray-700 bg-white dark:text-white text-black from-purple-600 via-purple-800 to-gray-700  hover:ring-2 hover:ring-gray-300  hover:bg-gradient-to-t hover:from-gray-700 hover:to-purple-500 dark:bg-gray-700 dark:from-gray-700 dark:ring-gray-500 hidden"
+                        : "Button w-[80%] mx-auto mt-4 py-2 text-center rounded-lg shadow-lg ransform transition duration-200 sm:hover:scale-105 dark:bg-gray-700 bg-white dark:text-white text-black from-purple-600 via-purple-800 to-gray-700  hover:ring-2 hover:ring-gray-300  hover:bg-gradient-to-t hover:from-gray-700 hover:to-purple-500 dark:bg-gray-700 dark:from-gray-700 dark:ring-gray-500 "
                     }`}
                     onClick={handleReservation}
                   >
